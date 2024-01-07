@@ -1,13 +1,29 @@
 [{
-    "pk": 1,
-    "model": "products.product",
-    "fields": {
-        "sku": "ft001",
-        "name": "Red Rover Chew Buddy",
-        "description": "Unleash the fun with Fetch & Feast's Red Rover Chew Buddy — a canine delight that combines style, durability, and playfulness for your furry best friend. This meticulously designed red dog-shaped chew toy is more than just a plaything; it's a statement of quality and joy in every wagging tail.",
-        "price": 14.99,
-        "category": 1,
-        "rating": 4.6,
-        "image": "chew_toy.jpg"
+        "pk": 1,
+        "model": "products.product",
+        "fields": {
+            "sku": "ft001",
+            "name": "Red Rover Chew Buddy",
+            "description": "Unleash the fun with Fetch & Feast's Red Rover Chew Buddy — a canine delight that combines style, durability, and playfulness for your furry best friend. This meticulously designed red dog-shaped chew toy is more than just a plaything; it's a statement of quality and joy in every wagging tail.",
+            "price": 14.99,
+            "category": 1,
+            "rating": 4.6,
+            "image": "chew_toy.jpg"
+        }
+    },
+
+    {
+        "pk": 2,
+        "model": "products.product",
+        "fields": {
+            "sku": "ft002",
+            "name": "Fetch & Feast Premium Chicken Feast for Adult Dogs (10kg)",
+            "description": "Indulge your four-legged friend in the epitome of canine cuisine with Fetch & Feast™ Premium Chicken Delight. Specifically formulated for adult dogs, this 10kg bag of exquisite dry food is a culinary masterpiece that seamlessly blends nutrition and flavor. Featuring real chicken as its star ingredient, our premium dry food ensures a protein-rich and well-balanced diet for your beloved pet. Carefully selected ingredients work together to provide essential nutrients, supporting your dog's overall well-being, from a glossy coat to robust muscles and sustained energy levels.",
+            "price": 19.99,
+            "category": 2,
+            "rating": 4.1,
+            "image": "dry_food_1.jpg"
+        }
     }
-}]
+
+]

@@ -2,7 +2,7 @@
     "pk": 1,
     "model": "products.category",
     "fields": {
-        "name": "toys",
-        "friendly_name": "Toys"
+        "name": "chew-toys",
+        "friendly_name": "Chew Toys"
     }
 }]

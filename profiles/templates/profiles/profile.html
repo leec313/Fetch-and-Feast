@@ -52,7 +52,7 @@
                                     {{ order.order_number|truncatechars:6 }}
                                 </a>
                             </td>
-                            <td>{{ order.date }}</td>
+                            <td>{{ order.date|date:"j F, Y" }}</td>
                             <td>
                                 <ul class="list-unstyled">
                                     {% for item in order.lineitems.all %}
@@ -64,7 +64,7 @@
                                     {% endfor %}
                                 </ul>
                             </td>
-                            <td>${{ order.grand_total }}</td>
+                            <td>€{{ order.grand_total }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

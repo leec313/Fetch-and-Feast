@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-e5%xahk%(mh&m)te)-gn^o%iipq#eom7k6j7$(idfvy#6s42cd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-leec313-fetchandfeast-8b89e9jrgzv.ws-eu107.gitpod.io', 'https://fetch-and-feast-4ceb13480b0c.herokuapp.com']
+ALLOWED_HOSTS = ['8000-leec313-fetchandfeast-8b89e9jrgzv.ws-eu107.gitpod.io', 'fetch-and-feast-4ceb13480b0c.herokuapp.com']
 
 
 # Application definition

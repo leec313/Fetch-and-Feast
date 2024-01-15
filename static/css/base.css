@@ -96,6 +96,14 @@ a.category-badge>span.badge:hover {
     cursor: pointer;
 }
 
+#product-description-container {
+    overflow: hidden;
+}
+
+#show-more-btn {
+    cursor: pointer;
+}
+
 /* ------------------------------- bootstrap toasts */
 
 .message-container {

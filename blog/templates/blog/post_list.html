@@ -1,44 +1,59 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% for post in posts %}
-<article class="col-lg-4">
-    <div class="card mb-4">
-        <div class="card-body">
-            <div class="image-container">
-                <!-- If there is no image included in the user's blog post, display placeholder -->
-                {% if "placeholder" in post.image.url %}
-                <a href="{% url 'post_detail' post.slug  %}" aria-label="{{ post.title }}"><img class="card-img-top"
-                        alt=" {{ post.title }} "
-                        src="https://raw.githubusercontent.com/leec313/Golf-Plus/main/static/media/placeholder_post.webp">
-                </a>
-                <!-- Else displays the uploaded image -->
-                {% else %}
-                <a href="{% url 'post_detail' post.slug  %}" aria-label="{{ post.title }}">
-                    <img class="card-img-top" alt="{{ post.title }}" src=" {{ post.image.url }}">
-                </a>
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
 
-                <div class="image-flash">
-                    <p class="author">Author: {{ post.author }}</p>
+{% block content %}
+{% for post in posts %}
+<div class="overlay"></div>
+<article class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
+            <div class="sort-select-wrapper w-50">
+                <div class="col text-center mt-3">
+                    <div class="image-container">
+                        <!-- If there is no image included in the user's blog post, display placeholder -->
+                        {% if "placeholder" in post.image.url %}
+                        <a href="{% url 'post_detail' post.slug  %}" aria-label="{{ post.title }}"><img
+                                class="card-img-top" alt=" {{ post.title }} "
+                                src="https://raw.githubusercontent.com/leec313/Golf-Plus/main/static/media/placeholder_post.webp">
+                        </a>
+                        <!-- Else displays the uploaded image -->
+                        {% else %}
+                        <a href="{% url 'post_detail' post.slug  %}" aria-label="{{ post.title }}">
+                            <img class="card-img-top" alt="{{ post.title }}" src=" {{ post.image.url }}">
+                        </a>
+                        {% endif %}
+                        <div class="image-flash">
+                            <p class="author">Author: {{ post.author }}</p>
+                        </div>
+                    </div>
+                    <a href="{% url 'post_detail' post.slug  %}" class="post-link" aria-label="{{ post.title }}">
+                        <h2 class="card-title text-uppercase">{{ post.title }}</h2>
+                    </a>
+                    <p class="card-text">
+                        <!-- If the excerpt exceeds 80 characters, it cuts it off -->
+                        {{ post.excerpt|slice:":80" }}{% if post.excerpt|length > 80 %}...{% endif %}
+                    </p>
+                    <hr>
+                    <div class="card-text h6">
+                        <span class="date-created">{{ post.created_on}}</span>
+                        <span class="likes-comments-container">
+                            <i class="far fa-heart"></i> {{ post.number_of_likes }}
+                            <i class="far fa-comments"></i> {{ post.comments.count }}
+                        </span>
+                    </div>
                 </div>
-            </div>
-            <a href="{% url 'post_detail' post.slug  %}" class="post-link" aria-label="{{ post.title }}">
-                <h2 class="card-title text-uppercase">{{ post.title }}</h2>
-            </a>
-            <p class="card-text">
-                <!-- If the excerpt exceeds 80 characters, it cuts it off -->
-                {{ post.excerpt|slice:":80" }}{% if post.excerpt|length > 80 %}...{% endif %}
-            </p>
-            <hr>
-            <div class="card-text h6">
-                <span class="date-created">{{ post.created_on}}</span>
-                <span class="likes-comments-container">
-                    <i class="far fa-heart"></i> {{ post.number_of_likes }}
-                    <i class="far fa-comments"></i> {{ post.comments.count }}
-                </span>
             </div>
         </div>
     </div>
 </article>
 
 {% endfor %}
+{% endblock %}

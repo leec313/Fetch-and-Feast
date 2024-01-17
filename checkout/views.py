@@ -15,7 +15,6 @@ import stripe
 import json
 
 
-
 @require_POST
 def cache_checkout_data(request):
     try:
@@ -26,7 +25,7 @@ def cache_checkout_data(request):
             'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
-        return HttpResponse(status=200)
+        #return HttpResponse(status=200)
     except Exception as e:
         messages.error(request, 'Sorry, your payment cannot be \
             processed right now. Please try again later.')

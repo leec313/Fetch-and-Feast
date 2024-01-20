@@ -1,15 +1,15 @@
 from django import forms
 from .models import UserProfile
 
-from django.contrib.auth.models import User
-
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['profile_image', 'default_phone_number', 'default_street_address1',
-                  'default_street_address2', 'default_town_or_city', 'default_county',
-                  'default_postcode', 'default_country']
+        fields = [
+                    'profile_image', 'user_username', 'user_email', 'user_first_name', 'user_last_name',
+                    'default_phone_number', 'default_street_address1', 'default_street_address2',
+                    'default_town_or_city', 'default_county', 'default_postcode', 'default_country'
+                ]
 
     user_username = forms.CharField(max_length=150, label='Username')
     user_email = forms.EmailField(label='Email')

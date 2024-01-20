@@ -10,3 +10,6 @@ $('#id_default_country').change(function () {
         $(this).css('color', '#000');
     }
 });
+/* Hiding the labels for cleaner look */
+$('label[for="id_default_country"]').hide();
+$('label[for="id_profile_image"]').hide();

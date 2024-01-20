@@ -23,10 +23,14 @@
             <h2 class="logo-font mb-4">My Profile</h2>
             <hr>
         </div>
+        <div class="col">
+            <hr>
+            <h2 class="logo-font mb-4">Order History</h2>
+            <hr>
+        </div>
     </div>
     <div class="row">
         <div class="col-12 col-lg-6">
-            <p class="text-muted">User Information</p>
             {% if profile.profile_image %}
             <img src="{{ profile.profile_image.url }}" alt="Profile Image" class="profile_img rounded-circle">
             {% else %}
@@ -35,13 +39,26 @@
             {% endif %}
             <form class="mt-3" action="{% url 'profile' %}" method="POST" id="user-update-form">
                 {% csrf_token %}
-                {{ form|crispy }}
-                <button class="btn btn-black rounded-0 text-uppercase float-right">Update Information</button>
+                {{ form.profile_image|as_crispy_field }}
+                <p class="text-muted">User Information</p>
+                {{ form.user_username|as_crispy_field }}
+                {{ form.user_email|as_crispy_field }}
+                {{ form.user_first_name|as_crispy_field }}
+                {{ form.user_last_name|as_crispy_field }}
+                {{ form.default_phone_number|as_crispy_field }}
+                <p class="text-muted">Delivery Information</p>
+                {{ form.default_town_or_city|as_crispy_field }}
+                {{ form.default_street_address1|as_crispy_field }}
+                {{ form.default_street_address2|as_crispy_field }}
+                {{ form.default_county|as_crispy_field }}
+                {{ form.default_postcode|as_crispy_field }}
+                {{ form.default_country|as_crispy_field }}
+                <button class="btn btn-black rounded-0 text-uppercase float-right mb-4">Update Information</button>
             </form>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
+
+        {% if orders %}
+        <div class="col-12 col-lg-6">
             <p class="text-muted">Order History</p>
             <div class="order-history table-responsive">
                 <table class="table table-sm table-borderless">
@@ -80,11 +97,17 @@
                 </table>
             </div>
         </div>
+        {% else %}
+        <div class="col-12 col-lg-6">
+            <p class="text-muted">You haven't made an order yet &#128546;</p>
+            <img src="{% static 'default-images/no_orders.webp' %}" class="img-fluid" alt="Sad dog, no orders">
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
 
 {% block postloadjs %}
 {{ block.super }}
-<script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
+<script type=" text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
 {% endblock %}

@@ -15,6 +15,8 @@
 #id_default_country,
 #id_default_country option:not(:first-child) {
     color: #000;
+    border-color: #000;
+    border-radius: 0%;
 }
 
 #id_default_country option:first-child {

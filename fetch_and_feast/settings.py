@@ -107,6 +107,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
+SITE_NAME = 'Fetch & Feast'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
@@ -217,7 +218,7 @@ STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DEFAULT_FROM_EMAIL = 'fetchandfeast@example.com'
+    DEFAULT_FROM_EMAIL = 'admin@fetchandfeast.com'
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USE_TLS = True

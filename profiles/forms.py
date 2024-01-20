@@ -1,11 +1,45 @@
 from django import forms
 from .models import UserProfile
 
+from django.contrib.auth.models import User
 
+
+class UserProfileImageForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['profile_image']
+
+
+# Form for personal user information
+class UserInformationForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        placeholders = {
+            'username': 'Username',
+            'email': 'Email',
+            'first_name': 'First Name',
+            'last_name': 'Last Name',
+        }
+
+        for field in self.fields:
+            if self.fields[field].required:
+                placeholder = f'{placeholders[field]} *'
+            else:
+                placeholder = placeholders[field]
+            self.fields[field].widget.attrs['placeholder'] = placeholder
+            self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
+            self.fields[field].label = False
+
+
+# Form for Delivery information
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        exclude = ('user',)
+        exclude = ('user', 'profile_image')  # Exclude 'profile_image' field
 
     def __init__(self, *args, **kwargs):
         """

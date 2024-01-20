@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
@@ -25,14 +26,37 @@
     </div>
     <div class="row">
         <div class="col-12 col-lg-6">
-            <p class="text-muted">Default Delivery Information</p>
-            <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
+            {% if profile.profile_image %}
+            <img src="{{ profile.profile_image.url }}" alt="Profile Image" class="profile_img rounded-circle">
+            {% else %}
+            <img src="{% static '/media/default_profile.webp' %}" alt="Profile Image"
+                class="profile_img rounded-circle">
+            {% endif %}
+            {{ image_form|crispy }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <p class="text-muted">User Information</p>
+            <form class="mt-3" action="{% url 'profile' %}" method="POST" id="user-update-form">
                 {% csrf_token %}
-                {{ form|crispy }}
-                <button class="btn btn-black rounded-0 text-uppercase float-right">Update Information</button>
+                {{ user_form|crispy }}
+                <button class="btn btn-black rounded-0 text-uppercase float-right">Update Personal
+                    Information</button>
             </form>
         </div>
         <div class="col-12 col-lg-6">
+            <p class="text-muted">Delivery Information</p>
+            <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                {% csrf_token %}
+                {{ profile_form|crispy }}
+                <button class="btn btn-black rounded-0 text-uppercase float-right">Update Delivery
+                    Information</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
             <p class="text-muted">Order History</p>
             <div class="order-history table-responsive">
                 <table class="table table-sm table-borderless">
@@ -72,9 +96,10 @@
             </div>
         </div>
     </div>
-    {% endblock %}
+</div>
+{% endblock %}
 
-    {% block postloadjs %}
-    {{ block.super }}
-    <script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
-    {% endblock %}
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
+{% endblock %}

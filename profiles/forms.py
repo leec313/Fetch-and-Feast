@@ -1,4 +1,5 @@
 from django import forms
+from .widgets import CustomClearableFileInput
 from .models import UserProfile
 
 
@@ -15,6 +16,8 @@ class UserProfileForm(forms.ModelForm):
     user_email = forms.EmailField(label='Email')
     user_first_name = forms.CharField(max_length=30, label='First Name')
     user_last_name = forms.CharField(max_length=30, label='Last Name')
+    profile_image = forms.ImageField(
+        label='Image', required=False, widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

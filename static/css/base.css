@@ -183,6 +183,11 @@ a.category-badge>span.badge:hover {
     overflow-y: auto;
 }
 
+.product-img {
+    width: 600px;
+    height: 600px;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */

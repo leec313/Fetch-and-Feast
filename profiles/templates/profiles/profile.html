@@ -25,13 +25,13 @@
             <div class="row">
                 <div class="col-6">
                     {% if profile.profile_image %}
-                    <div class="image-container_profile rounded-circle" onmouseover="zoomIn(this)"
+                    <div class="image-container-profile rounded-circle" onmouseover="zoomIn(this)"
                         onmouseout="zoomOut(this)">
                         <img src="{{ profile.profile_image.url }}" alt="Profile Image"
                             class="rounded-circle profile_img">
                     </div>
                     {% else %}
-                    <div class="image-container_profile rounded-circle" onmouseover="zoomIn(this)"
+                    <div class="image-container-profile rounded-circle" onmouseover="zoomIn(this)"
                         onmouseout="zoomOut(this)">
                         <img src="{% static 'default-images/default_profile.webp' %}" alt="Profile Image"
                             class="rounded-circle profile_img">

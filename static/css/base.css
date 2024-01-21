@@ -19,6 +19,11 @@ body {
     width: 1.5rem;
 }
 
+.profile_img_base {
+    width: 40px;
+    height: 40px;
+}
+
 .logo-font {
     text-transform: uppercase;
 }

@@ -13,10 +13,17 @@ def profile(request):
     profile = get_object_or_404(UserProfile, user=user)
 
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=profile)
+        form = UserProfileForm(request.POST, request.FILES, instance=profile)
 
         if form.is_valid():
-            form.save()
+            profile = form.save(commit=False)
+            profile.user.username = form.cleaned_data['user_username']
+            profile.user.email = form.cleaned_data['user_email']
+            profile.user.first_name = form.cleaned_data['user_first_name']
+            profile.user.last_name = form.cleaned_data['user_last_name']
+            profile.user.save()
+            
+            profile.save()
             messages.success(request, 'Profile updated successfully')
         else:
             messages.error(request, 'Update failed. Please ensure the form is valid.')

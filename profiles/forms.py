@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import PasswordChangeForm
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from allauth.account.models import EmailAddress
@@ -35,8 +36,10 @@ class UserProfileForm(forms.ModelForm):
         if self.instance:
             self.fields['user_username'].initial = self.instance.user.username
             self.fields['user_email'].initial = self.instance.user.email
-            self.fields['user_first_name'].initial = self.instance.user.first_name
-            self.fields['user_last_name'].initial = self.instance.user.last_name
+            self.fields[
+                'user_first_name'].initial = self.instance.user.first_name
+            self.fields[
+                'user_last_name'].initial = self.instance.user.last_name
 
         placeholders = {
             'user_username': 'Username',
@@ -58,7 +61,34 @@ class UserProfileForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
-                self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
+                self.fields[field].widget.attrs[
+                    'class'] = 'border-black rounded-0 profile-form-input'
+                self.fields[field].label = False
+
+
+class ChangePasswordForm(PasswordChangeForm):
+    """
+    Custom form for changing user passwords
+    """
+
+    class Meta:
+        model = User
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        placeholders = {
+            'old_password': 'Old Password',
+            'new_password1': 'New Password',
+            'new_password2': 'Confirm New Password',
+        }
+
+        for field in self.fields:
+            if field in placeholders:
+                placeholder = placeholders[field]
+                self.fields[field].widget.attrs['placeholder'] = placeholder
+                self.fields[field].widget.attrs[
+                    'class'] = 'border-black rounded-0 profile-form-input'
                 self.fields[field].label = False
 
 

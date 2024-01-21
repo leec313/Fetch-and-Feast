@@ -73,6 +73,21 @@ def product_detail(request, product_id):
 
 
 @login_required
+def manage_products(request):
+    """ Product management page where the admin can
+    add, edit or delete products """
+    products = Product.objects.all()
+    return render(request, 'products/manage_products.html', {'products': products})
+
+
+def bulk_delete_products(request):
+    if request.method == 'POST':
+        selected_product_ids = request.POST.getlist('selected_products')
+        Product.objects.filter(id__in=selected_product_ids).delete()
+    return redirect('manage_products')
+
+
+@login_required
 def add_product(request):
     """ Add a product to the store """
     if not request.user.is_superuser:

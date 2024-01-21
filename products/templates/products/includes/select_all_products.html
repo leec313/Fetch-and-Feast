@@ -1,0 +1,41 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectAllCheckbox = document.getElementById('select-all');
+        const individualCheckboxes = document.querySelectorAll('input[name="selected_products"]');
+        const deleteSelectedBtn = document.getElementById('deleteSelectedBtn');
+        const selectedProductsList = document.getElementById('selectedProductsList');
+        const selectedProductsInput = document.getElementById('selectedProductsInput');
+        const deleteConfirmationModal = new bootstrap.Modal(document.getElementById('deleteConfirmationModal'));
+
+        selectAllCheckbox.addEventListener('change', function () {
+            const isChecked = this.checked;
+            individualCheckboxes.forEach(checkbox => {
+                checkbox.checked = isChecked;
+            });
+        });
+
+        deleteSelectedBtn.addEventListener('click', function () {
+            const selectedCheckboxes = document.querySelectorAll(
+                'input[name="selected_products"]:checked');
+
+            if (selectedCheckboxes.length > 0) {
+                // Update the modal content with selected product information
+                selectedProductsList.innerHTML = '';
+                selectedCheckboxes.forEach(checkbox => {
+                    const productName = checkbox.closest('tr').querySelector('td:nth-child(5)')
+                        .innerText;
+                    const listItem = document.createElement('li');
+                    listItem.textContent = productName;
+                    selectedProductsList.appendChild(listItem);
+                });
+
+                // Set the value of the hidden input in the form
+                selectedProductsInput.value = Array.from(selectedCheckboxes).map(checkbox => checkbox
+                    .value).join(',');
+
+                // Show the confirmation modal
+                deleteConfirmationModal.show();
+            }
+        });
+    });
+</script>

@@ -1,0 +1,149 @@
+{% extends 'base.html' %} {% block content %}
+{% load crispy_forms_tags %}
+
+<div class="masthead">
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-md-6 masthead-text">
+                <!-- Post title goes in these h1 tags -->
+                <h1 class="post-title">{{ post.title }}</h1>
+                <!-- Post author goes before the | the post's created date goes after -->
+                <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
+            </div>
+            <div class="d-none d-md-block col-md-6 masthead-image">
+                <!-- If no image was uploaded by the user, the placeholder image will display -->
+                {% if "placeholder" in post.featured_image.url %}
+                <img src="https://res.cloudinary.com/dc9f7ztkr/image/upload/v1698165554/c0y4ryigcx3ruzl0o58n.jpg"
+                    alt="Placeholder Image for Posts">
+                <!-- Else the uploaded image will display -->
+                {% else %}
+                <img src=" {{ post.featured_image.url }} " alt="{{ post.title }}">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col card mb-4  mt-3 left  top">
+            <div class="card-body">
+                <!-- Post content goes within the card-body -->
+                <!-- Use the | safe filter inside the template tags: the safe filter is used to mark a string as safe for HTML output -->
+                <!-- Linebreaks: used to display text with line breaks in HTML, preserving the formatting from the original text that the user enters when creating a post. -->
+                {{ post.content | safe | linebreaks }}
+                <div class="row">
+                    <div class="col d-flex align-items-center">
+                        <strong class="like-comments-detail">
+                            <!-- Checking if the user is logged in and allowing them to like posts-->
+                            {% if user.is_authenticated %}
+                            <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
+                                {% csrf_token %}
+                                <!-- If they have liked the post, it will display the solid heart icon-->
+                                {% if liked %}
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i
+                                        class="fas fa-heart"></i></button>
+                                <!-- If they have not liked the post, it displays the outline of the heart icon -->
+                                {% else %}
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i
+                                        class="far fa-heart"></i></button>
+                                {% endif %}
+                            </form>
+                            {% else %}
+                            <span class="text-secondary"><i class="far fa-heart"></i></span>
+                            {% endif %}
+                            <!-- Shows the number of likes the post has -->
+                            <span class="text-secondary">{{ post.number_of_likes }} </span>
+                        </strong>
+                        <!-- Shows the comment icon along with the total number of comments -->
+                        {% with comments.count as total_comments %}
+                        <strong class="text-secondary"><i class="far fa-comments"></i>
+                            {{ total_comments }}
+                        </strong>
+                        {% endwith %}
+                    </div>
+                    <div class="col-12 col-md-auto ms-md-auto">
+                        <!-- If the author of the post is the current logged in user, it will display the update/delete buttons-->
+                        {% if post.author == user %}
+                        <div class="ms-md-auto">
+                            <a class="btn btn-signup btn-sm mt-1 mb-1"
+                                href="{% url 'post_update' post.slug %}">Update</a>
+                            <a class="btn btn-danger btn-sm mt-1 mb-1"
+                                href="{% url 'post_delete' post.slug %}">Delete</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-8 card mb-4 mt-3">
+            <h3>Comments:</h3>
+            <div class="card-body">
+                <!-- For loop shows all comments -->
+                {% for comment in post.comments.all %}
+                <!-- below if/forloop in class aligns first comment left, second right and so on -->
+                <div class="comments {% if forloop.counter|divisibleby:2 %}align-right{% else %}align-left{% endif %}">
+                    <div class="font-weight-bold">
+                        <!-- determine whether to apply a specific CSS class to the div containing each comment -->
+                        <!-- If the comment is at an even position (second, fourth, etc.), it adds the class align-right; otherwise, it adds the class align-left. -->
+                        {% if forloop.counter|divisibleby:2 %}
+                        <div class="text-white">
+                            {{ comment.created_on }}
+                        </div>
+                        {{ comment.name }}
+                        <img class="comment-image" src="{{ comment.user.profile.image.url }}"
+                            alt="{{ comment.user.username }}">
+                        <!-- If the comment posted was posted by the logged in user, it will show the update/delete buttons-->
+                        {% if comment.user == user %}
+                        <a class="btn-update" href="{% url 'update_comment' pk=comment.pk %}">
+                            Edit
+                        </a>
+                        <a class="btn-delete" href="{% url 'delete_comment' pk=comment.pk %}">
+                            Delete
+                        </a>
+                        {% endif %}
+                        {% else %}
+                        <div class="text-white">
+                            {{ comment.created_on }}
+                        </div>
+                        <!-- If the comment posted was posted by the logged in user, it will show the update/delete buttons-->
+                        {% if comment.user == user %}
+                        <a class="btn-update" href="{% url 'update_comment' pk=comment.pk %}">
+                            Edit
+                        </a>
+                        <a class="btn-delete" href="{% url 'delete_comment' pk=comment.pk %}">
+                            Delete
+                        </a>
+                        {% endif %}
+                        <img class="comment-image" src="{{ comment.user.profile.image.url }}"
+                            alt="{{ comment.user.username }}">
+                        {{ comment.name }}
+                        {% endif %}
+                    </div>
+                    <!-- shows the body of the comment with safe and linebreaks-->
+                    {{ comment.body | safe | linebreaks }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-4 card mb-4  mt-3 ">
+            <div class="card-body">
+                <!-- If the user is logged in, they will see the comment box so they can post -->
+                {% if user.is_authenticated %}
+                <h3>Leave a comment:</h3>
+                <p>Posting as: {{ user.username }}</p>
+                <form method="post" style="margin-top: 1.3em;" id="comment-form">
+                    {{ comment_form | crispy }}
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

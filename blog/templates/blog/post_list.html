@@ -40,12 +40,13 @@
                     <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none text-black">
                         <h5>{{ post.title }}</h5>
                     </a>
-                    <p class="mb-0">{{ post.excerpt|slice:":80" }}{% if post.excerpt|length > 80 %}...{% endif %}</p>
+                    <p class="mb-3 text-muted">
+                        {{ post.excerpt|slice:":80" }}{% if post.excerpt|length > 80 %}...{% endif %}</p>
                 </div>
                 <div class="card-footer bg-white pt-0 border-0 text-left">
                     <div class="row">
                         <div class="col">
-                            <div class="card-text h6">
+                            <div class="card-text h6 text-muted">
                                 <span class="date-created">{{ post.created_on }}</span>
                                 <span class="likes-comments-container float-right">
                                     <i class="far fa-heart"></i> {{ post.number_of_likes }}

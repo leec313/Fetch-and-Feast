@@ -97,48 +97,37 @@
                     {% if post.comments.all %}
                     <!-- For loop shows all comments -->
                     {% for comment in post.comments.all %}
-                    <!-- below if/forloop in class aligns first comment left, second right and so on -->
+                    <!-- below if/forloops in class aligns first comment left, second right and so on -->
                     <div
-                        class="comments {% if forloop.counter|divisibleby:2 %}align-right{% else %}align-left{% endif %}">
-                        <div class="font-weight-bold">
-                            <!-- determine whether to apply a specific CSS class to the div containing each comment -->
-                            <!-- If the comment is at an even position (second, fourth, etc.), it adds the class align-right; otherwise, it adds the class align-left. -->
-                            {% if forloop.counter|divisibleby:2 %}
-                            <div class="text-white">
-                                {{ comment.created_on }}
+                        class="comments {% if forloop.counter|divisibleby:2 %}comment-align-right{% else %}comment-align-left{% endif %}">
+                        <!-- determine whether to apply a specific CSS class to the div containing each comment -->
+                        <!-- If the comment is at an even position (second, fourth, etc.), it adds the class align-right; otherwise, it adds the class align-left. -->
+                        <div
+                            class="comment {% if forloop.counter|divisibleby:2 %}comment-align-right{% else %}comment-align-left{% endif %}">
+                            <div class="avatar">
+                                <img class="rounded-circle profile_img_comment"
+                                    src="{{ commenter_profile_images|default:comment.user.userprofile.profile_image.url }}"
+                                    alt="{{ comment.user.username }}">
                             </div>
-                            {{ comment.name }}
-                            <img class="comment-image" src="{{ comment.user.profile.image.url }}"
-                                alt="{{ comment.user.username }}">
-                            <!-- If the comment posted was posted by the logged in user, it will show the update/delete buttons-->
-                            {% if comment.user == user %}
-                            <a class="btn-update" href="{% url 'update_comment' pk=comment.pk %}">
-                                Edit
-                            </a>
-                            <a class="btn-delete" href="{% url 'delete_comment' pk=comment.pk %}">
-                                Delete
-                            </a>
-                            {% endif %}
-                            {% else %}
-                            <div class="text-white">
-                                {{ comment.created_on }}
+                            <div class="content">
+                                <p class="name">{{ comment.name }}</p>
+                                <p class="created-on">{{ comment.created_on }}</p>
+                                {{ comment.body | safe | linebreaks }}
                             </div>
-                            <!-- If the comment posted was posted by the logged in user, it will show the update/delete buttons-->
+                            <!-- If the comment posted was posted by the logged in user, it will show the update/delete buttons -->
                             {% if comment.user == user %}
-                            <a class="btn-update" href="{% url 'update_comment' pk=comment.pk %}">
-                                Edit
-                            </a>
-                            <a class="btn-delete" href="{% url 'delete_comment' pk=comment.pk %}">
-                                Delete
-                            </a>
-                            {% endif %}
-                            <img class="comment-image" src="{{ comment.user.profile.image.url }}"
-                                alt="{{ comment.user.username }}">
-                            {{ comment.name }}
+                            <div class="actions">
+                                <a class="btn btn-black rounded-0 text-uppercase m-1"
+                                    href="{% url 'update_comment' pk=comment.pk %}">
+                                    Edit
+                                </a>
+                                <a class="btn btn-danger rounded-0 text-uppercase m-1"
+                                    href="{% url 'delete_comment' pk=comment.pk %}">
+                                    Delete
+                                </a>
+                            </div>
                             {% endif %}
                         </div>
-                        <!-- shows the body of the comment with safe and linebreaks-->
-                        {{ comment.body | safe | linebreaks }}
                     </div>
                     {% endfor %}
                     {% else %}
@@ -146,7 +135,7 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="col-md-4 card mb-4  mt-3 ">
+            <div class="col-md-4 card mb-4 mt-3 ">
                 <div class="card-body">
                     <!-- If the user is logged in, they will see the comment box so they can post -->
                     {% if user.is_authenticated %}
@@ -161,6 +150,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </article>
 

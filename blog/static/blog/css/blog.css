@@ -12,3 +12,61 @@
   border: none;
   background-color: white;
 }
+
+.profile_img_comment {
+  width: 40px;
+  height: 40px;
+}
+
+.comments a {
+  font-size: 10px;
+}
+
+.comment-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.comment {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.comment .avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.comment .content {
+  background-color: #f7f7f7;
+  border-radius: 20px;
+  padding: 10px;
+  max-width: 70%;
+}
+
+.comment.align-right .content {
+  background-color: #ffeeee;
+  align-self: flex-end;
+}
+
+.comment .name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.comment-align-left {
+  justify-content: flex-start;
+}
+
+.comment-align-right {
+  justify-content: flex-end;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+}

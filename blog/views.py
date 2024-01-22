@@ -8,18 +8,18 @@ from django.views.generic import (
     DeleteView,
 )
 from django.views import View
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.utils.text import slugify
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from profiles.models import UserProfile
 from .models import Post, Comment
 from .forms import (
     CommentForm,
     PostForm,
 )
 from django.db.models import Q, Case, When
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.contrib.auth.decorators import login_required
 
 
 class PostListView(ListView):
@@ -91,6 +91,15 @@ class PostDetailView(DetailView):
         comment_form = CommentForm()
         context['comment_form'] = comment_form
         context['comments'] = comments
+
+        # Add profile images of commenters to the context
+        commenter_profile_images = {}
+        for comment in comments:
+            user_id = comment.user.id
+            user_profile = UserProfile.objects.filter(user_id=user_id).first()
+            profile_image_url = user_profile.profile_image.url if user_profile and user_profile.profile_image else None
+            print(f"User ID: {user_id}, Profile Image URL: {profile_image_url}")
+            commenter_profile_images[user_id] = profile_image_url
 
         return context
 

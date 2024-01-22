@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'blog/css/blog.css' %}">
+{% endblock %}
+
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
@@ -10,50 +14,50 @@
 {% endblock %}
 
 {% block content %}
-{% for post in posts %}
 <div class="overlay"></div>
-<article class="container-fluid">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
-            <div class="sort-select-wrapper w-50">
-                <div class="col text-center mt-3">
-                    <div class="image-container">
-                        <!-- If there is no image included in the user's blog post, display placeholder -->
-                        {% if "placeholder" in post.image.url %}
-                        <a href="{% url 'post_detail' post.slug  %}" aria-label="{{ post.title }}"><img
-                                class="card-img-top" alt=" {{ post.title }} "
-                                src="https://raw.githubusercontent.com/leec313/Golf-Plus/main/static/media/placeholder_post.webp">
-                        </a>
-                        <!-- Else displays the uploaded image -->
-                        {% else %}
-                        <a href="{% url 'post_detail' post.slug  %}" aria-label="{{ post.title }}">
-                            <img class="card-img-top" alt="{{ post.title }}" src=" {{ post.image.url }}">
-                        </a>
-                        {% endif %}
-                        <div class="image-flash">
-                            <p class="author">Author: {{ post.author }}</p>
-                        </div>
-                    </div>
-                    <a href="{% url 'post_detail' post.slug  %}" class="post-link" aria-label="{{ post.title }}">
-                        <h2 class="card-title text-uppercase">{{ post.title }}</h2>
+        <div class="col text-center mt-3">
+            <h2 class="logo-font mt-3">Blog Posts</h2>
+            <hr class="w-50 mb-1">
+        </div>
+    </div>
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 p-3">
+            <div class="card h-100 border-0">
+                {% if post.image %}
+                <a href="{% url 'post_detail' post.slug %}">
+                    <img class="card-img-top img-fluid" src="{{ post.image.url }}" alt="{{ post.title }}">
+                </a>
+                {% else %}
+                <a href="{% url 'post_detail' post.slug %}">
+                    <img class="card-img-top img-fluid" src="{% static 'path/to/placeholder_post.webp' %}"
+                        alt="{{ post.title }}">
+                </a>
+                {% endif %}
+                <div class="card-body pb-0">
+                    <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none text-black">
+                        <h5>{{ post.title }}</h5>
                     </a>
-                    <p class="card-text">
-                        <!-- If the excerpt exceeds 80 characters, it cuts it off -->
-                        {{ post.excerpt|slice:":80" }}{% if post.excerpt|length > 80 %}...{% endif %}
-                    </p>
-                    <hr>
-                    <div class="card-text h6">
-                        <span class="date-created">{{ post.created_on}}</span>
-                        <span class="likes-comments-container">
-                            <i class="far fa-heart"></i> {{ post.number_of_likes }}
-                            <i class="far fa-comments"></i> {{ post.comments.count }}
-                        </span>
+                    <p class="mb-0">{{ post.excerpt|slice:":80" }}{% if post.excerpt|length > 80 %}...{% endif %}</p>
+                </div>
+                <div class="card-footer bg-white pt-0 border-0 text-left">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card-text h6">
+                                <span class="date-created">{{ post.created_on }}</span>
+                                <span class="likes-comments-container float-right">
+                                    <i class="far fa-heart"></i> {{ post.number_of_likes }}
+                                    <i class="far fa-comments"></i> {{ post.comments.count }}
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-</article>
-
-{% endfor %}
+</div>
 {% endblock %}

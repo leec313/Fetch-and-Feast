@@ -90,6 +90,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'bag.contexts.bag_contents',
+                # below allows access to the profile image on all templates
+                'profiles.context_processors.profile_image',
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',

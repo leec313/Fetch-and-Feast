@@ -73,9 +73,8 @@
                         <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             <div class="text-center">
-                                {% if profile.profile_image %}
-                                <img src="{{ profile.profile_image.url }}" alt="My Account"
-                                    class="rounded-circle profile_img_base">
+                                {% if profile_image %}
+                                <img src="{{ profile_image }}" alt="My Account" class="rounded-circle profile_img_base">
                                 {% else %}
                                 <img src="{% static 'default-images/default_profile.webp' %}" alt="My Account"
                                     class="rounded-circle profile_img_base">

@@ -21,30 +21,42 @@ def profile(request):
         'on_profile_page': True
     }
 
+    user_profile_form = UserProfileForm(instance=profile)
+    password_form = ChangePasswordForm(user)
+
+    # Checking the POST request if userprofileform or changepassword form
     if request.method == 'POST':
-        # Handle UserProfileForm
-        user_profile_form = UserProfileForm(
-            request.POST, request.FILES, instance=profile)
-        password_form = ChangePasswordForm(user, request.POST)
+        if 'user_username' in request.POST:
+            # Handle UserProfileForm
+            user_profile_form = UserProfileForm(
+                request.POST, request.FILES, instance=profile)
+            # User/Profile info form
+            if user_profile_form.is_valid():
+                profile = user_profile_form.save(commit=False)
+                profile.user.username = user_profile_form.cleaned_data[
+                    'user_username']
+                profile.user.email = user_profile_form.cleaned_data[
+                    'user_email']
+                profile.user.first_name = user_profile_form.cleaned_data[
+                    'user_first_name']
+                profile.user.last_name = user_profile_form.cleaned_data[
+                    'user_last_name']
+                profile.user.save()
 
-        # User/Profile info form
-        if user_profile_form.is_valid():
-            profile = user_profile_form.save(commit=False)
-            profile.user.username = user_profile_form.cleaned_data[
-                'user_username']
-            profile.user.email = user_profile_form.cleaned_data[
-                'user_email']
-            profile.user.first_name = user_profile_form.cleaned_data[
-                'user_first_name']
-            profile.user.last_name = user_profile_form.cleaned_data[
-                'user_last_name']
-            profile.user.save()
-
-            profile.save()
-            messages.success(request, 'Profile updated successfully')
-        else:
-            messages.error(
-                request, 'Please ensure the profile information is valid.')
+                profile.save()
+                messages.success(request, 'Profile updated successfully')
+            else:
+                messages.error(
+                    request, 'Please ensure the profile information is valid.')
+        elif 'old_password' in request.POST:
+            password_form = ChangePasswordForm(user, request.POST)
+            if password_form.is_valid():
+                new_password = password_form.cleaned_data['new_password']
+                user.set_password(new_password)
+                user.save()
+                messages.success(request, 'Password changed successfully')
+            else:
+                messages.error(request, 'Please correct the password change form errors.')
     else:
         user_profile_form = UserProfileForm(instance=profile)
         password_form = ChangePasswordForm(user)

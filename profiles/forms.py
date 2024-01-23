@@ -36,10 +36,16 @@ class UserProfileForm(forms.ModelForm):
         if self.instance:
             self.fields['user_username'].initial = self.instance.user.username
             self.fields['user_email'].initial = self.instance.user.email
-            self.fields[
-                'user_first_name'].initial = self.instance.user.first_name
-            self.fields[
-                'user_last_name'].initial = self.instance.user.last_name
+            self.fields['user_first_name'].initial = self.instance.user.first_name
+            self.fields['user_last_name'].initial = self.instance.user.last_name
+            self.fields['profile_image'].initial = self.instance.profile_image
+            self.fields['default_phone_number'].initial = self.instance.default_phone_number
+            self.fields['default_street_address1'].initial = self.instance.default_street_address1
+            self.fields['default_street_address2'].initial = self.instance.default_street_address2
+            self.fields['default_town_or_city'].initial = self.instance.default_town_or_city
+            self.fields['default_county'].initial = self.instance.default_county
+            self.fields['default_postcode'].initial = self.instance.default_postcode
+            self.fields['default_country'].initial = self.instance.default_country
 
         placeholders = {
             'user_username': 'Username',

@@ -94,45 +94,8 @@
             <div class="col-md-8 card mb-4 mt-3">
                 <h3 class="mt-3">Comments:</h3>
                 <div class="card-body">
-                    {% if post.comments.all %}
-                    <!-- For loop shows all comments -->
-                    {% for comment in post.comments.all %}
-                    <!-- below if/forloops in class aligns first comment left, second right and so on -->
-                    <div
-                        class="comments {% if forloop.counter|divisibleby:2 %}comment-align-right{% else %}comment-align-left{% endif %}">
-                        <!-- determine whether to apply a specific CSS class to the div containing each comment -->
-                        <!-- If the comment is at an even position (second, fourth, etc.), it adds the class align-right; otherwise, it adds the class align-left. -->
-                        <div
-                            class="comment {% if forloop.counter|divisibleby:2 %}comment-align-right{% else %}comment-align-left{% endif %}">
-                            <div class="avatar">
-                                <img class="rounded-circle profile_img_comment"
-                                    src="{{ commenter_profile_images|default:comment.user.userprofile.profile_image.url }}"
-                                    alt="{{ comment.user.username }}">
-                            </div>
-                            <div class="content">
-                                <p class="name">{{ comment.name }}</p>
-                                <p class="created-on">{{ comment.created_on }}</p>
-                                {{ comment.body | safe | linebreaks }}
-                            </div>
-                            <!-- If the comment posted was posted by the logged in user, it will show the update/delete buttons -->
-                            {% if comment.user == user %}
-                            <div class="actions">
-                                <a class="btn btn-black rounded-0 text-uppercase m-1"
-                                    href="{% url 'update_comment' pk=comment.pk %}">
-                                    Edit
-                                </a>
-                                <a class="btn btn-danger rounded-0 text-uppercase m-1"
-                                    href="{% url 'delete_comment' pk=comment.pk %}">
-                                    Delete
-                                </a>
-                            </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                    {% endfor %}
-                    {% else %}
-                    <p class="d-flex align-items-center justify-content-center mt-5">Be the first to comment!</p>
-                    {% endif %}
+                    {% include 'comment_list.html' with comments=comments %}
+                    <div class="pagination-container"></div>
                 </div>
             </div>
             <div class="col-md-4 card mb-4 mt-3 ">
@@ -155,3 +118,28 @@
 </article>
 
 {% endblock content %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script>
+    $(document).on('click', '.pagination a', function (event) {
+        event.preventDefault();
+        var page = $(this).attr('href').split('page=')[1];
+
+        $.ajax({
+            url: '{% url "post_detail" post.slug %}',
+            data: {
+                page: page
+            },
+            type: 'GET',
+            success: function (data) {
+                console.log('AJAX success:', data);
+                $('.card-body').html(data.comment_html);
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX error:', status, error);
+            }
+        });
+    });
+</script>
+{% endblock%}

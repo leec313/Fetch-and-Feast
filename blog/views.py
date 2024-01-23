@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, reverse
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
@@ -8,7 +9,8 @@ from django.views.generic import (
     DeleteView,
 )
 from django.views import View
-from django.contrib.auth.models import User
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import JsonResponse
 from django.http import HttpResponseRedirect
 from django.utils.text import slugify
 from django.contrib import messages
@@ -82,6 +84,20 @@ class PostDetailView(DetailView):
 
         post = context['post']
         comments = post.comments.filter(approved=True).order_by("-created_on")
+
+        # Pagination for comments
+        page = self.request.GET.get('page', 1)
+        paginator = Paginator(comments, 6)
+        try:
+            paginated_comments = paginator.page(page)
+        except PageNotAnInteger:
+            paginated_comments = paginator.page(1)
+        except EmptyPage:
+            paginated_comments = paginator.page(paginator.num_pages)
+
+        context['comments'] = paginated_comments
+        context['paginator'] = paginator
+
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -132,6 +148,20 @@ class PostDetailView(DetailView):
 
         # Add a message to inform the user
         messages.success(self.request, "Comment posted!")
+
+        # AJAX pagination for comments
+        if request.is_ajax():
+            page = request.GET.get('page', 1)
+            try:
+                comments = Paginator.page(page)
+            except PageNotAnInteger:
+                comments = Paginator.page(1)
+            except EmptyPage:
+                comments = Paginator.page(Paginator.num_pages)
+
+            comment_html = render_to_string(
+                'comment_list.html', {'comments': comments})
+            return JsonResponse({'comment_html': comment_html})
 
         return render(request, "post_detail.html", context)
 

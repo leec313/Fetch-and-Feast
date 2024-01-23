@@ -19,7 +19,7 @@ class CommentForm(forms.ModelForm):
     Form class for posting a comment
     """
     body = forms.CharField(widget=forms.Textarea(
-            attrs={'placeholder': 'Your comment here'}))
+            attrs={'placeholder': 'Your comment here'}), label=False)
 
     class Meta:
         model = Comment

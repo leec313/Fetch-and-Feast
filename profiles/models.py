@@ -37,6 +37,13 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     Create or update the user profile
     """
     if created:
-        UserProfile.objects.create(user=instance)
-    # Existing users: just save the profile
-    instance.userprofile.save()
+        profile = UserProfile.objects.create(user=instance)
+    else:
+        profile = instance.userprofile
+
+    # Check if 'profile_image' is not set
+    if not profile.profile_image:
+        profile.profile_image = 'default-images/default_profile.webp'
+
+    # Save the profile
+    profile.save()

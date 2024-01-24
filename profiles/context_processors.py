@@ -2,7 +2,7 @@ from .models import UserProfile
 
 
 def profile_image(request):
-    """ This will allow us to display the 
+    """ This will allow us to display the
     profile image (if it exists) on all templates """
     profile_image = None
     if request.user.is_authenticated:

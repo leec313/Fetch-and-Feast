@@ -1,4 +1,4 @@
-//Handles the no reload of the comment pages for seemless viewing of comments
+//Handles the no reload of the comment pages for seamless viewing of comments
 $(document).on('click', '.pagination a', function (event) {
     event.preventDefault();
 
@@ -19,7 +19,6 @@ $(document).on('click', '.pagination a', function (event) {
         console.error('AJAX error:', status, error);
     });
 });
-
 
 // Auto scroll to comment section after comment posted
 $(document).ready(function () {

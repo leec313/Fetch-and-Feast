@@ -130,7 +130,8 @@ class PostDetailView(DetailView):
                 comments = paginator.page(paginator.num_pages)
 
             comment_html = render_to_string(
-                'comment_list.html', {'comments': comments})
+                'comment_list.html', {'comments': comments}, request=request)
+
             return JsonResponse({'comment_html': comment_html})
 
         return self.render_to_response(context)

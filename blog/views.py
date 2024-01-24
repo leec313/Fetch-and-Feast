@@ -73,9 +73,6 @@ class PostListView(ListView):
 
 
 class PostDetailView(DetailView):
-    """
-    View for showing a single post's details
-    """
     model = Post
     template_name = "post_detail.html"
 
@@ -83,7 +80,7 @@ class PostDetailView(DetailView):
         context = super().get_context_data(**kwargs)
 
         post = context['post']
-        comments = post.comments.filter(approved=True).order_by("-created_on")
+        comments = post.comments.filter(approved=True)
 
         # Pagination for comments
         page = self.request.GET.get('page', 1)
@@ -106,7 +103,6 @@ class PostDetailView(DetailView):
         # Adding the comment form to the context
         comment_form = CommentForm()
         context['comment_form'] = comment_form
-        context['comments'] = comments
 
         # Add profile images of commenters to the context
         commenter_profile_images = {}
@@ -123,10 +119,24 @@ class PostDetailView(DetailView):
         self.object = self.get_object()
         context = self.get_context_data()
 
+        # AJAX pagination for comments
+        if request.is_ajax():
+            page = request.GET.get('page', 1)
+            paginator = context['paginator']
+            try:
+                comments = paginator.page(page)
+            except PageNotAnInteger:
+                comments = paginator.page(1)
+            except EmptyPage:
+                comments = paginator.page(paginator.num_pages)
+
+            comment_html = render_to_string(
+                'comment_list.html', {'comments': comments})
+            return JsonResponse({'comment_html': comment_html})
+
         return self.render_to_response(context)
 
     def post(self, request, *args, **kwargs):
-        # Retrieve the post using the same logic as in the get method
         self.object = self.get_object()
         context = self.get_context_data()
 
@@ -139,30 +149,17 @@ class PostDetailView(DetailView):
             comment = comment_form.save(commit=False)
             comment.post = self.object
             comment.save()
-        else:
-            comment_form = CommentForm()
+
+            # Add a message to inform the user
+            messages.success(self.request, "Comment posted!")
+
+            # Set commented to True in context
+            context['commented'] = True
 
         # Add the comment form to the context
         context['comment_form'] = comment_form
-        context['commented'] = True
 
-        # Add a message to inform the user
-        messages.success(self.request, "Comment posted!")
-
-        # AJAX pagination for comments
-        if request.is_ajax():
-            page = request.GET.get('page', 1)
-            try:
-                comments = Paginator.page(page)
-            except PageNotAnInteger:
-                comments = Paginator.page(1)
-            except EmptyPage:
-                comments = Paginator.page(Paginator.num_pages)
-
-            comment_html = render_to_string(
-                'comment_list.html', {'comments': comments})
-            return JsonResponse({'comment_html': comment_html})
-
+        # Return the response without handling AJAX pagination here
         return render(request, "post_detail.html", context)
 
 

@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -80,7 +80,7 @@ class PostDetailView(DetailView):
         context = super().get_context_data(**kwargs)
 
         post = context['post']
-        comments = post.comments.filter(approved=True)
+        comments = post.comments.filter(approved=True).order_by("-created_on")
 
         # Pagination for comments
         page = self.request.GET.get('page', 1)
@@ -110,7 +110,6 @@ class PostDetailView(DetailView):
             user_id = comment.user.id
             user_profile = UserProfile.objects.filter(user_id=user_id).first()
             profile_image_url = user_profile.profile_image.url if user_profile and user_profile.profile_image else None
-            print(f"User ID: {user_id}, Profile Image URL: {profile_image_url}")
             commenter_profile_images[user_id] = profile_image_url
 
         return context
@@ -152,6 +151,9 @@ class PostDetailView(DetailView):
 
             # Add a message to inform the user
             messages.success(self.request, "Comment posted!")
+
+            # Redirect the user back to the post detail page with a hash fragment
+            return redirect(reverse('post_detail', args=[self.object.slug]) + '#comments-section')
 
             # Set commented to True in context
             context['commented'] = True

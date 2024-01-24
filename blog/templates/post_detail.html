@@ -93,7 +93,7 @@
         <div class="row">
             <div class="col-md-8 card mb-4 mt-3">
                 <h3 class="mt-3">Comments:</h3>
-                <div class="card-body" data-page="{{ comments.number }}">
+                <div id="comments-section" class="card-body" data-page="{{ comments.number }}">
                     {% include 'comment_list.html' %}
                 </div>
             </div>
@@ -120,26 +120,5 @@
 
 {% block postloadjs %}
 {{ block.super }}
-<script>
-    $(document).on('click', '.pagination a', function (event) {
-        event.preventDefault();
-
-        var url = $(this).attr('href');
-
-        $.get(url, function (data) {
-            console.log('AJAX success:', data);
-
-            // Assuming you have a unique identifier for the target card-body
-            var targetCardBody = $('.card-body[data-page]');
-
-            // Replace the HTML content inside the target card-body
-            targetCardBody.html(data.comment_html);
-
-            // Update the URL in the browser without reloading the page
-            window.history.pushState({}, '', url);
-        }).fail(function (xhr, status, error) {
-            console.error('AJAX error:', status, error);
-        });
-    });
-</script>
+<script src="{% static 'blog/js/comment_section.js' %}"></script>
 {% endblock%}

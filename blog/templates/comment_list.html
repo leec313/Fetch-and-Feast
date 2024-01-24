@@ -33,20 +33,28 @@
 {% else %}
 <p class="d-flex align-items-center justify-content-center mt-5">Be the first to comment!</p>
 {% endif %}
-<div class="pagination">
-    <span class="step-links">
+<div class=" d-flex align-items-center justify-content-center pagination mt-4">
+    <ul class="pagination">
         {% if comments.has_previous %}
-        <a href="?page=1">&laquo; first</a>
-        <a href="?page={{ comments.previous_page_number }}">previous</a>
+        <li class="page-item">
+            <a class="page-link text-muted" href="?page=1">&laquo; First</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link text-muted" href="?page={{ comments.previous_page_number }}">Previous</a>
+        </li>
         {% endif %}
 
-        <span class="current">
-            Page {{ comments.number }} of {{ comments.paginator.num_pages }}.
-        </span>
+        <li class="page-item disabled">
+            <span class="page-link">{{ comments.number }} of {{ comments.paginator.num_pages }}</span>
+        </li>
 
         {% if comments.has_next %}
-        <a href="?page={{ comments.next_page_number }}">next</a>
-        <a href="?page={{ comments.paginator.num_pages }}">last &raquo;</a>
+        <li class="page-item">
+            <a class="page-link text-muted" href="?page={{ comments.next_page_number }}">Next</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link text-muted" href="?page={{ comments.paginator.num_pages }}">Last &raquo;</a>
+        </li>
         {% endif %}
-    </span>
+    </ul>
 </div>

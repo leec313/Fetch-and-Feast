@@ -42,49 +42,77 @@
             <hr class="w-50 mb-1 mt-2">
         </div>
     </div>
-    <div class="row">
+    <div class="row justify-content-around">
         <!-- Checking if a post the user searched for was found - if not return "no posts found"-->
         {% if no_results %}
-        <h2 class="text-center mt-3">No posts found.</h2>
+        <div class="col-12 col-lg-6 mx-auto text-center">
+            <h3 class="my-3">No posts found &#128546;</h3>
+            <img src="{% get_media_prefix %}default-images/no_orders.webp" class="img-fluid" alt="Sad dog, no posts">
+        </div>
         {% else %}
-        {% for post in posts %}
-        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 p-3">
-            <div class="card h-100 border-0">
-                {% if post.image %}
-                <a href="{% url 'post_detail' post.slug %}">
-                    <img class="card-img-top img-fluid" src="{{ post.image.url }}" alt="{{ post.title }}">
-                </a>
-                {% else %}
-                <a href="{% url 'post_detail' post.slug %}">
-                    <img class="card-img-top img-fluid" src="{% static 'path/to/placeholder_post.webp' %}"
-                        alt="{{ post.title }}">
-                </a>
-                {% endif %}
-                <div class="card-body pb-0">
-                    <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none text-black">
-                        <h5>{{ post.title }}</h5>
-                    </a>
-                    <p class="mb-3 text-muted">
-                        {{ post.excerpt|slice:":80" }}{% if post.excerpt|length > 80 %}...{% endif %}
-                    </p>
-                </div>
-                <div class="card-footer bg-white pt-0 border-0 text-left">
-                    <div class="row">
-                        <div class="col">
-                            <div class="card-text h6 text-muted">
-                                <span class="date-created">{{ post.created_on }}</span>
-                                <span class="likes-comments-container float-right">
-                                    <i class="far fa-heart"></i> {{ post.number_of_likes }}
-                                    <i class="far fa-comments"></i> {{ post.comments.count }}
-                                </span>
+        <div class="col-12">
+            <div class="row">
+                {% for post in posts %}
+                <div class="col-sm-6 col-md-6 col-lg-4 p-3">
+                    <div class="card h-100 border-0">
+                        {% if post.image %}
+                        <a href="{% url 'post_detail' post.slug %}">
+                            <img class="card-img-top img-fluid" src="{{ post.image.url }}" alt="{{ post.title }}">
+                        </a>
+                        {% else %}
+                        <a href="{% url 'post_detail' post.slug %}">
+                            <img class="card-img-top img-fluid"
+                                src="{% get_media_prefix %}default-images/no_orders.webp" alt="{{ post.title }}">
+                        </a>
+                        {% endif %}
+                        <div class="card-body pb-0">
+                            <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none text-black">
+                                <h5>{{ post.title }}</h5>
+                            </a>
+                            <p class="mb-3 text-muted">
+                                {{ post.excerpt|slice:":80" }}{% if post.excerpt|length > 80 %}...{% endif %}
+                            </p>
+                        </div>
+                        <div class="card-footer bg-white pt-0 border-0 text-left">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card-text h6 text-muted">
+                                        <span class="date-created">{{ post.created_on }}</span>
+                                        <span class="likes-comments-container float-right">
+                                            <i class="far fa-heart"></i> {{ post.number_of_likes }}
+                                            <i class="far fa-comments"></i> {{ post.comments.count }}
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
-        {% endfor %}
         {% endif %}
     </div>
 </div>
+<!-- Pagination: as per the PostList view, the page will display only 6 posts per page-->
+{% if is_paginated %}
+<nav aria-label="Page navigation" class="d-flex align-items-center justify-content-center mt-4">
+    <ul class="pagination">
+        <!-- If there is a previous page, it will display the previous button-->
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a href="?page={{ page_obj.previous_page_number }}" class="page-link text-muted rounded-0" aria-label="Prev">&laquo;
+                Previous</a>
+        </li>
+        {% endif %}
+        <!-- If there are more than 6 posts, it will display the next button-->
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a href="?page={{ page_obj.next_page_number }}" class="page-link text-muted rounded-0" aria-label="Next">Next
+                &raquo;</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
 {% endblock %}

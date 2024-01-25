@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
 
-from .models import Product, Category
-from .forms import ProductForm
+from .models import Product, Category, Rating
+from .forms import ProductForm, RatingForm
 
 
 def all_products(request):
@@ -64,9 +64,30 @@ def product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(Product, pk=product_id)
+    ratings = Rating.objects.filter(product=product)
+
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            form = RatingForm(request.POST)
+            if form.is_valid():
+                rating = form.save(commit=False)
+                rating.user = request.user
+                rating.product = product
+                rating.save()
+                messages.success(request, 'Rating added successfully!')
+                return redirect(reverse('product_detail', args=[product.id]))
+        else:
+            messages.error(
+                request, 'You need to be logged in to submit a rating.')
+
+    else:
+        form = RatingForm()
 
     context = {
         'product': product,
+        'ratings': ratings,
+        'average_rating': product.average_rating(),
+        'form': form,
     }
 
     return render(request, 'products/product_detail.html', context)

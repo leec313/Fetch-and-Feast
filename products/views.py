@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
 
 from .models import Product, Category, Rating
 from .forms import ProductForm, RatingForm
+from profiles.models import UserProfile
 
 
 def all_products(request):
@@ -66,6 +68,19 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     ratings = Rating.objects.filter(product=product)
 
+    # Paginate the ratings
+    paginator = Paginator(ratings, 6)  # Adjust the number of ratings per page as needed
+    page = request.GET.get('page')
+
+    try:
+        ratings = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        ratings = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        ratings = paginator.page(paginator.num_pages)
+
     if request.method == 'POST':
         if request.user.is_authenticated:
             form = RatingForm(request.POST)
@@ -83,11 +98,19 @@ def product_detail(request, product_id):
     else:
         form = RatingForm()
 
+    # Get profile images for each rating user
+    rating_profiles = {}
+    for rating in ratings:
+        user_profile = UserProfile.objects.filter(user_id=rating.user.id).first()
+        profile_image_url = user_profile.profile_image.url if user_profile and user_profile.profile_image else None
+        rating_profiles[rating.user.id] = profile_image_url
+
     context = {
         'product': product,
         'ratings': ratings,
         'average_rating': product.average_rating(),
         'form': form,
+        'rating_profiles': rating_profiles,
     }
 
     return render(request, 'products/product_detail.html', context)

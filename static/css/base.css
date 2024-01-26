@@ -282,6 +282,21 @@ a.category-badge>span.badge:hover {
     border-radius: 0;
 }
 
+.ratings {
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ratings-individual {
+    background-color: #f7f7f7;
+    border-radius: 20px;
+    padding: 10px;
+    max-width: 90%;
+}
+
+.checked {
+    color: rgb(221, 185, 27);
+}
+
 /* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {

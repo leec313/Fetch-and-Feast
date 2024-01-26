@@ -44,6 +44,7 @@ class Rating(models.Model):
     product = models.ForeignKey('Product', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
+    created_on = models.DateTimeField(auto_now_add=True)
     body = models.TextField()
     score = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)])

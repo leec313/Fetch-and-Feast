@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load custom_filters %}
+{% load crispy_forms_tags %}
 
 {% block page_header %}
 <div class="container header-container">
@@ -26,7 +28,7 @@
                 <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                 {% else %}
                 <img class="card-img-top img-fluid profile-img" src="{% static 'default-images/no_orders.webp' %}"
-                    alt=" {{ product.name }}">
+                    alt="{{ product.name }}">
                 {% endif %}
             </div>
         </div>
@@ -130,58 +132,82 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-        {% if request.user.is_authenticated %}
-        <form method="post" action="{% url 'product_detail' product.id %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <!-- Star rating input using Font Awesome icons -->
-            <button type="submit" class="btn btn-primary">Submit Rating</button>
-        </form>
-        {% else %}
-        <p>You need to be logged in to submit a rating.</p>
-        {% endif %}
-    </div>
 
-    {% load custom_filters %}
-
-    <div class="col-12 col-md-6 col-lg-4">
-        <h3 class="mt-4">Product Ratings</h3>
-        {% if ratings %}
-        <div class="row">
-            {% for rating in ratings %}
-            <div class="col-12 col-lg-6 mb-3">
-                <div class="card border-0">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ rating.user.username }}</h5>
-                        <div class="star-rating">
-                            {% for i in 5|range_value %}
-                            {% if i < rating.score %}
-                            <span class="fas fa-star checked"></span>
-                            {% else %}
-                            <span class="far fa-star"></span>
-                            {% endif %}
-                            {% endfor %}
-                            <p>{{ rating.score }}</p>
-                        </div>
-                        <p class="card-text">{{ rating.title }}</p>
-                        <p class="card-text">{{ rating.body }}</p>
-                    </div>
+<div class="ratings mt-4">
+    <div class="row">
+        <!-- Left column for product ratings form -->
+        <div class="col-12 col-md-6 col-lg-4">
+            <h3 class="text-center mt-5 mb-5 text-uppercase">Product Ratings</h3>
+            <div class="row">
+                <div class="col-md-8 offset-md-2 col-lg-8 offset-lg-2 mb-5 mx-auto w-75">
+                    {% if request.user.is_authenticated %}
+                    <form method="post" action="{% url 'product_detail' product.id %}">
+                        {% csrf_token %}
+                        {% crispy form %}
+                        <!-- Star rating input using Font Awesome icons -->
+                        <button type="submit" class="btn btn-black rounded-0 text-uppercase">Submit Rating</button>
+                    </form>
+                    {% else %}
+                    <p>You need to be logged in to submit a rating.</p>
+                    {% endif %}
                 </div>
             </div>
-            {% endfor %}
         </div>
-        {% else %}
-        <p>No ratings yet.</p>
-        {% endif %}
+
+        <!-- Right column for existing ratings -->
+        <div class="col-12 col-md-6 col-lg-8">
+            <div class="row">
+                {% for rating in ratings %}
+                <div class="col-12 col-lg-6 mt-5 mb-3">
+                    <div class="card border-0">
+                        <div class="card-body ratings-individual mr-3">
+                            <span class="d-flex">
+                                <img class="rounded-circle profile_img_base"
+                                    src="{{ rating.user.id|get_profile_image_url:rating_profiles }}"
+                                    alt="{{ rating.user.username }}">
+                                <p class="text-muted mt-2">{{ rating.user.username }}</p>
+                            </span>
+                            <p class="card-text float-right">{{ rating.created_on|date:"H:i d/m/Y" }}</p>
+                            <div class="star-rating">
+                                {% for i in 5|range_value %}
+                                {% if i < rating.score %}
+                                <span class="fas fa-star checked"></span>
+                                {% else %}
+                                <span class="far fa-star"></span>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            <p class="card-text">{{ rating.title }}</p>
+                            <p class="card-text">{{ rating.body }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if ratings.has_other_pages %}
+            <nav aria-label="Page navigation" class="col-md-8 offset-md-2 col-lg-8 offset-lg-2 mb-5 mx-auto w-75">
+                <ul class="pagination">
+                    {% if ratings.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{ ratings.previous_page_number }}" class="page-link text-muted rounded-0"
+                            aria-label="Prev">&laquo; Prev</a>
+                    </li>
+                    {% endif %}
+                    {% if ratings.has_next %}
+                    <li class="page-item">
+                        <a href="?page={{ ratings.next_page_number }}" class="page-link text-muted rounded-0"
+                            aria-label="Next">Next &raquo;</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
     </div>
 </div>
 
-
-
 {% endblock %}
-
 {% block postloadjs %}
 {{ block.super }}
 {% include 'products/includes/quantity_input_script.html' %}

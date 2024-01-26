@@ -11,4 +11,4 @@ def profile_image(request):
         except UserProfile.DoesNotExist:
             pass
 
-    return {'profile_image': profile_image}
+    return {'profile_image': profile_image, 'request': request}

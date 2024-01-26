@@ -58,7 +58,9 @@
                 <h1 class="mb-0 text-left font-weight-bold">
                     <span class="small-euro">€</span>{{ product.price }}
                 </h1>
+                {% if average_rating %}
                 <a href="#ratings" class="text-decoration-none text-dark">{{ average_rating|stars|safe }}</a>
+                {% endif %}
                 {% if product.category %}
                 <p class="small mb-0">
                     <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">

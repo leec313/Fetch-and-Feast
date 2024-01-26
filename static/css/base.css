@@ -119,6 +119,15 @@ a.category-badge>span.badge:hover {
     cursor: pointer;
 }
 
+.small-euro {
+    font-size: 0.5em;
+}
+
+/* Custom classes for styling average star rating on product page */
+.fas-star-solid {
+    color: rgb(221, 185, 27);
+}
+
 /* ------------------------------- bootstrap toasts */
 
 .message-container {

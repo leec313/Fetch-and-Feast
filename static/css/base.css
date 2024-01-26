@@ -2,12 +2,22 @@ html {
     height: 100%;
 }
 
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 body {
     background: url('/media/homepage_background_cropped.webp') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 164px);
     color: #555;
     font-family: 'Lato';
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
 }
 
 /* from Bulma */
@@ -254,7 +264,7 @@ a.category-badge>span.badge:hover {
     /* text-info */
 }
 
-/* Product Form */
+/* Product page */
 
 .btn-file {
     position: relative;
@@ -282,10 +292,12 @@ a.category-badge>span.badge:hover {
     border-radius: 0;
 }
 
+/* Shadow effect for ratings container */
 .ratings {
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Each individual ratings card/box styling */
 .ratings-individual {
     background-color: #f7f7f7;
     border-radius: 20px;
@@ -293,8 +305,39 @@ a.category-badge>span.badge:hover {
     max-width: 90%;
 }
 
+/* coloring for the stars on the individual cards - others are outline */
 .checked {
     color: rgb(221, 185, 27);
+}
+
+/* Stars for form rating input */
+.star-rating-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.star-rating-form .fa-star {
+    font-size: 42px;
+}
+
+.star-rating-form input[type="radio"] {
+    position: absolute;
+    left: -9999em;
+}
+
+.star-rating-form .fas {
+    color: rgb(221, 185, 27);
+}
+
+.star-rating-form .fa-star label {
+    font-size: 0;
+    /* Set font size to 0 to hide text */
+}
+
+/* Hiding the random radio button that just popped up */
+.star-rating-form .star-radio {
+    display: none;
 }
 
 /* fixed top navbar only on medium and up */

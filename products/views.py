@@ -66,7 +66,7 @@ def product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(Product, pk=product_id)
-    ratings = Rating.objects.filter(product=product)
+    ratings = Rating.objects.filter(product=product).order_by("-created_on")
 
     # Paginate the ratings
     paginator = Paginator(ratings, 6)  # Adjust the number of ratings per page as needed

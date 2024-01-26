@@ -141,11 +141,25 @@
             <div class="row">
                 <div class="col-md-8 offset-md-2 col-lg-8 offset-lg-2 mb-5 mx-auto w-75">
                     {% if request.user.is_authenticated %}
-                    <form method="post" action="{% url 'product_detail' product.id %}">
+                    <form method="post" action="{% url 'product_detail' product.id %}"
+                        onsubmit="return validateRatingForm()">
                         {% csrf_token %}
-                        {% crispy form %}
-                        <!-- Star rating input using Font Awesome icons -->
-                        <button type="submit" class="btn btn-black rounded-0 text-uppercase">Submit Rating</button>
+                        {{ form.title|as_crispy_field }}
+                        {{ form.body|as_crispy_field }}
+                        <div class="star-rating-form">
+                            {{ form.score.label_tag }}
+                            {% for radio in form.score %}
+                            <label
+                                class="far fa-star {% if radio.choice_value|add:'0' < form.initial.score %}checked{% endif %}">
+                                {{ radio }}
+                            </label>
+                            {% endfor %}
+                        </div>
+                        <div class="text-center mt-5">
+                            <!-- Center only the submit button -->
+                            <button type="submit" class="btn btn-black rounded-0 text-uppercase">Submit
+                                Rating</button>
+                        </div>
                     </form>
                     {% else %}
                     <p>You need to be logged in to submit a rating.</p>
@@ -155,10 +169,10 @@
         </div>
 
         <!-- Right column for existing ratings -->
-        <div class="col-12 col-md-6 col-lg-8">
+        <div class="col-md-6 col-lg-8 mt-5">
             <div class="row">
                 {% for rating in ratings %}
-                <div class="col-12 col-lg-6 mt-5 mb-3">
+                <div class="col-12 col-lg-6 mt-2 mb-3">
                     <div class="card border-0">
                         <div class="card-body ratings-individual mr-3">
                             <span class="d-flex">
@@ -184,9 +198,9 @@
                 </div>
                 {% endfor %}
             </div>
-
+            <!--Pagination for rating submissions-->
             {% if ratings.has_other_pages %}
-            <nav aria-label="Page navigation" class="col-md-8 offset-md-2 col-lg-8 offset-lg-2 mb-5 mx-auto w-75">
+            <nav aria-label="Page navigation" class="col-lg-8 mb-5 mx-auto w-75 float-right">
                 <ul class="pagination">
                     {% if ratings.has_previous %}
                     <li class="page-item">
@@ -212,20 +226,5 @@
 {{ block.super }}
 {% include 'products/includes/quantity_input_script.html' %}
 {% include 'products/includes/show_more_script.html' %}
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const starIcons = document.querySelectorAll('.star-rating .fa-star');
-
-        starIcons.forEach(function (star, index) {
-            star.addEventListener('click', function () {
-                const selectedScore = index + 1; // Adding 1 to make it 1-based index
-
-                starIcons.forEach(function (star, i) {
-                    star.classList.toggle('checked', i < selectedScore);
-                });
-            });
-        });
-    });
-</script>
-
+{% include 'products/includes/ratings.html' %}
 {% endblock %}

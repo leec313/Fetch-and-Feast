@@ -1,0 +1,37 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const starIcons = document.querySelectorAll('.star-rating .fa-star');
+
+        starIcons.forEach(function (star, index) {
+            star.addEventListener('click', function () {
+                const selectedScore = index + 1; // Adding 1 to make it 1-based index
+
+                starIcons.forEach(function (star, i) {
+                    star.classList.toggle('checked', i < selectedScore);
+                });
+            });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const starLabels = document.querySelectorAll('.star-rating-form label');
+
+        starLabels.forEach(function (label, index) {
+            label.addEventListener('click', function () {
+                const radio = label.querySelector('input[type="radio"]');
+
+                if (radio && radio.checked !== undefined) {
+                    radio.checked = true;
+
+                    // Toggle "fas" (solid) and "far" (outline) classes based on checked status
+                    starLabels.forEach(function (starLabel, i) {
+                        const isChecked = i <= index;
+                        starLabel.classList.toggle('fas', isChecked);
+                        starLabel.classList.toggle('far',
+                            !isChecked);
+                    });
+                }
+            });
+        });
+    });
+</script>

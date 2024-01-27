@@ -67,7 +67,9 @@
                                             src="{{ product.image.url }}" alt="{{ product.name }}"
                                             style="max-width: 50px; max-height: 50px;"></a>
                                     {% else %}
-                                    No Image
+                                    <a href="{% url 'product_detail' product.id %}" aria-label="Go to Product Page"><img
+                                            src="{% get_media_prefix %}default-images/no_orders.webp"
+                                            alt="{{ product.name }}" style="max-width: 50px; max-height: 50px;"></a>
                                     {% endif %}
                                 </td>
                                 <td class="d-none d-md-table-cell">{{ product.category }}</td>
@@ -77,7 +79,11 @@
                                         hover:text-success">{{ product.name }}</a></td>
                                 <td class="d-none d-md-table-cell">{{ product.has_sizes }}</td>
                                 <td>{{ product.price }}</td>
-                                <td class="d-none d-md-table-cell">RATING</td>
+                                {% if product.average_rating > 0 %}
+                                <td class="d-none d-md-table-cell">{{ product.average_rating|floatformat:"0" }}/5</td>
+                                {% else %}
+                                <td class="d-none d-md-table-cell">No Ratings</td>
+                                {% endif %}
                             </tr>
                             {% endfor %}
                         </tbody>

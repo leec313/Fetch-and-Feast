@@ -22,4 +22,5 @@ urlpatterns = [
          name='delete_comment'),
     path('', PostListView.as_view(), name='blogs'),
     path('summernote/', include('django_summernote.urls')),
+    path('tinymce/', include('tinymce.urls')),
 ]

@@ -38,4 +38,19 @@
 
 {% block postloadjs %}
 {{ block.super }}
-{% endblock%}
+<!-- Place the following <script> and <textarea> tags in your HTML's <body> -->
+<script src="https://cdn.tiny.cloud/1/kgy89s7gmi8s918excnmnriyievzl3c2a6dm5e0d8okug1fd/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea.tinymce',
+        plugins: 'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount',
+        toolbar: 'undo redo | formatselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | outdent indent |  bullist numlist | forecolor backcolor | removeformat | help',
+        menubar: 'file edit view insert format tools table help',
+        toolbar_mode: 'floating',
+        contextmenu: false,
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+    });
+</script>
+{% endblock %}

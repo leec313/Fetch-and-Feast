@@ -59,7 +59,8 @@
                     <span class="small-euro">€</span>{{ product.price }}
                 </h1>
                 {% if average_rating %}
-                <a href="#ratings" class="text-decoration-none text-dark">{{ average_rating|stars|safe }}</a>
+                <a href="#ratings"
+                    class="text-decoration-none text-dark average-stars">{{ average_rating|stars|safe }}</a>
                 {% endif %}
                 {% if product.category %}
                 <p class="small mb-0">

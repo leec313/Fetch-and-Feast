@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load custom_filters %}
 
 {% block page_header %}
 <div class="container header-container">
@@ -80,11 +81,16 @@
                         </a>
                         {% endif %}
                         <div class="card-body pb-0">
-                            <h5 class="mb-0">{{ product.name }}</h5>
+                            <a href="{% url 'product_detail' product.id %}"
+                                class="mb-0 text-decoration-none text-black lead">{{ product.name }}</a>
                         </div>
                         <div class="card-footer bg-white pt-0 border-0 text-left">
                             <div class="row">
-                                <div class="col">
+                                <div>
+                                    {% if product.average_rating %}
+                                    <a href="{% url 'product_detail' product.id %}"
+                                        class="text-decoration-none text-dark average-stars">{{ product.average_rating|stars|safe }}</a>
+                                    {% endif %}
                                     <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
                                     {% if product.category %}
                                     <p class="small mt-1 mb-0">
@@ -95,7 +101,7 @@
                                     </p>
                                     {% endif %}
                                     {% if request.user.is_superuser %}
-                                    <small class="ml-3">
+                                    <small>
                                         <a href="{% url 'edit_product' product.id %}">Edit</a>
                                         |
                                         <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>

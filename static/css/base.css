@@ -128,6 +128,11 @@ a.category-badge>span.badge:hover {
     color: rgb(221, 185, 27);
 }
 
+.fas-star-solid:hover {
+    font-size: larger;
+    color: rgb(255, 225, 94);
+}
+
 .bg-custom-color {
     background-color: rgb(221, 185, 27);
 }
@@ -332,6 +337,10 @@ a.category-badge>span.badge:hover {
 
 .star-rating-form .fa-star {
     font-size: 42px;
+}
+
+.star-rating-form .fa-star:hover {
+    color: rgb(255, 225, 94);
 }
 
 .star-rating-form input[type="radio"] {

@@ -52,6 +52,10 @@ def all_products(request):
 
     current_sorting = f'{sort}_{direction}'
 
+    # Calculate average rating for each product
+    for product in products:
+        product.average_rating = product.average_rating()
+
     context = {
         'products': products,
         'search_term': query,

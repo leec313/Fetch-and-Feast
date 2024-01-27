@@ -39,3 +39,8 @@ def stars(value):
     ])
 
     return stars_string
+
+
+@register.filter(name='get_average_rating')
+def get_average_rating(dictionary, key):
+    return dictionary.get(key, None)

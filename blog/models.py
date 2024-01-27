@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from tinymce import models as tinymce_models
+from tinymce.models import HTMLField
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
@@ -17,7 +17,7 @@ class Post(models.Model):
     image = models.ImageField(null=True, blank=True)
     excerpt = models.TextField(blank=True)
     updated_on = models.DateTimeField(auto_now=True)
-    content = tinymce_models.HTMLField()
+    content = HTMLField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(

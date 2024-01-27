@@ -26,12 +26,12 @@
             <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
         </div>
         <div class="d-md-block col-md-6">
-            <!-- If no image was uploaded by the user, the placeholder image will display -->
-            {% if "placeholder" in post.featured_image.url %}
-            <img src="" alt="Placeholder Image for Posts">
-            <!-- Else the uploaded image will display -->
-            {% else %}
+            <!-- Post's uploaded image will display -->
+            {% if post.image %}
             <img src=" {{ post.image.url }} " alt="{{ post.title }}" class="img-fluid">
+            <!-- If no image was uploaded by the user, the placeholder image will display -->
+            {% else %}
+            <img src="{% get_media_prefix %}default-images/no_orders.webp" alt="{{ post.title }}" class="img-fluid">
             {% endif %}
         </div>
     </div>

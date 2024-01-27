@@ -32,8 +32,11 @@
                 // If only one product is selected, proceed with the update logic
                 var productId = selectedProducts[0].value;
                 window.location.href = "{% url 'edit_product' product_id=0 %}".replace('0', productId);
+            } else if (selectedProducts.length < 1) {
+                // If fewer than one product is selected, show the error message
+                showMessage("Please select one product to update.");
             } else {
-                // If more or fewer than one product is selected, show the error message
+                // If more than one product is selected, show the error message
                 showMessage("Sorry, only one product can be updated at a time.");
             }
         });

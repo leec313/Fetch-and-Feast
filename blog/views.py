@@ -181,7 +181,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
         # Add a message to inform the user
         messages.success(self.request,
-                         "Your post will display as soon as it is approved.")
+                         "Your post was created successfully!")
 
         return response
 
@@ -224,7 +224,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """
     model = Post
     template_name = "post_confirm_delete.html"
-    success_url = '/'
+    success_url = '/blogs'
 
     # Checks to see if the user who created the post is the one deleting it
     def test_func(self):

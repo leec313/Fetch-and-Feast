@@ -8,11 +8,14 @@ from .views import (
     PostLike,
     CommentUpdateView,
     CommentDeleteView,
-    manage_blogs
+    manage_blogs,
+    bulk_delete_blogs
 )
 
 urlpatterns = [
     path('manage-blogs/', manage_blogs, name='manage_blogs'),
+    path('bulk_delete/', bulk_delete_blogs,
+         name='bulk_delete_blogs'),
     path('new/', PostCreateView.as_view(), name='post_new'),
     path('post/<slug:slug>/', PostDetailView.as_view(), name='post_detail'),
     path('like/<slug:slug>', PostLike.as_view(), name='post_like'),

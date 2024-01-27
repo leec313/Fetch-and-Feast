@@ -26,18 +26,18 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("updateSelectedBtn").addEventListener("click", function () {
-            var selectedProducts = document.querySelectorAll('input[name="selected_products"]:checked');
+            var selectedBlogs = document.querySelectorAll('input[name="selected_blogs"]:checked');
 
-            if (selectedProducts.length === 1) {
-                // If only one product is selected, proceed with the update logic
-                var productId = selectedProducts[0].value;
-                window.location.href = "{% url 'edit_product' product_id=0 %}".replace('0', productId);
-            } else if (selectedProducts.length < 1) {
-                // If fewer than one product is selected, show the error message
-                showMessage("Please select one product to edit.");
+            if (selectedBlogs.length === 1) {
+                // If only one blog is selected, proceed with the update logic
+                var blogSlug = selectedBlogs[0].value;
+                window.location.href = "{% url 'post_update' slug=0 %}".replace('0', blogSlug);
+            } else if (selectedBlogs.length < 1) {
+                // If fewer than one blog is selected, show the error message
+                showMessage("Please select one blog to edit.");
             } else {
-                // If more than one product is selected, show the error message
-                showMessage("Sorry, only one product can be edited at a time.");
+                // If more than one blog is selected, show the error message
+                showMessage("Sorry, only one blog can be edited at a time.");
             }
         });
     });

@@ -1,0 +1,44 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectAllCheckbox = document.getElementById('select-all');
+        const individualCheckboxes = document.querySelectorAll('input[name="selected_blogs"]');
+        const deleteSelectedBtn = document.getElementById('deleteSelectedBtn');
+        const selectedBlogsList = document.getElementById(
+            'selectedBlogsList');
+        const selectedBlogsInput = document.getElementById(
+            'selectedBlogsInput');
+        const deleteConfirmationModal = new bootstrap.Modal(document.getElementById(
+            'deleteConfirmationModalBlogs'));
+
+        selectAllCheckbox.addEventListener('change', function () {
+            const isChecked = this.checked;
+            individualCheckboxes.forEach(checkbox => {
+                checkbox.checked = isChecked;
+            });
+        });
+
+        deleteSelectedBtn.addEventListener('click', function () {
+            const selectedCheckboxes = document.querySelectorAll(
+                'input[name="selected_blogs"]:checked');
+
+            if (selectedCheckboxes.length > 0) {
+
+                selectedBlogsList.innerHTML = '';
+                selectedCheckboxes.forEach(checkbox => {
+                    const blogTitle = checkbox.closest('tr').querySelector('td:nth-child(4)')
+                        .innerText;
+                    const listItem = document.createElement('li');
+                    listItem.textContent = blogTitle;
+                    selectedBlogsList.appendChild(listItem);
+                });
+
+                // Set the value of the hidden input in the form
+                selectedBlogsInput.value = Array.from(selectedCheckboxes).map(checkbox => checkbox
+                    .value).join(',');
+
+                // Show the confirmation modal
+                deleteConfirmationModal.show();
+            }
+        });
+    });
+</script>

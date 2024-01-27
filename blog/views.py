@@ -186,12 +186,14 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return response
 
     def get_success_url(self):
-        return reverse('/blog/post_detail.html', kwargs={'slug': self.object.slug})
+        return reverse('post_detail', kwargs={'slug': self.object.slug})
 
 
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class PostUpdateView(UpdateView):
     """
     View for creating a post and assigning a slug to the new post
+    Removed LoginRequiredMixin, UserPassesTestMixin as I want any user
+    with admin access to be able to edit blog posts
     """
     model = Post
     template_name = "post_form.html"
@@ -218,9 +220,11 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return reverse('post_detail', kwargs={'slug': self.object.slug})
 
 
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class PostDeleteView(DeleteView):
     """
     View for deleting a single post
+    Removed LoginRequiredMixin, UserPassesTestMixin as I want any user
+    with admin access to be able to edit blog posts
     """
     model = Post
     template_name = "post_confirm_delete.html"
@@ -290,3 +294,13 @@ def manage_blogs(request):
     blogs = Post.objects.all()
     return render(
         request, 'blog/manage_blogs.html', {'blogs': blogs})
+
+
+def bulk_delete_blogs(request):
+    """ Bulk delete blog items from Blog management page """
+    if request.method == 'POST':
+        selected_blog_slugs = request.POST.getlist('selected_blogs')
+        Post.objects.filter(slug__in=selected_blog_slugs).delete()
+
+        messages.success(request, "Blog(s) successfully deleted!")
+    return redirect('manage_blogs')

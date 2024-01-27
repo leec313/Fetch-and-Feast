@@ -1,36 +1,30 @@
 <script>
-    //Script for show more on Product description
     $(document).ready(function () {
         var descriptionContainer = $('#product-description-container');
         var showMoreBtn = $('#show-more-btn');
 
-        // Set the maximum number of characters to display initially
         var maxChars = 650;
 
-        // Store the original description content
         var originalContent = descriptionContainer.html();
-
-        // Find the last period before the specified character limit
         var lastPeriodIndex = originalContent.lastIndexOf('.', maxChars);
 
-        // If a period is found within the limit, trim the content
         if (lastPeriodIndex !== -1) {
             var trimmedContent = originalContent.substring(0, lastPeriodIndex + 1);
             descriptionContainer.html(trimmedContent + '...');
+            showMoreBtn.show(); // Show the button initially
+        } else {
+            // If the description doesn't need truncation, hide the "Show More" button
+            showMoreBtn.hide();
         }
 
-        // Show More button click event
         showMoreBtn.click(function () {
             if (descriptionContainer.hasClass('expanded')) {
-                // If already expanded, collapse it and change button text to "Show More"
                 descriptionContainer.html(trimmedContent + '...');
                 showMoreBtn.text('Show More');
             } else {
-                // If not expanded, show the full content and change button text to "Show Less"
                 descriptionContainer.html(originalContent);
                 showMoreBtn.text('Show Less');
             }
-            // Toggle the 'expanded' class
             descriptionContainer.toggleClass('expanded');
         });
     });

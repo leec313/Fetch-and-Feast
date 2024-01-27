@@ -46,8 +46,8 @@
                 </button>
                 {% else %}
                 <button type="button" class="btn btn-link" data-toggle="modal" data-target="#imageModal">
-                    <img class="card-img-top img-fluid profile-img" src="{% static 'default-images/no_orders.webp' %}"
-                        alt="{{ product.name }}">
+                    <img class="card-img-top img-fluid profile-img"
+                        src="{% get_media_prefix %}default-images/no_orders.webp" alt="{{ product.name }}">
                 </button>
                 {% endif %}
             </div>
@@ -177,6 +177,7 @@
         <!-- Right column for existing ratings -->
         <div class="col-md-6 col-lg-8 mt-5">
             <div class="row">
+                {% if ratings %}
                 {% for rating in ratings %}
                 <div class="col-12 col-lg-6 mt-2 mb-3">
                     <div class="card border-0">
@@ -203,6 +204,13 @@
                     </div>
                 </div>
                 {% endfor %}
+                {% else %}
+                <div class="col-12 col-lg-6 mt-2 mb-3">
+                    <div class="card border-0 text-center">
+                        <h3>No ratings just yet!</h3>
+                    </div>
+                </div>
+                {% endif %}
             </div>
             <!--Pagination for rating submissions-->
             {% if ratings.has_other_pages %}

@@ -73,7 +73,7 @@ def product_detail(request, product_id):
     ratings = Rating.objects.filter(product=product).order_by("-created_on")
 
     # Paginate the ratings
-    paginator = Paginator(ratings, 6)  # Adjust the number of ratings per page as needed
+    paginator = Paginator(ratings, 6)
     page = request.GET.get('page')
 
     try:
@@ -105,8 +105,12 @@ def product_detail(request, product_id):
     # Get profile images for each rating user
     rating_profiles = {}
     for rating in ratings:
-        user_profile = UserProfile.objects.filter(user_id=rating.user.id).first()
-        profile_image_url = user_profile.profile_image.url if user_profile and user_profile.profile_image else None
+        user_profile = UserProfile.objects.filter(
+            user_id=rating.user.id).first()
+        if user_profile and user_profile.profile_image:
+            profile_image_url = user_profile.profile_image.url
+        else:
+            profile_image_url = None
         rating_profiles[rating.user.id] = profile_image_url
 
     context = {
@@ -125,9 +129,11 @@ def manage_products(request):
     """ Product management page where the admin can
     add, edit or delete products """
     products = Product.objects.all()
-    return render(request, 'products/manage_products.html', {'products': products})
+    return render(
+        request, 'products/manage_products.html', {'products': products})
 
 
+@login_required
 def bulk_delete_products(request):
     if request.method == 'POST':
         selected_product_ids = request.POST.getlist('selected_products')

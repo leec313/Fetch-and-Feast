@@ -186,7 +186,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return response
 
     def get_success_url(self):
-        return reverse('post_detail', kwargs={'slug': self.object.slug})
+        return reverse('/blog/post_detail.html', kwargs={'slug': self.object.slug})
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -282,3 +282,11 @@ class PostLike(View):
 
         # Redirect to the same URL to avoid issues with refreshing
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+
+def manage_blogs(request):
+    """ blog management page where the admin can
+    add, edit or delete blogs """
+    blogs = Post.objects.all()
+    return render(
+        request, 'blog/manage_blogs.html', {'blogs': blogs})

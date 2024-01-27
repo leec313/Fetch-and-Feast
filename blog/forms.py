@@ -4,7 +4,7 @@ from .models import (
 )
 from tinymce.widgets import TinyMCE
 from django import forms
-from .widgets import CustomClearableFileInput
+from profiles.widgets import CustomClearableFileInput
 
 
 class PostForm(forms.ModelForm):
@@ -13,6 +13,7 @@ class PostForm(forms.ModelForm):
     """
     content = forms.CharField(widget=TinyMCE(attrs={
         'cols': 80, 'rows': 30, 'class': 'tinymce'}))
+    # Use CustomClearableFileInput for the image field
     image = forms.ImageField(
         label='Image', required=False, widget=CustomClearableFileInput)
 

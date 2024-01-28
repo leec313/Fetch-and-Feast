@@ -1,0 +1,24 @@
+<script>
+    $(document).ready(function () {
+        // Function to set equal height for product/blog cards
+        function setEqualHeight() {
+            var maxHeight = 0;
+            $('.card').each(function () {
+                var cardHeight = $(this).outerHeight();
+                if (cardHeight > maxHeight) {
+                    maxHeight = cardHeight;
+                }
+            });
+            $('.card').css('min-height', maxHeight); // Set all cards to the maximum height
+        }
+
+        // Call the function on page load
+        setEqualHeight();
+
+        // Call the function again if the window is resized
+        $(window).resize(function () {
+            $('.card').css('min-height', 'auto'); // Reset the height
+            setEqualHeight(); // Call the function again
+        });
+    });
+</script>

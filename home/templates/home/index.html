@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load custom_filters %}
 
 {% block page_header %}
 <div class="container header-container">
@@ -13,7 +14,7 @@
 <div class="container-fluid h-100 hero">
     <div class="row h-100">
         <div class="col-7 col-md-6 my-auto">
-            <h1 class="display-4 logo-font text-black font-weight-bold glow">
+            <h1 class="display-4 logo-font text-black font-weight-bold glow mb-2">
                 Discover Tail-Wagging Treasures!
             </h1>
             <div class="my-5">
@@ -27,11 +28,136 @@
 </div>
 {% endblock %}
 {% block featured_products %}
-<div class="container-fluid mt-5 bg-white text-dark featured-products">
-    <h2>Featured Products</h2>
+<div class="col-8 container-fluid mt-5 text-dark">
+    <h2 class="font-weight-bold">Featured Products</h2>
     <hr>
+    <div class="row equal-height">
+        {% for product in featured_products %}
+        <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow mb-2">
+                {% if product.image %}
+                <a href="{% url 'product_detail' product.id %}">
+                    <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                </a>
+                {% else %}
+                <a href="{% url 'product_detail' product.id %}">
+                    <img class="card-img-top img-fluid" src="{% get_media_prefix %}default-images/no_orders.webp"
+                        alt="{{ product.name }}">
+                </a>
+                {% endif %}
+                <div class="card-body pb-0">
+                    <a href="{% url 'product_detail' product.id %}" class="card-title mb-0 text-decoration-none text-black lead
+                        truncated-title">{{ product.name|truncatechars:25 }}</a>
+                </div>
+                <div class="card-footer bg-white pt-0 border-0 text-left">
+                    <div class="row">
+                        <div>
+                            {% if product.average_rating %}
+                            <a href="{% url 'product_detail' product.id %}"
+                                class="text-decoration-none text-dark average-stars">{{ product.average_rating|stars|safe }}</a>
+                            {% endif %}
+                            <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
+                            {% if product.category %}
+                            <p class="small mt-1 mb-2">
+                                <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
+                                    <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
+                                </a>
+                            </p>
+                            {% endif %}
+                            <div class="mb-2 col-12 text-center">
+                                <a href="{% url 'product_detail' product.id %}"
+                                    class="btn-sm btn-black rounded-0 text-uppercase text-decoration-none">View
+                                    Product
+                                </a>
+                            </div>
+                            {% if request.user.is_superuser %}
+                            <small>
+                                <a href="{% url 'edit_product' product.id %}">Edit</a>
+                                |
+                                <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
+                            </small>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="col-12 text-center mt-4">
+            <a href="{% url 'products' %}?sort=rating&direction=desc"
+                class="btn-sm btn-black rounded-0 text-uppercase text-decoration-none">View
+                All</a>
+        </div>
+    </div>
 </div>
 {% endblock %}
 
 {% block blogs %}
+<div class="col-8 container-fluid mt-5 text-dark">
+    <h2 class="font-weight-bold">Featured Blogs</h2>
+    <hr>
+    <div class="row equal-height">
+        {% for post in posts %}
+        <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow mb-2">
+                {% if post.image %}
+                <a href="{% url 'post_detail' post.slug %}">
+                    <img class="card-img-top img-fluid" src="{{ post.image.url }}" alt="{{ post.title }}">
+                </a>
+                {% else %}
+                <a href="{% url 'post_detail' post.slug %}">
+                    <img class="card-img-top img-fluid" src="{% get_media_prefix %}default-images/no_orders.webp"
+                        alt="{{ post.title }}">
+                </a>
+                {% endif %}
+                <div class="card-body pb-0">
+                    <a href="{% url 'post_detail' post.title %}" class="card-title mb-0 text-decoration-none text-black lead
+                        truncated-title">{{ product.title|truncatechars:25 }}</a>
+                </div>
+                <div class="card-footer bg-white pt-0 border-0 text-left">
+                    <div class="row">
+                        <div>
+                            {% if product.average_rating %}
+                            <a href="{% url 'product_detail' product.id %}"
+                                class="text-decoration-none text-dark average-stars">{{ product.average_rating|stars|safe }}</a>
+                            {% endif %}
+                            <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
+                            {% if product.category %}
+                            <p class="small mt-1 mb-2">
+                                <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
+                                    <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
+                                </a>
+                            </p>
+                            {% endif %}
+                            <div class="mb-2 col-12 text-center">
+                                <a href="{% url 'product_detail' product.id %}"
+                                    class="btn-sm btn-black rounded-0 text-uppercase text-decoration-none">View
+                                    Product
+                                </a>
+                            </div>
+                            {% if request.user.is_superuser %}
+                            <small>
+                                <a href="{% url 'edit_product' product.id %}">Edit</a>
+                                |
+                                <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
+                            </small>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="col-12 text-center mt-4">
+            <a href="{% url 'products' %}?sort=rating&direction=desc"
+                class="btn-sm btn-black rounded-0 text-uppercase text-decoration-none">View
+                All</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'home/includes/featured_sections_height.html' %}
 {% endblock %}

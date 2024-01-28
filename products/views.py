@@ -236,6 +236,12 @@ class RatingUpdateView(UpdateView):
         return reverse_lazy('product_detail', kwargs={
             'product_id': self.object.product.id})
 
+    # Pass the form context here
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = RatingForm(instance=self.object)
+        return context
+
 
 class RatingDeleteView(DeleteView):
     """

@@ -356,6 +356,11 @@ a.category-badge>span.badge:hover {
     left: -9999em;
 }
 
+.star-rating-form input[type="number"] {
+    position: absolute;
+    left: -9999em;
+}
+
 .star-rating-form .fas {
     color: rgb(221, 185, 27);
 }

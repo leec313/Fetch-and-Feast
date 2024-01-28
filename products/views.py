@@ -4,6 +4,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Avg
 from django.db.models.functions import Lower
+from django.views.generic import DeleteView, UpdateView
+from django.urls import reverse_lazy
 
 from .models import Product, Category, Rating
 from .forms import ProductForm, RatingForm
@@ -219,3 +221,37 @@ def delete_product(request, product_id):
 
     return render(
         request, 'products/confirm_delete.html', {'product': product})
+
+
+class RatingUpdateView(UpdateView):
+    """
+    View for updating a single rating
+    """
+    model = Rating
+    template_name = "edit_rating.html"
+    fields = ['title', 'body', 'score']
+
+    def get_success_url(self):
+        messages.success(self.request, "Your rating has been updated.")
+        return reverse_lazy('product_detail', kwargs={
+            'product_id': self.object.product.id})
+
+
+class RatingDeleteView(DeleteView):
+    """
+    View for deleting a single rating
+    """
+    model = Rating
+    template_name = "delete_rating.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product'] = self.get_object().product
+        return context
+
+    def get_success_url(self):
+        rating = self.get_object()  # Get the rating object being deleted
+        product_id = rating.product.id  # Get the ID of the associated product
+        messages.success(self.request, "Your rating has been deleted.")
+        return reverse_lazy(
+            'product_detail', kwargs={'product_id': product_id})

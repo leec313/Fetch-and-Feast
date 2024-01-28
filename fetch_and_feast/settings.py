@@ -33,7 +33,6 @@ ALLOWED_HOSTS = [
     '8000-leec313-fetchandfeast-8b89e9jrgzv.ws-eu107.gitpod.io',
     'fetch-and-feast-4ceb13480b0c.herokuapp.com']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -83,7 +82,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'templates'),
             os.path.join(BASE_DIR, 'templates', 'allauth'),
             os.path.join(BASE_DIR, 'blog', 'templates', 'blog'),
-
+            os.path.join(BASE_DIR, 'products', 'templates', 'products'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

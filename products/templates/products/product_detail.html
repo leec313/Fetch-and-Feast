@@ -147,6 +147,7 @@
             <div class="row">
                 <div class="col-md-8 offset-md-2 col-lg-8 offset-lg-2 mb-5 mx-auto w-75">
                     {% if request.user.is_authenticated %}
+                    {% if user_has_purchased_product %}
                     <form method="post" action="{% url 'product_detail' product.id %}">
                         {% csrf_token %}
                         {{ form.title|as_crispy_field }}
@@ -166,6 +167,9 @@
                                 Rating</button>
                         </div>
                     </form>
+                    {% else %}
+                    <p>You need to purchase this product to submit a rating.</p>
+                    {% endif %}
                     {% else %}
                     <p>You need to be logged in to submit a rating.</p>
                     {% endif %}

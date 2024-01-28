@@ -8,6 +8,7 @@ from django.views.generic import DeleteView, UpdateView
 from django.urls import reverse_lazy
 
 from .models import Product, Category, Rating
+from checkout.models import Order
 from .forms import ProductForm, RatingForm
 from profiles.models import UserProfile
 
@@ -77,6 +78,16 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
     ratings = Rating.objects.filter(product=product).order_by("-created_on")
+    user_has_purchased_product = False
+
+    if request.user.is_authenticated:
+        # Check if the user has any order line item for the given product
+        user_orders = Order.objects.filter(
+            user_profile=request.user.userprofile)
+        for order in user_orders:
+            if order.lineitems.filter(product=product).exists():
+                user_has_purchased_product = True
+                break
 
     # Paginate the ratings
     paginator = Paginator(ratings, 6)
@@ -125,6 +136,7 @@ def product_detail(request, product_id):
         'average_rating': product.average_rating(),
         'form': form,
         'rating_profiles': rating_profiles,
+        'user_has_purchased_product': user_has_purchased_product,
     }
 
     return render(request, 'products/product_detail.html', context)

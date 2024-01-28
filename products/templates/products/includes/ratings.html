@@ -16,22 +16,39 @@
     document.addEventListener('DOMContentLoaded', function () {
         const starLabels = document.querySelectorAll('.star-rating-form label');
 
+        // Function to get the index of the checked radio button
+        function getCheckedIndex() {
+            let checkedIndex = 0;
+            starLabels.forEach(function (label, index) {
+                const radio = label.querySelector('input[type="radio"]');
+                if (radio && radio.checked) {
+                    checkedIndex = index;
+                }
+            });
+            return checkedIndex;
+        }
+
+        // Highlight stars based on the checked radio button
+        function highlightStars() {
+            starLabels.forEach(function (starLabel, index) {
+                const isChecked = index <= getCheckedIndex();
+                starLabel.classList.toggle('fas', isChecked);
+                starLabel.classList.toggle('far', !isChecked);
+            });
+        }
+        // Update stars when a radio button is clicked
         starLabels.forEach(function (label, index) {
             label.addEventListener('click', function () {
-                const radio = label.querySelector('input[type="radio"]');
-
+                const
+                    radio = label.querySelector('input[type="radio" ]');
                 if (radio && radio.checked !== undefined) {
                     radio.checked = true;
-
-                    // Toggle "fas" (solid) and "far" (outline) classes based on checked status
-                    starLabels.forEach(function (starLabel, i) {
-                        const isChecked = i <= index;
-                        starLabel.classList.toggle('fas', isChecked);
-                        starLabel.classList.toggle('far',
-                            !isChecked);
-                    });
+                    highlightStars();
                 }
             });
         });
+        // Highlight stars based on the current selected rating score
+        //if user edits multiple times, it should show most recent score
+        highlightStars();
     });
 </script>

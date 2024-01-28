@@ -73,18 +73,19 @@
                                 {{ post.excerpt|slice:":80" }}{% if post.excerpt|length > 80 %}...{% endif %}
                             </p>
                         </div>
-                        <div class="card-footer bg-white pt-0 border-0 text-left">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card-text h6 text-muted">
-                                        <span class="date-created">{{ post.created_on }}</span>
-                                        <span class="likes-comments-container float-right">
-                                            <i class="far fa-heart"></i> {{ post.number_of_likes }}
-                                            <i class="far fa-comments"></i> {{ post.comments.count }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="card-text h6 text-muted p-3">
+                            <span class="date-created">{{ post.created_on }}</span>
+                            <span class="likes-comments-container float-right">
+                                <i class="far fa-heart"></i> {{ post.number_of_likes }}
+                                <i class="far fa-comments"></i> {{ post.comments.count }}
+                            </span>
+                            {% if request.user.is_superuser %}
+                            <small>
+                                <a href="{% url 'post_update' post.slug %}">Edit</a>
+                                |
+                                <a class="text-danger" href="{% url 'post_delete' post.slug %}">Delete</a>
+                            </small>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -101,14 +102,16 @@
         <!-- If there is a previous page, it will display the previous button-->
         {% if page_obj.has_previous %}
         <li class="page-item">
-            <a href="?page={{ page_obj.previous_page_number }}" class="page-link text-muted rounded-0" aria-label="Prev">&laquo;
+            <a href="?page={{ page_obj.previous_page_number }}" class="page-link text-muted rounded-0"
+                aria-label="Prev">&laquo;
                 Previous</a>
         </li>
         {% endif %}
         <!-- If there are more than 6 posts, it will display the next button-->
         {% if page_obj.has_next %}
         <li class="page-item">
-            <a href="?page={{ page_obj.next_page_number }}" class="page-link text-muted rounded-0" aria-label="Next">Next
+            <a href="?page={{ page_obj.next_page_number }}" class="page-link text-muted rounded-0"
+                aria-label="Next">Next
                 &raquo;</a>
         </li>
         {% endif %}

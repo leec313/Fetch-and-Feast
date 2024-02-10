@@ -17,6 +17,11 @@ body {
     margin-right: 0;
 }
 
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Black with 50% opacity */
+}
+
 /* from Bulma */
 .icon {
     align-items: center;

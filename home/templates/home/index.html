@@ -148,10 +148,13 @@
                 All</a>
         </div>
     </div>
+
 </div>
 {% endblock %}
 
 {% block postloadjs %}
 {{ block.super }}
+{% include 'home/subscribe_modal.html' %}
 {% include 'home/includes/featured_sections_height.html' %}
+<script type=" text/javascript" src="{% static 'js/subscribe_modal.js' %}"></script>
 {% endblock %}

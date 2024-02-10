@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db.models import Avg
 from django.db.models import Count
+from django.contrib import messages
 from datetime import datetime, timedelta
 from products.models import Product
 from blog.models import Post
+from .forms import NewsletterSubscriptionForm
 
 
 def index(request):
@@ -20,3 +22,22 @@ def index(request):
     return render(
         request, 'home/index.html', {'featured_products': featured_products,
                                      'top_liked_posts': top_liked_posts})
+
+
+def subscribe_newsletter(request):
+    """
+    Used to post the email the user inputs to the database and
+    displays a success/error message
+    """
+    if request.method == 'POST':
+        form = NewsletterSubscriptionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Thanks for subscribing.")
+            return redirect('home')
+        else:
+            messages.error(request, "This email address is already subscribed.")
+    else:
+        form = NewsletterSubscriptionForm()  # Initialize the form for GET requests
+
+    return render(request, 'home/subscribe_modal.html', {'form': form})

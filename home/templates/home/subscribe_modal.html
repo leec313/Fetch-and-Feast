@@ -1,0 +1,22 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+<div id="newsletter-modal" class="modal modal-backdrop">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content p-4">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span class="close" onclick="closeModal()">&times;</span>
+            </button>
+            <div class="modal-body">
+                <h2 class="text-center mb-4">Ready For Your Next Golf Adventure?</h2>
+                <hr>
+                <p class="text-center mb-4">Subscribe to our Newsletter for the best course recommendations!</p>
+                <form method="post" action="{% url 'subscribe_newsletter' %}">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-black rounded-0 text-uppercase btn-block">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

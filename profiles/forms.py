@@ -98,20 +98,6 @@ class ChangePasswordForm(PasswordChangeForm):
                 self.fields[field].label = False
 
 
-class NewsletterSubscriptionForm(forms.ModelForm):
-    """
-    Newsletter form class
-    """
-    class Meta:
-        model = NewsletterSubscription
-        fields = ['email']
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['email'].widget.attrs.update(
-            {'class': 'form-control', 'placeholder': 'Enter your email'})
-
-
 class ProfileNewsletterUpdate(forms.ModelForm):
     """
     Form class for updating the newsletter subscription on the profile

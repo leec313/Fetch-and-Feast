@@ -1,3 +1,5 @@
+{% load static %}
+
 <div class="toast custom-toast rounded-0 border-top-0" data-autohide="false">
     <div class="arrow-up arrow-success"></div>
     <div class="w-100 toast-capper bg-success"></div>
@@ -22,6 +24,9 @@
                 <div class="col-3 my-1">
                     {% if item.product.image %}
                     <img class="w-100" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                    {% else %}
+                    <img class="w-100" src="{% get_media_prefix %}default-images/no_orders.webp"
+                        alt="{{ item.product.name }}">
                     {% endif %}
                 </div>
                 <div class="col-9">

@@ -1,5 +1,7 @@
+{% load static %}
 {% if item.product.image %}
-<img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+<img class="w-25 rounded-circle" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
 {% else %}
-<img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+<img class="w-25 rounded-circle" src="{% get_media_prefix %}default-images/no_orders.webp"
+    alt="{{ item.product.name }}">
 {% endif %}

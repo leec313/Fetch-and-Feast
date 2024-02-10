@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = [
-    '8000-leec313-fetchandfeast-8b89e9jrgzv.ws-eu107.gitpod.io',
+    '8000-leec313-fetchandfeast-8b89e9jrgzv.ws-eu108.gitpod.io',
     'fetch-and-feast-4ceb13480b0c.herokuapp.com']
 
 # Application definition
@@ -172,7 +172,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

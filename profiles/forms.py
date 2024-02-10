@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from allauth.account.models import EmailAddress
 from .widgets import CustomClearableFileInput
-from .models import UserProfile
+from .models import UserProfile, NewsletterSubscription
 from django.contrib.auth.models import User
 
 
@@ -96,6 +96,35 @@ class ChangePasswordForm(PasswordChangeForm):
                 self.fields[field].widget.attrs[
                     'class'] = 'border-black rounded-0 profile-form-input'
                 self.fields[field].label = False
+
+
+class NewsletterSubscriptionForm(forms.ModelForm):
+    """
+    Newsletter form class
+    """
+    class Meta:
+        model = NewsletterSubscription
+        fields = ['email']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['email'].widget.attrs.update(
+            {'class': 'form-control', 'placeholder': 'Enter your email'})
+
+
+class ProfileNewsletterUpdate(forms.ModelForm):
+    """
+    Form class for updating the newsletter subscription on the profile
+    """
+    subscribe_newsletter = forms.BooleanField(
+        label='Subscribe to Newsletter',
+        required=False,
+    )
+
+    class Meta:
+        model = NewsletterSubscription
+        fields = ['subscribe_newsletter']
+
 
 
 @receiver(post_save, sender=User)

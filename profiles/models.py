@@ -26,6 +26,7 @@ class UserProfile(models.Model):
         blank_label='Country', null=True, blank=True)
     profile_image = models.ImageField(
         null=True, blank=True, upload_to='profile-images')
+    subscribe_newsletter = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
@@ -47,3 +48,12 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 
     # Save the profile
     profile.save()
+
+
+class NewsletterSubscription(models.Model):
+    """
+    Defines Newsletter subscription model
+    """
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    email = models.EmailField(unique=True)
+    created_on = models.DateTimeField(auto_now_add=True)

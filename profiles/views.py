@@ -2,8 +2,8 @@ from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import UserProfile
-from .forms import UserProfileForm, ChangePasswordForm
+from .models import UserProfile, NewsletterSubscription
+from .forms import UserProfileForm, ChangePasswordForm, ProfileNewsletterUpdate
 
 from checkout.models import Order
 
@@ -21,10 +21,12 @@ def profile(request):
         'on_profile_page': True
     }
 
+    # Initialize user profile, password and newsletter forms
     user_profile_form = UserProfileForm(instance=profile)
     password_form = ChangePasswordForm(user)
+    newsletter_form = ProfileNewsletterUpdate(instance=profile)
 
-    # Checking the POST request if userprofileform or changepassword form
+    # Checking request userprofileform/changepassword form/newsletter checkbox
     if request.method == 'POST':
         if 'user_username' in request.POST:
             # Handle UserProfileForm
@@ -43,6 +45,17 @@ def profile(request):
                     'user_last_name']
                 profile.user.save()
 
+                # Handle newsletter subscription
+                subscribe_newsletter = request.POST.get('subscribe_newsletter')
+                if subscribe_newsletter:
+                    # Create or update the NewsletterSubscription object
+                    subscription, created = NewsletterSubscription.objects.get_or_create(user_profile=profile)
+                    subscription.email = user.email  # Set the email address
+                    subscription.save()
+                else:
+                    # Delete the NewsletterSubscription object associated with the user's profile
+                    NewsletterSubscription.objects.filter(user_profile=profile).delete()
+
                 profile.save()
                 messages.success(request, 'Profile updated successfully')
             else:
@@ -60,9 +73,15 @@ def profile(request):
     else:
         user_profile_form = UserProfileForm(instance=profile)
         password_form = ChangePasswordForm(user)
+        newsletter_form = ProfileNewsletterUpdate(instance=profile)
+
+    # Set initial value for newsletter subscription checkbox
+    if NewsletterSubscription.objects.filter(user_profile=profile).exists():
+        newsletter_form.initial['subscribe_newsletter'] = True
 
     context['user_profile_form'] = user_profile_form
     context['password_form'] = password_form
+    context['newsletter_form'] = newsletter_form
 
     template = 'profiles/profile.html'
     return render(request, template, context)

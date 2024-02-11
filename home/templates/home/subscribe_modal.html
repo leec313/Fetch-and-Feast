@@ -8,9 +8,10 @@
                 <span class="close" onclick="closeModal()">&times;</span>
             </button>
             <div class="modal-body">
-                <h2 class="text-center mb-4">Ready For Your Next Golf Adventure?</h2>
+                <h2 class="text-center mb-4">Stay in the loop with all things doggie-delightful!</h2>
                 <hr>
-                <p class="text-center mb-4">Subscribe to our Newsletter for the best course recommendations!</p>
+                <p class="text-center mb-4">Sign up for our newsletter today and unleash a world of tail-wagging fun and
+                    tasty treats for your furry friend.</p>
                 <form method="post" action="{% url 'subscribe_newsletter' %}">
                     {% csrf_token %}
                     {{ form }}

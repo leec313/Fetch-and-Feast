@@ -92,6 +92,20 @@
 </div>
 {% endblock %}
 
+{% block newsletter %}
+<div class="col-8 container-fluid d-flex flex-column align-items-center mt-5 pt-5 shadow">
+    <h2 class="font-weight-bold text-center">Stay in the loop with all things doggie-delightful!</h2>
+    <hr>
+    <p class="text-center mx-4">Sign up for our newsletter today and unleash a world of tail-wagging fun and
+        tasty treats for your furry friend.</p>
+    <form method="post" class="w-50 mt-4" action="{% url 'subscribe_newsletter' %}">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="mt-2 mb-4 btn-black rounded-0 text-uppercase btn-block">Subscribe</button>
+    </form>
+</div>
+{% endblock %}
+
 {% block blogs %}
 <div class="col-8 container-fluid mt-5 text-dark">
     <h2 class="font-weight-bold">Featured Blogs</h2>

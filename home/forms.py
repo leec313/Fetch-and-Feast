@@ -12,10 +12,10 @@ class NewsletterSubscriptionForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        # Additional email validation logic can be added here if needed
         return email
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['email'].widget.attrs.update(
             {'class': 'form-control', 'placeholder': 'Enter your email'})
+        self.fields['email'].label = ''  # Set the label to an empty string

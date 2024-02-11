@@ -11,7 +11,9 @@ class UserProfile(models.Model):
     A user profile model for maintaining default
     delivery information and order history
     """
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, null=True, blank=True)
+    default_email = models.EmailField(max_length=254, null=False, blank=False)
     default_phone_number = models.CharField(
         max_length=20, null=True, blank=True)
     default_street_address1 = models.CharField(
@@ -27,9 +29,12 @@ class UserProfile(models.Model):
     profile_image = models.ImageField(
         null=True, blank=True, upload_to='profile-images')
     subscribe_newsletter = models.BooleanField(default=False)
-
+    
     def __str__(self):
-        return self.user.username
+        if self.user:
+            return self.user.username
+        else:
+            return "No associated user"
 
 
 @receiver(post_save, sender=User)
@@ -57,3 +62,7 @@ class NewsletterSubscription(models.Model):
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     email = models.EmailField(unique=True)
     created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.email  # Return email for string representation
+

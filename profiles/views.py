@@ -45,16 +45,21 @@ def profile(request):
                     'user_last_name']
                 profile.user.save()
 
-                # Handle newsletter subscription
+                # Save the newsletter subscription status
                 subscribe_newsletter = request.POST.get('subscribe_newsletter')
+                profile.subscribe_newsletter = bool(subscribe_newsletter)  # Convert to boolean
+                profile.save()
+
+                # Handle newsletter subscription
                 if subscribe_newsletter:
                     # Create or update the NewsletterSubscription object
                     subscription, created = NewsletterSubscription.objects.get_or_create(user_profile=profile)
-                    subscription.email = user.email  # Set the email address
+                    subscription.email = profile.user.email  # Set the email address
                     subscription.save()
                 else:
                     # Delete the NewsletterSubscription object associated with the user's profile
                     NewsletterSubscription.objects.filter(user_profile=profile).delete()
+                    newsletter_form.initial['subscribe_newsletter'] = False
 
                 profile.save()
                 messages.success(request, 'Profile updated successfully')
@@ -76,7 +81,7 @@ def profile(request):
         newsletter_form = ProfileNewsletterUpdate(instance=profile)
 
     # Set initial value for newsletter subscription checkbox
-    if NewsletterSubscription.objects.filter(user_profile=profile).exists():
+    if NewsletterSubscription.objects.filter(email=user.email).exists():
         newsletter_form.initial['subscribe_newsletter'] = True
 
     context['user_profile_form'] = user_profile_form

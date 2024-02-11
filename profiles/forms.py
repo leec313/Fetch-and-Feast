@@ -112,7 +112,6 @@ class ProfileNewsletterUpdate(forms.ModelForm):
         fields = ['subscribe_newsletter']
 
 
-
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, **kwargs):
     """

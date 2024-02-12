@@ -488,3 +488,23 @@ a.category-badge>span.badge:hover {
         visibility: visible;
     }
 }
+
+/* FAQ page */
+.card-header {
+    background-color: #fff;
+}
+
+.card-header .btn-link {
+    color: #000;
+    text-decoration: none;
+}
+
+.card-header .btn-link:hover {
+    color: #009970;
+    text-decoration: none;
+}
+
+.accordion .card-body {
+    background-color: #009970;
+    color: #fff;
+}

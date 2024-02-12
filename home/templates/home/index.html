@@ -64,13 +64,13 @@
                                         class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}</a>
                             </p>
                             {% endif %}
-                            <div class="mb-2 col-12">
+                            <div class="mb-2">
                                 <a href="{% url 'product_detail' product.id %}"
                                     class="btn-sm btn-black rounded-0 text-uppercase text-decoration-none">View
                                     Product</a>
                             </div>
                             {% if request.user.is_superuser %}
-                            <small class="col-12">
+                            <small>
                                 <a href="{% url 'edit_product' product.id %}">Edit</a>
                                 |
                                 <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
@@ -133,17 +133,17 @@
                             <p class="mb-2 text-muted">
                                 {{ post.excerpt|slice:":80" }}{% if post.excerpt|length > 80 %}...{% endif %}
                             </p>
-                            <div class="mb-2 col-12">
+                            <div class="mb-2">
                                 <i class="far fa-heart"></i> {{ post.number_of_likes }}
                                 <i class="far fa-comments"></i> {{ post.comments.count }}
                             </div>
-                            <div class="mb-2 col-12">
+                            <div class="mb-2">
                                 <a href="{% url 'post_detail' post.slug %}"
                                     class="btn-sm btn-black rounded-0 text-uppercase text-decoration-none">View
                                     Blog</a>
                             </div>
                             {% if request.user.is_superuser %}
-                            <small class="col-12">
+                            <small>
                                 <a href="{% url 'post_update' post.slug %}">Edit</a>
                                 |
                                 <a class="text-danger" href="{% url 'post_delete' post.slug %}">Delete</a>

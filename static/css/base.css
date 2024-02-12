@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Protest+Strike&display=swap');
-
 html {
     height: 100%;
 }
@@ -51,17 +49,6 @@ body {
 
 .logo-font {
     text-transform: uppercase;
-    font-weight: bolder;
-}
-
-.logo-font-custom {
-    font-family: "Protest Strike", sans-serif;
-    text-transform: uppercase;
-}
-
-.logo-font-custom-2 {
-    font-family: "Dancing Script", cursive;
-    text-transform: none;
 }
 
 .main-logo-link {
@@ -404,14 +391,14 @@ a.category-badge>span.badge:hover {
     }
 
     .header-container {
-        padding-top: 100px;
+        padding-top: 157px;
     }
 }
 
 /* pad the top a bit when navbar is collapsed on mobile */
 @media (max-width: 991px) {
     .header-container {
-        padding-top: 80px;
+        padding-top: 86px;
     }
 
     body {

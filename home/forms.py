@@ -18,4 +18,4 @@ class NewsletterSubscriptionForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['email'].widget.attrs.update(
             {'class': 'form-control', 'placeholder': 'Enter your email'})
-        self.fields['email'].label = ''  # Set the label to an empty string
+        self.fields['email'].label = ''  # Set the label so it's hidden

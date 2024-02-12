@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Protest+Strike&display=swap');
+
 html {
     height: 100%;
 }
@@ -49,6 +51,17 @@ body {
 
 .logo-font {
     text-transform: uppercase;
+    font-weight: bolder;
+}
+
+.logo-font-custom {
+    font-family: "Protest Strike", sans-serif;
+    text-transform: uppercase;
+}
+
+.logo-font-custom-2 {
+    font-family: "Dancing Script", cursive;
+    text-transform: none;
 }
 
 .main-logo-link {
@@ -391,14 +404,14 @@ a.category-badge>span.badge:hover {
     }
 
     .header-container {
-        padding-top: 157px;
+        padding-top: 100px;
     }
 }
 
 /* pad the top a bit when navbar is collapsed on mobile */
 @media (max-width: 991px) {
     .header-container {
-        padding-top: 86px;
+        padding-top: 80px;
     }
 
     body {
@@ -440,5 +453,52 @@ a.category-badge>span.badge:hover {
     .increment-qty,
     .decrement-qty {
         padding: .25rem .5rem !important;
+    }
+}
+
+/*
+    Author: @a_devs_life
+    Youtube: https://www.youtube.com/@a_devs_life
+    Instagram: https://www.instagram.com/a_devs_life/
+    Github: https://github.com/codeboysk/a-devs-life
+*/
+
+.navbar-brand {
+    font-weight: 500;
+    color: #009970;
+    font-size: 24px;
+    transition: 0.3s color;
+}
+
+.nav-link {
+    color: #666777;
+    font-weight: 500;
+    position: relative;
+    padding: 0;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #000;
+}
+
+@media (min-width: 991px) {
+    .nav-link::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background-color: #009970;
+        visibility: hidden;
+        transition: 0.3s ease-in-out;
+    }
+
+    .nav-link:hover::before,
+    .nav-link.active::before {
+        width: 100%;
+        visibility: visible;
     }
 }

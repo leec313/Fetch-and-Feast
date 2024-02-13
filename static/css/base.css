@@ -237,6 +237,15 @@ a.category-badge>span.badge:hover {
     overflow-y: auto;
 }
 
+.bag-nav:hover {
+    text-decoration: none;
+    color: #000;
+}
+
+.bag-color {
+    color: #009970;
+}
+
 .product-img {
     width: 600px;
     height: 600px;
@@ -404,7 +413,7 @@ a.category-badge>span.badge:hover {
     }
 
     .header-container {
-        padding-top: 100px;
+        padding-top: 120px;
     }
 }
 
@@ -433,6 +442,14 @@ a.category-badge>span.badge:hover {
     .navbar-toggler {
         padding: .6rem .6rem;
         font-size: 1rem;
+    }
+
+    svg.bi.bi-list {
+        color: #000;
+    }
+
+    svg.bi.bi-list:hover {
+        color: #009970;
     }
 
     #delivery-banner h4 {

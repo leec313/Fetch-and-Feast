@@ -30,12 +30,12 @@ def contact_view(request):
 
         # Send email to user
         send_mail(
-            subject='Thank you for contacting us',
-            message='We have received your message and will get back to you soon.',
+            subject='Fetch & Feast: Message Received',
+            message='Thank you for contacting us! We have received your message and will get back to you soon.', # noqa
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[email],
         )
 
-        messages.success(request, 'Thank you! We will be in touch shortly')
+        messages.success(request, 'We have received your message!')
 
     return render(request, 'contact.html')

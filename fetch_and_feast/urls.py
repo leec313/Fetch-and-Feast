@@ -19,7 +19,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from . import views
 
-handler404 = 'fetch_and_feast.views.handler404'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,3 +32,10 @@ urlpatterns = [
     path('faq/', views.faq_view, name='faq'),
     path('contact/', views.contact_view, name='contact'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+# Handlers for custom error pages
+handler404 = views.custom_404
+handler403 = views.custom_403
+handler400 = views.custom_400
+handler500 = views.custom_500

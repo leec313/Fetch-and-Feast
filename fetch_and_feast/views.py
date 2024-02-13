@@ -4,16 +4,18 @@ from django.contrib import messages
 from django.conf import settings
 
 
-def handler404(request, exception=None):
-    """ Error Handler 404 - Page Not Found """
-    return render(request, "errors/404.html", status=404)
-
-
 def faq_view(request):
+    """
+    Simple FAQ page view
+    """
     return render(request, 'faq.html')
 
 
 def contact_view(request):
+    """
+    Contact Page view allows us to send emails to
+    Admin and User for comfirmations
+    """
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -39,3 +41,20 @@ def contact_view(request):
         messages.success(request, 'We have received your message!')
 
     return render(request, 'contact.html')
+
+
+# Views for custom error pages
+def custom_404(request, exception):
+    return render(request, 'errors/404.html', status=404)
+
+
+def custom_403(request, exception):
+    return render(request, 'errors/403.html', status=403)
+
+
+def custom_400(request, exception):
+    return render(request, 'errors/400.html', status=400)
+
+
+def custom_500(request):
+    return render(request, 'errors/500.html', status=500)

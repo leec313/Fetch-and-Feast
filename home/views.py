@@ -36,10 +36,14 @@ def index(request):
         request, 'home/index.html', context)
 
 
+# Allows us to get the user and associate newsletter
 User = get_user_model()
 
 
 def subscribe_newsletter(request):
+    """
+    View for newsletter subscription modal/index page
+    """
     if request.method == 'POST':
         email = request.POST.get('email')
 
@@ -58,13 +62,13 @@ def subscribe_newsletter(request):
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[email],
         )
-        
+
         # Check if the email is already subscribed
         if NewsletterSubscription.objects.filter(email=email).exists():
             messages.info(
                 request, 'You are already subscribed to the newsletter.')
             return redirect('home')  # Redirect to the home page
-        
+
         # If user is authenticated associate the subscription w/ their profile
         if request.user.is_authenticated:
             user_profile = request.user.userprofile

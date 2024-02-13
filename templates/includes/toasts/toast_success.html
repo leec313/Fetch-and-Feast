@@ -17,7 +17,8 @@
             </div>
         </div>
         {% if grand_total and not on_profile_page %}
-        <p class="logo-font bg-white text-black py-1">Your Bag ({{ product_count }})</p>
+        <p class="logo-font bg-white text-black text-center lead">Your Bag ({{ product_count }})</p>
+        <hr>
         <div class="bag-notification-wrapper">
             {% for item in bag_items %}
             <div class="row">
@@ -33,36 +34,53 @@
                     <p class="my-0"><strong>{{ item.product.name }}</strong></p>
                     <p class="my-0 small">Size:
                         {% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
-                    <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
+                    <span class="d-flex justify-content-between">
+                        <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
+                        <p class="my-0 small text-muted float-right">€{{ item.product.price }}</p>
+                    </span>
                 </div>
             </div>
             {% endfor %}
         </div>
         <div class="row">
             <div class="col">
+                <div>
+                    <a href="{% url 'empty_bag' %}" class="text-danger small mt-2">
+                        Empty Bag
+                    </a>
+                </div>
                 <strong>
-                    <p class="mt-3 mb-1 text-black">
+                    <p class="mt-1 mb-1 text-black">
                         Total{% if free_delivery_delta > 0 %} (Exc. delivery){% endif %}:
                         <span class="float-right">€{{ total|floatformat:2 }}</span>
                     </p>
                 </strong>
-                {% if free_delivery_delta > 0 %}
-                <p class="mb-0 p-2 bg-warning shadow-sm text-black text-center">
-                    Spend <strong>€{{ free_delivery_delta }}</strong> more to get free next day delivery!
-                </p>
-                {% endif %}
-                <a href="{% url 'view_bag' %}" class="btn btn-black btn-block rounded-0 mt-2">
+                <a href="{% url 'view_bag' %}" class="btn btn-outline-black btn-block rounded-0 mt-2">
                     <span class="text-uppercase">View Bag</span>
                     <span class="icon">
-                        <i class="fas fa-lock"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
+                        </svg>
                     </span>
                 </a>
-                <a href="{% url 'checkout' %}" class="btn btn-black btn-block rounded-0">
+                <a href="{% url 'checkout' %}" class="btn btn-black btn-block rounded-0 mb-2">
                     <span class="text-uppercase">Checkout Now</span>
                     <span class="icon">
-                        <i class="fas fa-lock"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1z" />
+                        </svg>
                     </span>
                 </a>
+                {% if free_delivery_delta > 0 %}
+                <p class="mb-0 p-2 del-bg shadow text-center">
+                    Spend <strong>€{{ free_delivery_delta }}</strong> more to get free next day
+                    delivery!
+                </p>
+                {% endif %}
             </div>
         </div>
         {% endif %}

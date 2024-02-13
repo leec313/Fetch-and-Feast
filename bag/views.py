@@ -122,3 +122,22 @@ def remove_from_bag(request, item_id):
     except Exception as e:
         messages.error(request, f'Error removing item: {e}')
         return HttpResponse(status=500)
+
+
+def empty_bag(request):
+    """Remove all items from the shopping bag"""
+
+    try:
+        # Get the bag from the session, clear and save
+        bag = request.session.get('bag', {})
+        bag.clear()
+        request.session['bag'] = bag
+
+        messages.success(request, 'Your bag has been emptied')
+
+        return redirect(request.META.get('HTTP_REFERER', 'view_bag'))
+
+    except Exception as e:
+        # Display error message if an error occurs
+        messages.error(request, f'Error emptying bag: {e}')
+        return redirect(request.META.get('HTTP_REFERER', 'view_bag'))

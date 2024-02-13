@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q, Avg
 from django.db.models.functions import Lower
 from django.views.generic import DeleteView, UpdateView
@@ -235,7 +236,7 @@ def delete_product(request, product_id):
         request, 'products/confirm_delete.html', {'product': product})
 
 
-class RatingUpdateView(UpdateView):
+class RatingUpdateView(UpdateView, LoginRequiredMixin, UserPassesTestMixin):
     """
     View for updating a single rating
     """
@@ -255,7 +256,7 @@ class RatingUpdateView(UpdateView):
         return context
 
 
-class RatingDeleteView(DeleteView):
+class RatingDeleteView(DeleteView, LoginRequiredMixin, UserPassesTestMixin):
     """
     View for deleting a single rating
     """

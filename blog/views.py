@@ -10,11 +10,15 @@ from django.views.generic import (
 )
 from django.views import View
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.http import JsonResponse
-from django.http import HttpResponseRedirect
+from django.http import (
+    HttpResponseRedirect,
+    HttpResponseNotFound,
+    JsonResponse,
+)
 from django.utils.text import slugify
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
 from profiles.models import UserProfile
 from .models import Post, Comment
 from .forms import (
@@ -109,7 +113,7 @@ class PostDetailView(DetailView):
         for comment in comments:
             user_id = comment.user.id
             user_profile = UserProfile.objects.filter(user_id=user_id).first()
-            profile_image_url = user_profile.profile_image.url if user_profile and user_profile.profile_image else None
+            profile_image_url = user_profile.profile_image.url if user_profile and user_profile.profile_image else None # noqa
             commenter_profile_images[user_id] = profile_image_url
 
         return context
@@ -153,8 +157,9 @@ class PostDetailView(DetailView):
             # Add a message to inform the user
             messages.success(self.request, "Comment posted!")
 
-            # Redirect the user back to the post detail page with a hash fragment
-            return redirect(reverse('post_detail', args=[self.object.slug]) + '#comments-section')
+            # Redirect the user back to the post detail page w/ hash fragment
+            return redirect(reverse(
+                'post_detail', args=[self.object.slug]) + '#comments-section')
 
             # Set commented to True in context
             context['commented'] = True
@@ -166,7 +171,7 @@ class PostDetailView(DetailView):
         return render(request, "post_detail.html", context)
 
 
-class PostCreateView(LoginRequiredMixin, CreateView):
+class PostCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     """
     View for creating a post and assigning a slug to the new post
     """
@@ -189,7 +194,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return reverse('post_detail', kwargs={'slug': self.object.slug})
 
 
-class PostUpdateView(UpdateView):
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """
     View for creating a post and assigning a slug to the new post
     Removed LoginRequiredMixin, UserPassesTestMixin as I want any user
@@ -220,7 +225,7 @@ class PostUpdateView(UpdateView):
         return reverse('post_detail', kwargs={'slug': self.object.slug})
 
 
-class PostDeleteView(DeleteView):
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """
     View for deleting a single post
     Removed LoginRequiredMixin, UserPassesTestMixin as I want any user
@@ -243,7 +248,7 @@ class PostDeleteView(DeleteView):
         return super().delete(request, *args, **kwargs)
 
 
-class CommentUpdateView(UpdateView):
+class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """
     View for updating a single comment
     """
@@ -257,7 +262,7 @@ class CommentUpdateView(UpdateView):
             'slug': self.object.post.slug})
 
 
-class CommentDeleteView(DeleteView):
+class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """
     View for deleting a single comment
     """
@@ -270,7 +275,7 @@ class CommentDeleteView(DeleteView):
             'slug': self.object.post.slug})
 
 
-class PostLike(View):
+class PostLike(LoginRequiredMixin, UserPassesTestMixin, View):
     """
     View for liking a post. If liked, the view passes the information
     to the template to show the updated icon for confirmation of like
@@ -288,16 +293,23 @@ class PostLike(View):
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
+@login_required
 def manage_blogs(request):
-    """ blog management page where the admin can
-    add, edit or delete blogs """
+    """ Blog management page where the admin can
+    add, edit, or delete blogs. Only accessible to superusers. """
+    if not request.user.is_superuser:
+        return HttpResponseNotFound(render(request, 'errors/403.html'))
+
     blogs = Post.objects.all()
-    return render(
-        request, 'blog/manage_blogs.html', {'blogs': blogs})
+    return render(request, 'blog/manage_blogs.html', {'blogs': blogs})
 
 
+@login_required
 def bulk_delete_blogs(request):
     """ Bulk delete blog items from Blog management page """
+    if not request.user.is_superuser:
+        return HttpResponseNotFound(render(request, 'errors/403.html'))
+
     if request.method == 'POST':
         selected_blog_slugs = request.POST.getlist('selected_blogs')
         Post.objects.filter(slug__in=selected_blog_slugs).delete()

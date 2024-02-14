@@ -105,17 +105,24 @@ def product_detail(request, product_id):
 
     if request.method == 'POST':
         if request.user.is_authenticated:
-            form = RatingForm(request.POST)
-            if form.is_valid():
-                rating = form.save(commit=False)
-                rating.user = request.user
-                rating.product = product
-                rating.save()
-                messages.success(request, 'Rating added successfully!')
-                return redirect(reverse('product_detail', args=[product.id]))
+            # Check if the user has already rated the product
+            if not Rating.objects.filter(
+                    user=request.user, product=product).exists():
+                form = RatingForm(request.POST)
+                if form.is_valid():
+                    rating = form.save(commit=False)
+                    rating.user = request.user
+                    rating.product = product
+                    rating.save()
+                    messages.success(request, 'Rating added successfully!')
+                else:
+                    messages.error(request, 'Invalid rating.')
+            else:
+                messages.error(request, 'You have already rated this product.')
         else:
             messages.error(
                 request, 'You need to be logged in to submit a rating.')
+        return redirect(reverse('product_detail', args=[product_id]))
 
     else:
         form = RatingForm()

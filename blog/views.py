@@ -171,7 +171,7 @@ class PostDetailView(DetailView):
         return render(request, "post_detail.html", context)
 
 
-class PostCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     """
     View for creating a post and assigning a slug to the new post
     """

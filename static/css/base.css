@@ -87,7 +87,7 @@ body {
 }
 
 .btn-black {
-    background: black;
+    background: #009970;
     color: white;
 }
 
@@ -263,15 +263,6 @@ a.category-badge>span.badge:hover {
     height: 600px;
 }
 
-/* -------------------------------- Media Queries */
-
-/* Slightly larger container on xl screens */
-@media (min-width: 1200px) {
-    .container {
-        max-width: 80%;
-    }
-}
-
 /* Allauth form formatting */
 
 .allauth-form-inner-content p {
@@ -414,6 +405,71 @@ a.category-badge>span.badge:hover {
     display: none;
 }
 
+
+.nav-link {
+    color: #666777;
+    font-weight: 500;
+    position: relative;
+    padding: 0;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #000;
+}
+
+/* FAQ page */
+.card-header {
+    background-color: #fff;
+}
+
+.card-header .btn-link {
+    color: #000;
+    text-decoration: none;
+}
+
+.card-header .btn-link:hover {
+    color: #009970;
+    text-decoration: none;
+}
+
+.accordion .card-body {
+    background-color: #009970;
+    color: #fff;
+}
+
+footer h5 {
+    color: #009970;
+}
+
+.footer-contact {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    color: #6c757d;
+}
+
+.footer-contact svg {
+    color: #009970;
+}
+
+.footer-contact a {
+    color: #6c757d;
+}
+
+.footer-contact a:hover {
+    color: #009970;
+}
+
+/* -------------------------------- Media Queries */
+
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 80%;
+    }
+}
+
 /* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {
@@ -427,7 +483,27 @@ a.category-badge>span.badge:hover {
     .header-container {
         padding-top: 120px;
     }
+
+    .nav-link::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background-color: #009970;
+        visibility: hidden;
+        transition: 0.3s ease-in-out;
+    }
+
+    .nav-link:hover::before,
+    .nav-link.active::before {
+        width: 100%;
+        visibility: visible;
+    }
 }
+
 
 /* pad the top a bit when navbar is collapsed on mobile */
 @media (max-width: 991px) {
@@ -483,57 +559,4 @@ a.category-badge>span.badge:hover {
     .decrement-qty {
         padding: .25rem .5rem !important;
     }
-}
-
-.nav-link {
-    color: #666777;
-    font-weight: 500;
-    position: relative;
-    padding: 0;
-}
-
-.nav-link:hover,
-.nav-link.active {
-    color: #000;
-}
-
-@media (min-width: 991px) {
-    .nav-link::before {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: 2px;
-        background-color: #009970;
-        visibility: hidden;
-        transition: 0.3s ease-in-out;
-    }
-
-    .nav-link:hover::before,
-    .nav-link.active::before {
-        width: 100%;
-        visibility: visible;
-    }
-}
-
-/* FAQ page */
-.card-header {
-    background-color: #fff;
-}
-
-.card-header .btn-link {
-    color: #000;
-    text-decoration: none;
-}
-
-.card-header .btn-link:hover {
-    color: #009970;
-    text-decoration: none;
-}
-
-.accordion .card-body {
-    background-color: #009970;
-    color: #fff;
 }

@@ -47,18 +47,24 @@ def profile(request):
 
                 # Save the newsletter subscription status
                 subscribe_newsletter = request.POST.get('subscribe_newsletter')
-                profile.subscribe_newsletter = bool(subscribe_newsletter)  # Convert to boolean
+                # Convert to boolean
+                profile.subscribe_newsletter = bool(subscribe_newsletter)
                 profile.save()
 
                 # Handle newsletter subscription
                 if subscribe_newsletter:
                     # Create or update the NewsletterSubscription object
-                    subscription, created = NewsletterSubscription.objects.get_or_create(user_profile=profile)
-                    subscription.email = profile.user.email  # Set the email address
+                    subscription, created = (
+                        NewsletterSubscription.objects
+                        .get_or_create(user_profile=profile)
+                    )
+                    # Set the email address
+                    subscription.email = profile.user.email
                     subscription.save()
                 else:
-                    # Delete the NewsletterSubscription object associated with the user's profile
-                    NewsletterSubscription.objects.filter(user_profile=profile).delete()
+                    # Delete NewsletterSubscription object associated with user
+                    NewsletterSubscription.objects.filter(
+                        user_profile=profile).delete()
                     newsletter_form.initial['subscribe_newsletter'] = False
 
                 profile.save()
@@ -74,7 +80,8 @@ def profile(request):
                 user.save()
                 messages.success(request, 'Password changed successfully')
             else:
-                messages.error(request, 'Please correct the password change form errors.')
+                messages.error(
+                    request, 'Please correct the password change form errors.')
     else:
         user_profile_form = UserProfileForm(instance=profile)
         password_form = ChangePasswordForm(user)
@@ -113,12 +120,7 @@ def change_password(request):
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 
-    messages.info(request, (
-        f'This is a past confirmation for order number {order_number}. '
-        'A confirmation email was sent on the order date.'
-    ))
-
-    template = 'checkout/checkout_success.html'
+    template = 'profiles/order_detail.html'
     context = {
         'order': order,
         'from_profile': True,

@@ -5,9 +5,11 @@ from django.shortcuts import (
     get_object_or_404,
     HttpResponse
 )
+from django.http import HttpResponseForbidden
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
+import secrets
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
@@ -63,6 +65,16 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
             order.save()
+
+            # Generate random token for checkout success access
+            random_token = secrets.token_urlsafe(32)
+
+            # Set the random token as a cookie in the response
+            response = redirect(
+                reverse('checkout_success', args=[order.order_number]))
+            response.set_cookie('my_custom_cookie', random_token, max_age=3600)
+            return response
+
             for item_id, item_data in bag.items():
                 try:
                     product = Product.objects.get(id=item_id)
@@ -152,6 +164,10 @@ def checkout_success(request, order_number):
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
+
+    # Check for the presence of the custom cookie
+    if 'my_custom_cookie' not in request.COOKIES:
+        return HttpResponseForbidden(render(request, 'errors/403.html'))
 
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)

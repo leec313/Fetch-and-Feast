@@ -77,6 +77,10 @@ class PostListView(ListView):
 
 
 class PostDetailView(DetailView):
+    """
+    View for displaying the details of a post,
+    including comments and comment form.
+    """
     model = Post
     template_name = "post_detail.html"
 

@@ -41,6 +41,14 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
+    """
+    Cache checkout data from the payment intent for future processing.
+
+    This function modifies the metadata of the Stripe PaymentIntent object
+    to store relevant checkout data such as the bag contents, user preference
+    to save information, and the username. This cached data can be used for
+    future reference or processing.
+    """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 

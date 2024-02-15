@@ -29,7 +29,7 @@ class UserProfile(models.Model):
     profile_image = models.ImageField(
         null=True, blank=True, upload_to='profile-images')
     subscribe_newsletter = models.BooleanField(default=False)
-    
+
     def __str__(self):
         if self.user:
             return self.user.username
@@ -65,4 +65,3 @@ class NewsletterSubscription(models.Model):
 
     def __str__(self):
         return self.email  # Return email for string representation
-

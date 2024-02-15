@@ -5,7 +5,10 @@ from products.models import Product
 
 
 def bag_contents(request):
-
+    """
+    Retrieves the contents of the shopping bag from the session and calculates
+    the total cost, product count, delivery cost, and grand total.
+    """
     bag_items = []
     total = 0
     product_count = 0

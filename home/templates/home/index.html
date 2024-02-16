@@ -55,6 +55,14 @@
                             {% if product.average_rating %}
                             <a href="{% url 'product_detail' product.id %}"
                                 class="text-decoration-none text-dark average-stars">{{ product.average_rating|stars|safe }}</a>
+                            {% else %}
+                            <span class="text-decoration-none text-dark average-stars">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </span>
                             {% endif %}
                             <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
                             {% if product.category %}

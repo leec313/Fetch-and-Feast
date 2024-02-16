@@ -61,6 +61,14 @@
                 {% if average_rating %}
                 <a href="#ratings"
                     class="text-decoration-none text-dark average-stars">{{ average_rating|stars|safe }}</a>
+                {% else %}
+                <span class="text-decoration-none text-dark average-stars">
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </span>
                 {% endif %}
                 {% if product.category %}
                 <p class="small mb-0">

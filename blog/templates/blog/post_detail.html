@@ -108,6 +108,14 @@
                         {% csrf_token %}
                         <button type="submit" class="btn btn-black rounded-0 text-uppercase">Submit</button>
                     </form>
+                    {% else %}
+                    <div class="text-center my-4">
+                        <p>You must be logged in to submit a comment!</p>
+                        <a href="{% url 'account_login' %}" aria-label="Login to comment"
+                            class="btn btn-black rounded-0">Click
+                            here
+                            to login</a>
+                    </div>
                     {% endif %}
                 </div>
             </div>

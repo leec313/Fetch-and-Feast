@@ -1,9 +1,8 @@
 import uuid
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
-
 from django_countries.fields import CountryField
 
 
@@ -38,6 +37,24 @@ class UserProfile(models.Model):
             return "No associated user"
 
 
+class NewsletterSubscription(models.Model):
+    """
+    Defines Newsletter subscription model
+    """
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    email = models.EmailField(unique=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    # Use a callable instead of a static method for the default value
+    def default_token():
+        return uuid.uuid4()
+
+    unsubscribe_token = models.UUIDField(default=default_token, editable=False)
+
+    def __str__(self):
+        return self.email  # Return email for string representation
+
+
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     """
@@ -56,19 +73,12 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     profile.save()
 
 
-class NewsletterSubscription(models.Model):
+@receiver(pre_delete, sender=NewsletterSubscription)
+def update_user_profile_on_newsletter_delete(sender, instance, **kwargs):
     """
-    Defines Newsletter subscription model
+    Update user profile subscribe_newsletter
+    field when a newsletter subscription is deleted
     """
-    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    email = models.EmailField(unique=True)
-    created_on = models.DateTimeField(auto_now_add=True)
-
-    # Use a callable instead of a static method for the default value
-    def default_token():
-        return uuid.uuid4()
-
-    unsubscribe_token = models.UUIDField(default=default_token, editable=False)
-
-    def __str__(self):
-        return self.email  # Return email for string representation
+    user_profile = instance.user_profile
+    user_profile.subscribe_newsletter = False
+    user_profile.save()

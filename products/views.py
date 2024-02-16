@@ -7,6 +7,7 @@ from django.db.models import Q, Avg
 from django.db.models.functions import Lower
 from django.views.generic import DeleteView, UpdateView
 from django.urls import reverse_lazy
+from django.utils.safestring import mark_safe
 
 from .models import Product, Category, Rating
 from checkout.models import Order
@@ -184,7 +185,11 @@ def add_product(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save()
-            messages.success(request, 'Successfully added product!')
+            # Add a message to inform the user
+            message = "Your post was created successfully!\
+                <a href='{}'>Create another product</a>".format(
+                    reverse('add_product'))
+            messages.success(request, mark_safe(message))
             return redirect(reverse('product_detail', args=[product.id]))
         else:
             messages.error(

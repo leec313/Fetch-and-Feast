@@ -1,4 +1,3 @@
-import uuid
 from django.shortcuts import render, redirect, reverse
 from django.db.models import Avg
 from django.contrib.auth import get_user_model
@@ -111,12 +110,17 @@ def subscribe_newsletter(request):
 
 
 def unsubscribe_newsletter(request):
+    """
+    Allows unsubscribe from newsletter email link
+    Works for Anonymous users too
+    """
     # Retrieve email from the request or query parameters
     email = request.GET.get('email')
 
     if email:
         # Check if the email is provided
-        subscription_entry = NewsletterSubscription.objects.filter(email=email).first()
+        subscription_entry = NewsletterSubscription.objects.filter(
+            email=email).first()
 
         if subscription_entry:
             # If the user's email is found, delete the entry
@@ -127,7 +131,7 @@ def unsubscribe_newsletter(request):
             request.user.userprofile.subscribe_newsletter = False
             request.user.userprofile.save()
         else:
-            # If user is not logged in, find the UserProfile by email and update it
+            # If user not logged in, find UserProfile by email and update it
             user = User.objects.filter(email=email).first()
             if user:
                 user_profile = UserProfile.objects.get_or_create(user=user)[0]
@@ -135,7 +139,8 @@ def unsubscribe_newsletter(request):
                 user_profile.save()
 
         # Display a success message
-        messages.success(request, 'You have successfully unsubscribed from the newsletter.')
+        messages.success(
+            request, 'You have successfully unsubscribed from the newsletter.')
     else:
         # Display an error message if email is not provided
         messages.error(request, 'Email address is required to unsubscribe.')

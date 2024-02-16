@@ -193,22 +193,21 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-lg-7 text-right">
-            {% if from_profile %}
-            <a href="{% url 'profile' %}" class="btn btn-black rounded-0 my-2">
+        <div class="col-12 col-lg-7 text-right d-flex justify-content-between">
+            {% if user.is_authenticated and user.userprofile %}
+            <a href="{% url 'profile' %}" class="btn btn-black rounded-0 mr-3">
                 <span class="icon mr-2">
                     <i class="fas fa-angle-left"></i>
                 </span>
-                <span class="text-uppercase">Back to Profile</span>
+                <span class="text-uppercase">My Profile</span>
             </a>
-            {% else %}
-            <a href="{% url 'products' %}?category=new_arrivals,deals,clearance" class="btn btn-black rounded-0 my-2">
+            {% endif %}
+            <a href="{% url 'products' %}?category=new_arrivals,deals,clearance" class="btn btn-black rounded-0">
                 <span class="icon mr-2">
                     <i class="fas fa-gifts"></i>
                 </span>
-                <span class="text-uppercase">Now check out the latest deals!</span>
+                <span class="text-uppercase">Latest deals!</span>
             </a>
-            {% endif %}
         </div>
     </div>
 </div>

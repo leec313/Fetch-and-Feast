@@ -267,6 +267,12 @@ a.category-badge>span.badge:hover {
     height: 600px;
 }
 
+.card-img-top {
+    object-fit: cover;
+    height: 300px;
+    width: 100%;
+}
+
 /* Allauth form formatting */
 
 .allauth-form-inner-content p {

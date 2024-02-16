@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -62,6 +63,12 @@ class NewsletterSubscription(models.Model):
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     email = models.EmailField(unique=True)
     created_on = models.DateTimeField(auto_now_add=True)
+
+    # Use a callable instead of a static method for the default value
+    def default_token():
+        return uuid.uuid4()
+
+    unsubscribe_token = models.UUIDField(default=default_token, editable=False)
 
     def __str__(self):
         return self.email  # Return email for string representation

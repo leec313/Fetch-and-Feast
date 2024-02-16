@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+import uuid
+from django.shortcuts import render, redirect, reverse
 from django.db.models import Avg
 from django.contrib.auth import get_user_model
 from django.db.models import Count
@@ -56,11 +57,25 @@ def subscribe_newsletter(request):
         )
 
         # Send email to user
+        # creates unsubscribe url (works for anonymous users)
+        unsubscribe_url = request.build_absolute_uri(
+            reverse('unsubscribe_newsletter') + f'?email={email}')
+        unsubscribe_message = (
+            f'To unsubscribe from our newsletter, click '
+            f'<a href="{unsubscribe_url}">here</a>.'
+        )
         send_mail(
-            subject='Fetch & Feast: Thanks fo Subscribing!',
-            message='Get ready for some PAWSOME newseletters coming your way!',
+            subject='Fetch & Feast: Thanks for Subscribing!',
+            message=(
+                f'Get ready for some PAWSOME newsletters coming your way! '
+                f'{unsubscribe_message}'
+            ),
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[email],
+            html_message=(
+                f'<p>Get ready for some PAWSOME newsletters coming your way!'
+                f'{unsubscribe_message}</p>'
+            )
         )
 
         # Check if the email is already subscribed
@@ -93,3 +108,37 @@ def subscribe_newsletter(request):
 
         messages.success(request, 'Subscription successful!')
         return redirect('home')  # Redirect to the home page
+
+
+def unsubscribe_newsletter(request):
+    # Retrieve email from the request or query parameters
+    email = request.GET.get('email')
+
+    if email:
+        # Check if the email is provided
+        subscription_entry = NewsletterSubscription.objects.filter(email=email).first()
+
+        if subscription_entry:
+            # If the user's email is found, delete the entry
+            subscription_entry.delete()
+
+        # Mark the user as unsubscribed in the UserProfile
+        if request.user.is_authenticated:
+            request.user.userprofile.subscribe_newsletter = False
+            request.user.userprofile.save()
+        else:
+            # If user is not logged in, find the UserProfile by email and update it
+            user = User.objects.filter(email=email).first()
+            if user:
+                user_profile = UserProfile.objects.get_or_create(user=user)[0]
+                user_profile.subscribe_newsletter = False
+                user_profile.save()
+
+        # Display a success message
+        messages.success(request, 'You have successfully unsubscribed from the newsletter.')
+    else:
+        # Display an error message if email is not provided
+        messages.error(request, 'Email address is required to unsubscribe.')
+
+    # Redirect to the home page
+    return redirect('home')

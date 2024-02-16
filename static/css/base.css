@@ -230,7 +230,7 @@ a.category-badge>span.badge:hover {
 }
 
 .arrow-info {
-    border-bottom-color: #17a2b8 !important;
+    border-bottom-color: #009970 !important;
 }
 
 .arrow-light {
@@ -316,7 +316,7 @@ a.category-badge>span.badge:hover {
 }
 
 .allauth-form-inner-content a {
-    color: #17a2b8;
+    color: #009970;
     /* text-info */
 }
 

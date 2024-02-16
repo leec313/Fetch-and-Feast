@@ -23,7 +23,7 @@ class ProductForm(forms.ModelForm):
 
 
 class RatingForm(forms.ModelForm):
-    # Define your choices for the rating
+    # Define choices for the rating
     SCORE_CHOICES = [(str(i), str(i)) for i in range(1, 6)]
 
     # Update the score field to use the ChoiceField
@@ -31,6 +31,7 @@ class RatingForm(forms.ModelForm):
         choices=SCORE_CHOICES,
         widget=forms.RadioSelect(attrs={'class': 'star-radio'}),
         label='',  # Set the label to an empty string
+        required=False,
     )
 
     class Meta:

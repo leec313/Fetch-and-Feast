@@ -107,12 +107,19 @@ def product_detail(request, product_id):
         if request.user.is_authenticated:
             # Check if the user has already rated the product
             if not Rating.objects.filter(
-                    user=request.user, product=product).exists():
+                  user=request.user, product=product).exists():
                 form = RatingForm(request.POST)
                 if form.is_valid():
                     rating = form.save(commit=False)
                     rating.user = request.user
                     rating.product = product
+                    # Check if the 'score' field is empty
+                    if form.cleaned_data['score']:  # If not empty
+                        rating.score = form.cleaned_data['score']
+                    else:
+                        messages.error(request, 'Please select a star rating!')
+                        return redirect(
+                            reverse('product_detail', args=[product_id]))
                     rating.save()
                     messages.success(request, 'Rating added successfully!')
                 else:
@@ -123,7 +130,6 @@ def product_detail(request, product_id):
             messages.error(
                 request, 'You need to be logged in to submit a rating.')
         return redirect(reverse('product_detail', args=[product_id]))
-
     else:
         form = RatingForm()
 

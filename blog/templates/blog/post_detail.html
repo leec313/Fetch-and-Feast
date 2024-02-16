@@ -68,7 +68,7 @@
                                 <span class="text-secondary mr-3">{{ post.number_of_likes }} </span>
                             </strong>
                             <!-- Shows the comment icon along with the total number of comments -->
-                            {% with comments.count as total_comments %}
+                            {% with post.comments.count as total_comments %}
                             <strong class="text-secondary"><i class="far fa-comments"></i>
                                 {{ total_comments }}
                             </strong>

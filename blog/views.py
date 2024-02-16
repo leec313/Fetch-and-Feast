@@ -26,6 +26,7 @@ from .forms import (
     PostForm,
 )
 from django.db.models import Q, Case, When
+from django.utils.safestring import mark_safe
 
 
 class PostListView(ListView):
@@ -189,8 +190,10 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         response = super().form_valid(form)
 
         # Add a message to inform the user
-        messages.success(self.request,
-                         "Your post was created successfully!")
+        message = "Your post was created successfully!\
+            <a href='{}'>Create another post</a>".format(
+                reverse('post_new'))
+        messages.success(self.request, mark_safe(message))
 
         return response
 

@@ -60,13 +60,13 @@ def subscribe_newsletter(request):
         unsubscribe_url = request.build_absolute_uri(
             reverse('unsubscribe_newsletter') + f'?email={email}')
         unsubscribe_message = (
-            f'To unsubscribe from our newsletter, click '
+            f'\nTo unsubscribe from our newsletter, click '
             f'<a href="{unsubscribe_url}">here</a>.'
         )
         send_mail(
             subject='Fetch & Feast: Thanks for Subscribing!',
             message=(
-                f'Get ready for some PAWSOME newsletters coming your way! '
+                f'Get ready for some PAWSOME newsletters coming your way!'
                 f'{unsubscribe_message}'
             ),
             from_email=settings.DEFAULT_FROM_EMAIL,

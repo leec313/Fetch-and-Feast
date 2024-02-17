@@ -326,5 +326,15 @@
         </div>
     </div>
 </footer>
+<script>
+    $(document).ready(function () {
+        // Hide all toasts after 3 seconds except those with the class 'bag-notification-wrapper'
+        // This is so the success message with the bag, stays open for the user
+        // Every other toast should disappear after 3 seconds
+        $('.toast').not(function () {
+            return $(this).find('.bag-notification-wrapper').length > 0;
+        }).delay(3000).fadeOut('slow');
+    });
+</script>
 
 </html>

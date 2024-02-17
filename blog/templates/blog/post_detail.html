@@ -75,7 +75,7 @@
                             {% endwith %}
                         </div>
                         <div class="col-12 col-md-auto ms-md-auto">
-                            <!-- If the author of the post is the current logged in user, it will display the update/delete buttons-->
+                            <!-- If the author of the post is the current logged in user or superuser, it will display the update/delete buttons-->
                             {% if post.author == user or request.user.is_superuser %}
                             <div class="ms-md-auto">
                                 <a class="btn btn-black rounded-0 text-uppercase mb-3"
@@ -94,6 +94,7 @@
             <div class="col-md-8 card mb-4 mt-3">
                 <h3 class="mt-3">Comments:</h3>
                 <div id="comments-section" class="card-body" data-page="{{ comments.number }}">
+                    <!--Show comment_list templae for comment display-->
                     {% include 'comment_list.html' %}
                 </div>
             </div>
@@ -109,12 +110,13 @@
                         <button type="submit" class="btn btn-black rounded-0 text-uppercase">Submit</button>
                     </form>
                     {% else %}
+                    <!--Direct to login page in order to submit comment-->
                     <div class="text-center my-4">
                         <p>You must be logged in to submit a comment!</p>
                         <a href="{% url 'account_login' %}" aria-label="Login to comment"
-                            class="btn btn-black rounded-0">Click
-                            here
-                            to login</a>
+                            class="btn btn-black rounded-0">
+                            Click here to login
+                        </a>
                     </div>
                     {% endif %}
                 </div>
@@ -126,6 +128,7 @@
 
 {% endblock content %}
 
+<!--Include comment_section js for non page reload pagination-->
 {% block postloadjs %}
 {{ block.super }}
 <script src="{% static 'blog/js/comment_section.js' %}"></script>

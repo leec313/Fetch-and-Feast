@@ -41,4 +41,16 @@
             }
         });
     });
+
+    // Check if at least one blog is selected to delete, otherwise show error
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("deleteSelectedBtn").addEventListener("click", function () {
+            var selectedBlogs = document.querySelectorAll('input[name="selected_blogs"]:checked');
+
+            if (selectedBlogs.length < 1) {
+                // If no blog is selected, show the error message
+                showMessage("Please select at least one blog to delete.");
+            }
+        });
+    });
 </script>

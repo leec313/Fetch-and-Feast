@@ -4,11 +4,10 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db.models import Avg
 
 
-# Create your models here.
-
-
 class Category(models.Model):
-
+    """
+    Defining the Category Model
+    """
     class Meta:
         verbose_name_plural = 'Categories'
 
@@ -23,6 +22,9 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    """
+    Defining the Product model
+    """
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.SET_NULL)
     sku = models.CharField(max_length=254, null=True, blank=True)
@@ -41,6 +43,9 @@ class Product(models.Model):
 
 
 class Rating(models.Model):
+    """
+    Defining the rating model
+    """
     product = models.ForeignKey('Product', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)

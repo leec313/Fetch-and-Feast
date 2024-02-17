@@ -1,3 +1,4 @@
+<!--If there are comments, loop through each comment and display-->
 {% if comments %}
 {% for comment in comments %}
 <!-- below if/forloops in class aligns first comment left, second right and so on -->
@@ -30,9 +31,10 @@
     </div>
 </div>
 {% endfor %}
-
+<!--Pagination for comments-->
 <div class="d-flex align-items-center justify-content-center pagination mt-4">
     <ul class="pagination">
+        <!--If there are previous comments, display the First & Previous links-->
         {% if comments.has_previous %}
         <li class="page-item">
             <a class="page-link text-muted" href="?page=1">&laquo; First</a>
@@ -41,11 +43,11 @@
             <a class="page-link text-muted" href="?page={{ comments.previous_page_number }}">Previous</a>
         </li>
         {% endif %}
-
+        <!--Display current page number out of however many pages there are-->
         <li class="page-item disabled">
             <span class="page-link">{{ comments.number }} of {{ comments.paginator.num_pages }}</span>
         </li>
-
+        <!--If there are more comments/a next page, display the Next & Last link-->
         {% if comments.has_next %}
         <li class="page-item">
             <a class="page-link text-muted" href="?page={{ comments.next_page_number }}">Next</a>

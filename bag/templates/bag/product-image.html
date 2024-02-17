@@ -1,6 +1,8 @@
 {% load static %}
+<!--If product has an image display it-->
 {% if item.product.image %}
 <img class="w-25 rounded-circle" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+<!--otherwise display the default image via get_media_prefix code-->
 {% else %}
 <img class="w-25 rounded-circle" src="{% get_media_prefix %}default-images/no_orders.webp"
     alt="{{ item.product.name }}">

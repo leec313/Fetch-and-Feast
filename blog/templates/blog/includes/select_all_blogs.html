@@ -1,29 +1,37 @@
 <script>
+    // Wait for the DOM content to be fully loaded
     document.addEventListener('DOMContentLoaded', function () {
+        // Get references to various elements
         const selectAllCheckbox = document.getElementById('select-all');
         const individualCheckboxes = document.querySelectorAll('input[name="selected_blogs"]');
         const deleteSelectedBtn = document.getElementById('deleteSelectedBtn');
-        const selectedBlogsList = document.getElementById(
-            'selectedBlogsList');
-        const selectedBlogsInput = document.getElementById(
-            'selectedBlogsInput');
+        const selectedBlogsList = document.getElementById('selectedBlogsList');
+        const selectedBlogsInput = document.getElementById('selectedBlogsInput');
         const deleteConfirmationModal = new bootstrap.Modal(document.getElementById(
             'deleteConfirmationModalBlogs'));
 
+        // Add event listener for the "Select All" checkbox
         selectAllCheckbox.addEventListener('change', function () {
+            // Determine if the "Select All" checkbox is checked
             const isChecked = this.checked;
+            // Iterate over individual checkboxes and set their checked status
             individualCheckboxes.forEach(checkbox => {
                 checkbox.checked = isChecked;
             });
         });
 
+        // Add event listener for the "Delete Selected" button
         deleteSelectedBtn.addEventListener('click', function () {
+            // Find all selected checkboxes
             const selectedCheckboxes = document.querySelectorAll(
                 'input[name="selected_blogs"]:checked');
 
+            // If at least one checkbox is selected
             if (selectedCheckboxes.length > 0) {
-
+                // Clear the selected blogs list
                 selectedBlogsList.innerHTML = '';
+
+                // Iterate over selected checkboxes to display their corresponding blog titles
                 selectedCheckboxes.forEach(checkbox => {
                     const blogTitle = checkbox.closest('tr').querySelector('td:nth-child(4)')
                         .innerText;
@@ -32,11 +40,11 @@
                     selectedBlogsList.appendChild(listItem);
                 });
 
-                // Set the value of the hidden input in the form
+                // Set the value of the hidden input field to a comma-separated list of selected blog IDs
                 selectedBlogsInput.value = Array.from(selectedCheckboxes).map(checkbox => checkbox
                     .value).join(',');
 
-                // Show the confirmation modal
+                // Display the delete confirmation modal
                 deleteConfirmationModal.show();
             }
         });

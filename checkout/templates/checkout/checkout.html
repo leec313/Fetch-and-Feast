@@ -27,6 +27,7 @@
 
     <div class="row">
         <div class="col-12 col-lg-6 order-lg-last mb-5">
+            <!--Displays the amount of items in the checkout-->
             <p class="text-muted">Order Summary ({{ product_count }})</p>
             <div class="row">
                 <div class="col-7 offset-2">
@@ -36,18 +37,23 @@
                     <p class="mb-1 mt-0 small text-muted">Subtotal</p>
                 </div>
             </div>
+            <!--Looping through items that were added to bag-->
             {% for item in bag_items %}
             <div class="row">
                 <div class="col-2 mb-1">
                     <a href="{% url 'product_detail' item.product.id %}">
+                        <!--If there is a product image, display it-->
                         {% if item.product.image %}
                         <img class="w-100" src="{{ item.product.image.url }}" alt="{{ product.name }}">
+                        <!--Else display default image-->
                         {% else %}
-                        <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                        <img class="w-100" src="{% get_media_prefix %}default-images/no_orders.webp"
+                            alt="{{ product.name }}">
                         {% endif %}
                     </a>
                 </div>
                 <div class="col-7">
+                    <!--Display product name, if has sizes - if not N/A - and price/subtotal-->
                     <p class="my-0"><strong>{{ item.product.name }}</strong></p>
                     <p class="my-0 small">Size:
                         {% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
@@ -73,7 +79,8 @@
             </div>
         </div>
         <div class="col-12 col-lg-6">
-            <p class="text-muted">Please fill out the form below to complete your order</p>
+            <p class="text-muted">Please fill out your details below to complete the order</p>
+            <!--Checkout/order form using crispy forms-->
             <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                 {% csrf_token %}
                 <fieldset class="rounded px-3 mb-5">
@@ -91,12 +98,14 @@
                     {{ order_form.postcode | as_crispy_field }}
                     {{ order_form.country | as_crispy_field }}
                     <div class="form-check form-check-inline float-right mr-0">
+                        <!--If user logged in, display save info checkbox-->
                         {% if user.is_authenticated %}
                         <label class="form-check-label" for="id-save-info">Save this delivery information to my
                             profile</label>
                         <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info"
                             checked>
                         {% else %}
+                        <!--Else display signup/login links-->
                         <label class="form-check-label" for="id-save-info">
                             <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or
                             <a class="text-info" href="{% url 'account_login' %}">login</a> to save this information
@@ -114,7 +123,7 @@
                     <!-- Pass the client secret to the view so we can get the payment intent id -->
                     <input type="hidden" value="{{ client_secret }}" name="client_secret">
                 </fieldset>
-
+                <!--Back to bag and process payment buttons-->
                 <div class="submit-button text-right mt-5 mb-2">
                     <a href="{% url 'view_bag' %}" class="btn btn-outline-black rounded-0">
                         <span class="icon">
@@ -150,7 +159,9 @@
 
 {% block postloadjs %}
 {{ block.super }}
+<!-- Load Stripe public key and client secret into JavaScript variables -->
 {{ stripe_public_key|json_script:"id_stripe_public_key" }}
 {{ client_secret|json_script:"id_client_secret" }}
+<!-- Include JS file for Stripe Elements -->
 <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}

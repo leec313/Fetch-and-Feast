@@ -18,8 +18,10 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col text-center mt-3">
+            <!--If the user searches, display the following title including the search term-->
             {% if request.GET.search %}
             <h2 class="text-center mt-3">Search results for: "{{ request.GET.search }}"</h2>
+            <!--otherwse display the standard page title-->
             {% else %}
             <h2 class="logo-font mt-3">Blog Posts</h2>
             {% endif %}
@@ -49,22 +51,27 @@
             <h3 class="my-3">No posts found &#128546;</h3>
             <img src="{% get_media_prefix %}default-images/no_orders.webp" class="img-fluid" alt="Sad dog, no posts">
         </div>
+        <!--Otherwise display the published blog posts-->
         {% else %}
         <div class="col-12">
             <div class="row">
+                <!--looping through each post-->
                 {% for post in posts %}
                 <div class="col-sm-6 col-md-6 col-lg-4 p-3">
                     <div class="card h-100 border-0">
+                        <!--if the post has an image, display it-->
                         {% if post.image %}
                         <a href="{% url 'post_detail' post.slug %}">
                             <img class="card-img-top img-fluid" src="{{ post.image.url }}" alt="{{ post.title }}">
                         </a>
+                        <!--Else displays the default image-->
                         {% else %}
                         <a href="{% url 'post_detail' post.slug %}">
                             <img class="card-img-top img-fluid"
                                 src="{% get_media_prefix %}default-images/no_orders.webp" alt="{{ post.title }}">
                         </a>
                         {% endif %}
+                        <!--Displays the post title & excerpt(truncated)-->
                         <div class="card-body pb-0">
                             <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none text-black">
                                 <h5>{{ post.title }}</h5>
@@ -73,12 +80,14 @@
                                 {{ post.excerpt|slice:":80" }}{% if post.excerpt|length > 80 %}...{% endif %}
                             </p>
                         </div>
+                        <!--Displays the created on date, number of likes and comments-->
                         <div class="card-text h6 text-muted p-3">
                             <span class="date-created">{{ post.created_on }}</span>
                             <span class="likes-comments-container float-right">
                                 <i class="far fa-heart"></i> {{ post.number_of_likes }}
                                 <i class="far fa-comments"></i> {{ post.comments.count }}
                             </span>
+                            <!--If admin, display update/delete links-->
                             {% if request.user.is_superuser %}
                             <small>
                                 <a href="{% url 'post_update' post.slug %}">Edit</a>

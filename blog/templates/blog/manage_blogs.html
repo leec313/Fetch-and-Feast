@@ -37,7 +37,7 @@
                 id="deleteSelectedBtn">
                 Delete Selected
             </button>
-
+            <!--Bulk delete blogs form-->
             <form method="post" action="{% url 'bulk_delete_blogs' %}" id="deleteForm">
                 {% csrf_token %}
                 <input type="hidden" name="selected_blogs" id="selectedBlogsInput" value="">
@@ -58,6 +58,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!--Looping through each blog post-->
                             {% for blog in blogs %}
                             <tr>
                                 <td>
@@ -65,18 +66,23 @@
                                 </td>
                                 <th scope="row" class="d-none d-md-table-cell">{{ blog.id }}</th>
                                 <td>
+                                    <!--If the post has an image, display it-->
                                     {% if blog.image %}
                                     <a href="{% url 'post_detail' blog.slug %}" aria-label="Go to blog Page"><img
-                                            src="{{ blog.image.url }}" alt="{{ blog.name }}" class="bm-image"></a>
+                                            src="{{ blog.image.url }}" alt="{{ blog.name }}" class="bm-image">
+                                    </a>
+                                    <!--Else display the default image-->
                                     {% else %}
                                     <img class="bm-image" src="{% get_media_prefix %}default-images/no_orders.webp"
                                         alt="{{ blog.title }}">
                                     {% endif %}
                                 </td>
+                                <!--Display blog title and link to post detail page-->
                                 <td><a href="{% url 'post_detail' blog.slug %}" aria-label="Go to blog Page"
                                         class="text-dark">{{ blog.title }}
                                     </a>
                                 </td>
+                                <!--Displays post author, created date, number of comments & likes-->
                                 <td>{{ blog.author }}</td>
                                 <td class="d-none d-md-table-cell">{{ blog.created_on|date:"H:i d/m/Y" }}</td>
                                 <td class="d-none d-md-table-cell">{{ blog.comments.count }}</td>
@@ -116,9 +122,9 @@
 </div>
 
 {% endblock %}
-
+<!--Scripts for select all and edit selected posts-->
 {% block postloadjs %}
 {{ block.super }}
 {% include 'blog/includes/select_all_blogs.html' %}
-{% include 'blog/includes/edit_selected_blogs.html' %}
+{% include 'blog/includes/edit_delete_selected_blogs.html' %}
 {% endblock %}

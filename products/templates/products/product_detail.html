@@ -179,7 +179,14 @@
                     <p>You need to purchase this product to submit a rating.</p>
                     {% endif %}
                     {% else %}
-                    <p>You need to be logged in to submit a rating.</p>
+                    <!--Direct to login page in order to submit rating-->
+                    <div class="text-center my-4">
+                        <p>You must be logged in to submit a rating!</p>
+                        <a href="{% url 'account_login' %}" aria-label="Login to rate product"
+                            class="btn btn-black rounded-0">
+                            Click here to login
+                        </a>
+                    </div>
                     {% endif %}
                 </div>
             </div>

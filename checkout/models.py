@@ -73,6 +73,9 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
+    """
+    Line item model links to product/order model
+    """
     order = models.ForeignKey(
         Order, null=False, blank=False,
         on_delete=models.CASCADE, related_name='lineitems')

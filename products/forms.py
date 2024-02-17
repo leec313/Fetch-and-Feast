@@ -4,7 +4,9 @@ from .models import Product, Category, Rating
 
 
 class ProductForm(forms.ModelForm):
-
+    """
+    Form for adding/updating products
+    """
     class Meta:
         model = Product
         fields = '__all__'
@@ -22,7 +24,16 @@ class ProductForm(forms.ModelForm):
             field.widget.attrs['class'] = 'border-black rounded-0'
 
 
+class CategoryForm (forms.ModelForm):
+    """
+    For for adding a category
+    """
+
+
 class RatingForm(forms.ModelForm):
+    """
+    For for ratings on products
+    """
     # Define choices for the rating
     SCORE_CHOICES = [(str(i), str(i)) for i in range(1, 6)]
 

@@ -449,6 +449,10 @@ footer h5 {
     color: #6c757d;
 }
 
+.footer-contact:hover {
+    color: #009970;
+}
+
 .footer-contact svg {
     color: #009970;
 }

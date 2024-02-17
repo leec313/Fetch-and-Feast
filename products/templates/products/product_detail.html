@@ -3,6 +3,10 @@
 {% load custom_filters %}
 {% load crispy_forms_tags %}
 
+{% block extra_title %}
+- {{ product.name }}
+{% endblock %}
+
 {% block page_header %}
 <div class="container header-container">
     <div class="row">

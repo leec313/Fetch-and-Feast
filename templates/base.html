@@ -39,24 +39,25 @@
     </script>
     <!-- Stripe -->
     <script src="https://js.stripe.com/v3/"></script>
+    <!--TinyMCE formatting for blogs and product descriptions-->
     <script src="https://cdn.tiny.cloud/1/kgy89s7gmi8s918excnmnriyievzl3c2a6dm5e0d8okug1fd/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
     {% endblock %}
-
-    {% block extra_js %}
-    {% endblock %}
-
+    <!--Title w/ extra title for individual page extension-->
     <title>Fetch & Feast {% block extra_title %}{% endblock %}</title>
 </head>
 
 <body>
     <header class="container-fluid fixed-top nav-head shadow">
+        <!--Desktop Nav Beginning-->
         <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
+            <!--Logo-->
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="text-decoration-none main-logo-link">
                     <h2 class="logo-font-custom text-black">Fetch <span class="logo-font-custom-2">& Feast</span></h2>
                 </a>
             </div>
+            <!--Searchbar for products-->
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                 <form method="GET" action="{% url 'products' %}">
                     <div class="input-group w-100">
@@ -78,14 +79,17 @@
                     </div>
                 </form>
             </div>
+            <!--My Account dropdown & Bag-->
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                 <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                     <li class="list-inline-item dropdown">
                         <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             <div class="text-center">
+                                <!--If profile image exists, display it-->
                                 {% if profile_image %}
                                 <img src="{{ profile_image }}" alt="My Account" class="rounded-circle profile_img_base">
+                                <!--Otherwise display default image-->
                                 {% else %}
                                 <img src="{% get_media_prefix %}default-images/default_profile.webp" alt="My Account"
                                     class="rounded-circle profile_img_base">
@@ -93,14 +97,18 @@
                                 <p class="my-0">My Account</p>
                             </div>
                         </a>
+                        <!--Dropdown menu for my account-->
                         <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                            <!--If user is logged in show My profile and Logout-->
                             {% if request.user.is_authenticated %}
+                            <!--If superuser logged in, show Product & Blog Management along with My profile and logout-->
                             {% if request.user.is_superuser %}
                             <a href="{% url 'manage_products' %}" class="dropdown-item">Product Management</a>
                             <a href="{% url 'manage_blogs' %}" class="dropdown-item">Blog Management</a>
                             {% endif %}
                             <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                            <!--If not logged in, show Register/Login-->
                             {% else %}
                             <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
                             <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
@@ -112,12 +120,14 @@
                             href="{% url 'view_bag' %}">
                             <div class="text-center">
                                 <div>
+                                    <!--If bag total exists, show solid icon-->
                                     {% if grand_total %}
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                         class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
                                         <path
                                             d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
                                     </svg>
+                                    <!--else show outline bag icon-->
                                     {% else %}
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                         class="bi bi-bag-heart" viewBox="0 0 16 16">
@@ -127,8 +137,10 @@
                                     {% endif %}
                                 </div>
                                 <p class="my-0">
+                                    <!--If bag total exists, show the total with two decimal points-->
                                     {% if grand_total %}
                                     €{{ grand_total|floatformat:2 }}
+                                    <!--Else show 0 euro-->
                                     {% else %}
                                     €0.00
                                     {% endif %}
@@ -139,6 +151,7 @@
                 </ul>
             </div>
         </div>
+        <!--Mobile Nav - Icon only shown on small/med screens - custom css in base.css-->
         <div class="row bg-white">
             <nav class="navbar navbar-expand-lg navbar-light w-100">
                 <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#main-nav"
@@ -149,11 +162,14 @@
                             d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
                     </svg>
                 </button>
+                <!--Show mobile top header for mobile only-->
                 {% include 'includes/mobile-top-header.html' %}
+                <!--Show main nav for both mobile and desktop-->
                 {% include 'includes/main-nav.html' %}
             </nav>
         </div>
     </header>
+    <!--If any messages, they will display in this container-->
     {% if messages %}
     <div class="message-container">
         {% for message in messages %}
@@ -171,6 +187,9 @@
         {% endfor %}
     </div>
     {% endif %}
+
+    <!--Below blocks for other pages, 
+    will display each block when called within the base template-->
 
     {% block page_header %}
     {% endblock %}
@@ -193,6 +212,7 @@
     {% block contact %}
     {% endblock %}
 
+    <!--JS to call toasts-->
     {% block postloadjs %}
     <script type="text/javascript">
         $('.toast').toast('show');
@@ -202,54 +222,71 @@
 
 </body>
 
+<!--Footer-->
 <footer class="col-10 mt-5 bg-white text-dark offset-1">
     <div class="row">
+        <!--Help Column-->
         <div class="col-md-2">
             <h5 class="font-weight-bold">Help</h5>
             <hr>
             <ul class="list-unstyled">
                 <li><a href="{% url 'contact' %}" aria-label="Contact Us"
-                        class="text-decoration-none text-muted">Contact
+                        class="text-decoration-none footer-contact">Contact
                         Us</a></li>
-                <li><a href="{% url 'faq' %}" aria-label="FAQ" class="text-decoration-none text-muted">FAQ</a></li>
+                <li><a href="{% url 'faq' %}" aria-label="FAQ" class="text-decoration-none footer-contact">FAQ</a></li>
             </ul>
         </div>
+        <!--Account Column-->
         <div class="col-md-2">
             <h5 class="font-weight-bold">My Account</h5>
             <hr>
+            <!--If logged in, show appropriate links, else show login/register-->
             {% if request.user.is_authenticated %}
+            <!--Show management access for superusers-->
+            {% if request.user.is_superuser %}
             <ul class="list-unstyled">
+                <li><a href="{% url 'manage_products' %}" aria-label="Product Management"
+                        class="text-decoration-none footer-contact">Product Management</a></li>
+                <li><a href="{% url 'manage_blogs' %}" aria-label="Blog Management"
+                        class="text-decoration-none footer-contact">Blog Management</a></li>
+                {% endif %}
                 <li><a href="{% url 'profile' %}" aria-label="Profile"
-                        class="text-decoration-none text-muted">Profile</a></li>
+                        class="text-decoration-none footer-contact">Profile</a></li>
                 <li><a href="{% url 'account_logout' %}" aria-label="Logout"
-                        class="text-decoration-none text-muted">Logout</a></li>
+                        class="text-decoration-none footer-contact">Logout</a></li>
             </ul>
             {% else %}
             <ul class="list-unstyled">
                 <li><a href="{% url 'account_login' %}" aria-label="Login"
-                        class="text-decoration-none text-muted">Login</a></li>
+                        class="text-decoration-none footer-contact">Login</a></li>
                 <li><a href="{% url 'account_signup' %}" aria-label="Register"
-                        class="text-decoration-none text-muted">Register</a></li>
+                        class="text-decoration-none footer-contact">Register</a></li>
             </ul>
             {% endif %}
+
         </div>
+        <!--Pages column-->
         <div class="col-md-2">
             <h5 class="font-weight-bold">Pages</h5>
             <hr>
             <ul class="list-unstyled">
-                <li><a href="{% url 'home' %}" aria-label="Home" class="text-decoration-none text-muted">Home</a></li>
-                <li><a href="{% url 'products' %}" aria-label="All Products" class="text-decoration-none text-muted">All
+                <li><a href="{% url 'home' %}" aria-label="Home" class="text-decoration-none footer-contact">Home</a>
+                </li>
+                <li><a href="{% url 'products' %}" aria-label="All Products"
+                        class="text-decoration-none footer-contact">All
                         Products</a></li>
                 <li><a href="{% url 'products' %}?category=chew-toys,balls,fetch-toys" aria-label="Toys"
-                        class="text-decoration-none text-muted">Toys</a></li>
+                        class="text-decoration-none footer-contact">Toys</a></li>
                 <li><a href="{% url 'products' %}?category=dry-food,wet-food,treats" aria-label="Food"
-                        class="text-decoration-none text-muted">Food</a></li>
+                        class="text-decoration-none footer-contact">Food</a></li>
                 <li><a href="{% url 'products' %}?category=new-arrivals,deals,clearance" aria-label="Special Offers"
-                        class="text-decoration-none text-muted">Special Offers</a></li>
-                <li><a href="{% url 'blogs' %}" aria-label="Blog" class="text-decoration-none text-muted">Blog</a></li>
+                        class="text-decoration-none footer-contact">Special Offers</a></li>
+                <li><a href="{% url 'blogs' %}" aria-label="Blog" class="text-decoration-none footer-contact">Blog</a>
+                </li>
             </ul>
         </div>
         <div class="col-md-2"></div>
+        <!--Info Column-->
         <div class="col-md-4 mt-2 footer-contact">
             <span class="d-flex my-2">
                 <a href="tel: 1-800-DOG-DOG" class="text-decoration-none">
@@ -275,10 +312,11 @@
                     class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                     <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
                 </svg>
-                <p class="mx-2">6196 North St, Dublin, Ireland</p>
+                <p class="mx-2 text-muted">6196 North St, Dublin, Ireland</p>
             </span>
         </div>
     </div>
+    <!--Copyright row-->
     <div class="row mt-3">
         <div class="col text-center">
             <p class="text-muted">&copy; 2024 | Fetch & Feast | All Rights Reserved. | Lee Curtis</p>

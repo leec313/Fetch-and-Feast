@@ -37,7 +37,15 @@ def cache_checkout_data(request):
             'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
-        return HttpResponse(status=200)
+
+        # Generate random token for the custom cookie
+        random_token = secrets.token_urlsafe(32)
+
+        # Set the random token as a cookie in the response
+        response = HttpResponse(status=200)
+        response.set_cookie('my_custom_cookie', random_token, max_age=3600)
+
+        return response
     except Exception as e:
         messages.error(request, 'Sorry, your payment cannot be \
             processed right now. Please try again later.')

@@ -24,10 +24,16 @@ class ProductForm(forms.ModelForm):
             field.widget.attrs['class'] = 'border-black rounded-0'
 
 
-class CategoryForm (forms.ModelForm):
+class CategoryForm(forms.ModelForm):
     """
-    For for adding a category
+    Form for adding a category
     """
+    class Meta:
+        model = Category
+        fields = ['friendly_name']
+        labels = {
+            'friendly_name': '',
+        }
 
 
 class RatingForm(forms.ModelForm):

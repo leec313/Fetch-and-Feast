@@ -11,7 +11,7 @@ from django.utils.safestring import mark_safe
 
 from .models import Product, Category, Rating
 from checkout.models import Order
-from .forms import ProductForm, RatingForm
+from .forms import ProductForm, RatingForm, CategoryForm
 from profiles.models import UserProfile
 
 
@@ -161,16 +161,68 @@ def product_detail(request, product_id):
 def manage_products(request):
     """ Product management page where the admin can
     add, edit or delete products """
+    category_form = CategoryForm()  # Instantiate an empty CategoryForm
     products = Product.objects.all()
     return render(
-        request, 'products/manage_products.html', {'products': products})
+        request, 'products/manage_products.html', {
+            'products': products, 'category_form': category_form})
+
+
+@login_required
+def add_category(request):
+    """
+    View to add a new category.
+
+    Allows authenticated users to add a new category.
+    The category name is manipulated from the friendly name
+    and saved in lowercase with underscores instead of spaces.
+    """
+    if request.method == 'POST':
+        category_form = CategoryForm(request.POST)
+        if category_form.is_valid():
+            # Extract the friendly name from the form
+            friendly_name = category_form.cleaned_data['friendly_name']
+            # Manipulate the friendly name to get the category name
+            manipulated_name = friendly_name.lower().replace(' ', '_')
+            # Check if a category with the same name exists
+            if Category.objects.filter(name=manipulated_name).exists():
+                # Display an error message if the category already exists
+                messages.error(
+                    request, 'A category with this name already exists.')
+            else:
+                # Save the form but commit=False to get the instance
+                category = category_form.save(commit=False)
+                # Set the manipulated category name
+                category.name = manipulated_name
+                # Save the manipulated instance to the database
+                category.save()
+                # Display a success message
+                messages.success(request, 'Category added successfully.')
+                # Redirect to the manage products page
+                return redirect('manage_products')
+    else:
+        category_form = CategoryForm()
+
+    # Get all products for rendering in the template
+    products = Product.objects.all()
+
+    # Render the add category template with the form and products
+    return render(
+        request,
+        'products/manage_products.html',
+        {'products': products, 'category_form': category_form}
+    )
 
 
 @login_required
 def bulk_delete_products(request):
+    """
+    Allows bulk/single deletion of products
+    """
     if request.method == 'POST':
         selected_product_ids = request.POST.getlist('selected_products')
         Product.objects.filter(id__in=selected_product_ids).delete()
+        messages.success(request, 'Successfully deleted product(s)!')
     return redirect('manage_products')
 
 

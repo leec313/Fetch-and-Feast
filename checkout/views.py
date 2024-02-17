@@ -85,7 +85,6 @@ def checkout(request):
             response = redirect(
                 reverse('checkout_success', args=[order.order_number]))
             response.set_cookie('my_custom_cookie', random_token, max_age=3600)
-            return response
 
             for item_id, item_data in bag.items():
                 try:
@@ -107,6 +106,7 @@ def checkout(request):
                                 product_size=size,
                             )
                             order_line_item.save()
+
                 except Product.DoesNotExist:
                     messages.error(request, (
                         "One of the products wasn't found in our database. "

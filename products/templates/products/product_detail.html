@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block content %}
-<!-- Modal for product image-->
+<!-- Modal for product image when clicking image-->
 <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -24,8 +24,10 @@
                 </button>
             </div>
             <div class="modal-body">
+                <!--if product has an image, display it-->
                 {% if product.image %}
                 <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                <!--otherwise display default image-->
                 {% else %}
                 <img class="card-img-top img-fluid profile-img"
                     src="{% get_media_prefix %}default-images/no_orders.webp" alt="{{ product.name }}">
@@ -39,11 +41,13 @@
     <div class="row">
         <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
             <div class="image-container my-5">
+                <!--displays product image if available-->
                 {% if product.image %}
                 <button type="button" class="btn btn-link" data-toggle="modal" data-target="#imageModal">
                     <img class="card-img-top img-fluid profile-img" src="{{ product.image.url }}"
                         alt="{{ product.name }}">
                 </button>
+                <!--otherwise display default image-->
                 {% else %}
                 <button type="button" class="btn btn-link" data-toggle="modal" data-target="#imageModal">
                     <img class="card-img-top img-fluid profile-img"
@@ -54,13 +58,16 @@
         </div>
         <div class="col-12 col-md-6 col-lg-4">
             <div class="product-details-container mb-5 mt-md-5">
+                <!--display product name & price-->
                 <h3 class="mb-0">{{ product.name }}</h3>
                 <h1 class="mb-0 text-left font-weight-bold">
                     <span class="small-euro">€</span>{{ product.price }}
                 </h1>
+                <!--if product has rating, display average-->
                 {% if average_rating %}
                 <a href="#ratings"
                     class="text-decoration-none text-dark average-stars">{{ average_rating|stars|safe }}</a>
+                <!--otherwise display 5 empty stars-->
                 {% else %}
                 <span class="text-decoration-none text-dark average-stars">
                     <i class="far fa-star"></i>
@@ -70,6 +77,7 @@
                     <i class="far fa-star"></i>
                 </span>
                 {% endif %}
+                <!--if product has category, display friendly name-->
                 {% if product.category %}
                 <p class="small mb-0">
                     <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
@@ -77,12 +85,14 @@
                     </a>
                 </p>
                 {% endif %}
+                <!--if superuser, show edit/delete links-->
                 {% if request.user.is_superuser %}
                 <small class="ml-3">
                     <a href="{% url 'edit_product' product.id %}">Edit</a> |
                     <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
                 </small>
                 {% endif %}
+                <!--display product description and show more button as it will be truncated-->
                 <div class="product-description-container" id="product-description-container">
                     <p class="mt-3">{{ product.description|linebreaksbr }}</p>
                 </div>
@@ -90,6 +100,7 @@
                 <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                     {% csrf_token %}
                     <div class="form-row">
+                        <!--displays dropdown for product sizes if it has any-->
                         {% with product.has_sizes as s %}
                         {% if s %}
                         <div class="col-12">
@@ -154,15 +165,19 @@
             <h3 class="text-center mt-5 mb-5 text-uppercase">Product Ratings</h3>
             <div class="row">
                 <div class="col-md-8 offset-md-2 col-lg-8 offset-lg-2 mb-5 mx-auto w-75">
+                    <!--if user is logged in and purchased product, they can rate it-->
                     {% if request.user.is_authenticated %}
                     {% if user_has_purchased_product %}
                     <form method="post" action="{% url 'product_detail' product.id %}">
                         {% csrf_token %}
                         {{ form.title|as_crispy_field }}
                         {{ form.body|as_crispy_field }}
+                        <!--Rating form for stars using radio button logic with css and custom filter-->
                         <div class="star-rating-form">
                             {{ form.score.label_tag }}
                             {% for radio in form.score %}
+                            <!-- If the value of the radio choice is less than the initial score of the form-->
+                            <!--add the "checked" class to the label, indicating a filled star; otherwise, leave it empty.-->
                             <label
                                 class="far fa-star {% if radio.choice_value|add:'0' < form.initial.score %}checked{% endif %}">
                                 {{ radio }}
@@ -195,12 +210,14 @@
         <!-- Right column for existing ratings -->
         <div class="col-md-6 col-lg-8 mt-5">
             <div class="row">
+                <!--If there are ratings, display each by looping through them-->
                 {% if ratings %}
                 {% for rating in ratings %}
                 <div class="col-12 col-lg-6 mt-2 mb-3">
                     <div class="card border-0">
                         <div class="card-body ratings-individual mr-3 shadow">
                             <span class="d-flex">
+                                <!--Displays the user's profile image, username and the creation date-->
                                 <img class="rounded-circle profile_img_base"
                                     src="{{ rating.user.id|get_profile_image_url:rating_profiles }}"
                                     alt="{{ rating.user.username }}">
@@ -208,15 +225,16 @@
                             </span>
                             <p class="card-text float-right">{{ rating.created_on|date:"H:i d/m/Y" }}</p>
                             <div class="star-rating">
+                                <!--Displays the rating given by the user shown in star icon form-->
                                 {% for i in 5|range_value %}
                                 {% if i < rating.score %}
-
                                 <span class="fas fa-star checked"></span>
                                 {% else %}
                                 <span class="far fa-star"></span>
                                 {% endif %}
                                 {% endfor %}
                             </div>
+                            <!--Show rating title and body-->
                             <p class="card-text">{{ rating.title }}</p>
                             <p class="card-text">{{ rating.body }}</p>
                             <!-- If the rating posted was posted by the logged in user, it will show the update/delete buttons -->
@@ -267,6 +285,7 @@
     </div>
 </div>
 
+<!--Includes for quantity selector for product, show more description and ratings logic-->
 {% endblock %}
 {% block postloadjs %}
 {{ block.super }}

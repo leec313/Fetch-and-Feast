@@ -16,6 +16,7 @@
     <div class="row">
         <div class="col text-center mt-3">
             <h2 class="logo-font mt-lg-3">Products</h2>
+            <!-- Iterates through categories displaying the friendly name-->
             {% for c in current_categories %}
             <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
                 <span
@@ -30,6 +31,7 @@
             <div class="row mt-1 mb-2">
                 <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
                     <div class="sort-select-wrapper w-50">
+                        <!-- Sorting options -->
                         <select id="sort-selector"
                             class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
                             <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort
@@ -58,22 +60,29 @@
                 </div>
                 <div class="col-12 col-md-6 order-md-first">
                     <p class="text-muted mt-3 text-center text-md-left">
+                        <!-- Checks if there is a search term, current categories, or sorting applied -->
                         {% if search_term or current_categories or current_sorting != 'None_None' %}
+                        <!-- Displays a link to the products home page if any filter or sorting is applied -->
                         <span class="small"><a href="{% url 'products' %}">Products Home</a> | </span>
                         {% endif %}
+                        <!-- Displays the total number of products & Displays the search term if available -->
                         {{ products|length }} Products{% if search_term %} found for
                         <strong>"{{ search_term }}"</strong>{% endif %}
                     </p>
                 </div>
             </div>
             <div class="row">
+                <!-- Iterates through products -->
                 {% for product in products %}
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card h-100 border-0 shadow">
+                        <!-- Checks if product has image -->
+                        <!-- Displays product image -->
                         {% if product.image %}
                         <a href="{% url 'product_detail' product.id %}">
                             <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                         </a>
+                        <!--If no image, display default-->
                         {% else %}
                         <a href="{% url 'product_detail' product.id %}">
                             <img class="card-img-top img-fluid"
@@ -81,15 +90,18 @@
                         </a>
                         {% endif %}
                         <div class="card-body pb-0">
+                            <!--Truncated title links to product page-->
                             <a href="{% url 'product_detail' product.id %}" class="mb-0 text-decoration-none text-black
                                 lead">{{ product.name|truncatechars:25 }}</a>
                         </div>
                         <div class="card-footer bg-white pt-0 border-0 text-left">
                             <div class="row">
                                 <div>
+                                    <!--if product rating exists, display average rating in star form-->
                                     {% if product.average_rating %}
                                     <a href="{% url 'product_detail' product.id %}"
                                         class="text-decoration-none text-dark average-stars">{{ product.average_rating|stars|safe }}</a>
+                                    <!--else display 5 empty stars-->
                                     {% else %}
                                     <span class="text-decoration-none text-dark average-stars">
                                         <i class="far fa-star"></i>
@@ -100,6 +112,7 @@
                                     </span>
                                     {% endif %}
                                     <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
+                                    <!--if category, display it-->
                                     {% if product.category %}
                                     <p class="small mt-1 mb-0">
                                         <a class="text-muted"
@@ -108,6 +121,7 @@
                                         </a>
                                     </p>
                                     {% endif %}
+                                    <!--if superuser display edit/delete links-->
                                     {% if request.user.is_superuser %}
                                     <small>
                                         <a href="{% url 'edit_product' product.id %}">Edit</a>
@@ -120,6 +134,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Adds empty divs with varying display classes to adjust column layout based on loop counter -->
                 {% if forloop.counter|divisibleby:1 %}
                 <div class="col-12 d-sm-none mb-5">
                 </div>
@@ -141,6 +156,7 @@
         </div>
     </div>
 </div>
+<!-- Back to top button with a black arrow icon -->
 <div class="btt-button shadow-sm rounded-0 border border-black">
     <a class="btt-link d-flex h-100">
         <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
@@ -150,12 +166,13 @@
 
 {% block postloadjs %}
 {{ block.super }}
+<!-- Defines a script to scroll to the top when back-to-top link is clicked -->
 <script type="text/javascript">
     $('.btt-link').click(function (e) {
         window.scrollTo(0, 0)
     })
 </script>
-
+<!-- Defines script to handle sorting selection -->
 <script type="text/javascript">
     $('#sort-selector').change(function () {
         var selector = $(this);

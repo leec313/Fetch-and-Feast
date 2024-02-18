@@ -348,11 +348,33 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
 </div>
 
 - **Product Detail**
-
+    - The product detail section on the product page provides users with comprehensive information about the selected product.
+    - **Content Displayed:**
+        - Product Name: Clearly identifies the product for users.
+        - Price: Displays the price of the product, allowing users to make informed purchasing decisions.
+        - Average Rating: Shows the average rating of the product based on user reviews from the ratings model, providing social proof and credibility.
+        - Category: Indicates the category to which the product belongs, aiding users in navigation and organization.
+        - Edit/Delete Links (for Superusers): Allows superusers to perform administrative actions such as editing or deleting the product directly from the product detail page.
+        - Product Description: Provides a detailed description of the product, highlighting its features and benefits.
+        - Quantity Selector: Enables users to select the desired quantity of the product before adding it to their shopping bag.
+        - "Keep Shopping" Button: Offers users the option to continue browsing other products without leaving the current page.
+        - "Add to Bag" Button: Allows users to add the selected quantity of the product to their shopping bag, initiating the checkout process.
+    - **Product Image:**
+        - The product image is prominently displayed within the product detail section.
+        - A simple Bootstrap popup modal is implemented to allow users to view a larger version of the product image if desired, enhancing the user experience by providing a closer look at the product.
 
 <div align="center">
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/product-detail.png?raw=true" alt="products">
 </div>
 <div align="center">
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/product-detail-mobile.png?raw=true" alt="products-mobile">
+</div>
+
+- **Ratings (on Product Detail page)**
+
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/ratings.png?raw=true" alt="products">
+</div>
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/ratings-mobile.png?raw=true" alt="products-mobile">
 </div>

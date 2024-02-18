@@ -66,11 +66,24 @@ def all_products(request):
     for product in products:
         product.average_rating = product.average_rating()
 
+    # Pagination
+    paginator = Paginator(products, 8)  # Show 8 products per page
+    page_number = request.GET.get('page')
+    try:
+        products = paginator.page(page_number)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        products = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        products = paginator.page(paginator.num_pages)
+
     context = {
         'products': products,
         'search_term': query,
         'current_categories': categories,
         'current_sorting': current_sorting,
+        'page_obj': products,
     }
 
     return render(request, 'products/products.html', context)

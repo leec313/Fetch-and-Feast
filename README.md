@@ -330,3 +330,5 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
 <div align="center">
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/footer-mobile.png?raw=true" alt="footer-mobile">
 </div>
+
+- **Product List**

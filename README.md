@@ -332,3 +332,27 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
 </div>
 
 - **Product List**
+    - The product list feature provides users with a straightforward and intuitive way to browse through available products.
+    - **Display Format:**
+        - Products are presented in individual cards, each containing essential information such as the product image, name, rating, price, and category.
+        - For superusers, additional options to edit and delete products are available directly within the product cards.
+    - **Pagination:**
+        - To enhance usability and manageability, the product list is paginated to display a maximum of 8 products per page.
+        - If there are more than 8 products, a "Next" button appears at the bottom of the page, allowing users to navigate to additional pages of products seamlessly.
+
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/products.png?raw=true" alt="products">
+</div>
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/products-mobile.png?raw=true" alt="products-mobile">
+</div>
+
+- **Product Detail**
+
+
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/product-detail.png?raw=true" alt="products">
+</div>
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/product-detail-mobile.png?raw=true" alt="products-mobile">
+</div>

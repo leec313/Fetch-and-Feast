@@ -413,9 +413,51 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
         - If the total number of blogs exceeds the limit, a "Next" button is provided at the bottom of the page, enabling users to seamlessly navigate to subsequent pages of blog entries.
 
 <div align="center">
- <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/blogs.png?raw=true" alt="blogs">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/blog-detail.png?raw=true" alt="blogs">
 </div>
 <div align="center">
- <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/blogs-mobile.png?raw=true" alt="blogs-mobile">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/blog-detail-1.png?raw=true" alt="blogs-mobile">
 </div>
 
+- **Blog Detail:**
+    - The blog detail view offers users a comprehensive presentation of an individual blog post, providing detailed insights into its content and context.
+    - **Display Format:**
+        - The blog title is prominently featured at the beginning of the page, ensuring clear identification and navigation for users.
+        - An image accompanies the blog post, enhancing visual appeal and engagement. In case no uploaded image is available, a default placeholder image is utilized, maintaining consistency across the site.
+        - The main body of the blog post content is displayed, offering users valuable information and insights.
+        - A "Like" button allows users to express their appreciation for the blog post by submitting a like, contributing to user engagement and interaction.
+        - The number of likes and comments associated with the blog post is prominently displayed, providing social proof and encouraging further engagement from users.
+        - Information such as the creation date and author of the blog post is included, offering users context and credibility regarding the content.
+        - Superusers have access to update and delete buttons, empowering them with content management capabilities directly from the blog detail view.
+
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/blog-detail.png?raw=true" alt="blog-detail">
+</div>
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/blog-detail-1.png?raw=true" alt="blog-detail-1">
+</div>
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/blog-detail-mobile.png?raw=true" alt="blog-detail-mobile">
+</div>
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/blog-detail-mobile-1.png?raw=true" alt="blog-detail-mobile-1">
+</div>
+
+- **Comment Section:**
+    - The comment section provides users with a platform to engage in conversations and share their thoughts on the blog post, fostering communication and connection within the community.
+    - **Display Format:**
+        - Comments are presented in a Facebook Messenger-style display, offering a familiar and intuitive interface for users to interact with.
+        - Each comment includes essential details such as the commenter's name, profile image, comment content, timestamp, and options for editing or deleting their own comments.
+        - Pagination is implemented to manage large volumes of comments effectively, ensuring seamless navigation and optimal performance. AJAX technology is utilized to enable pagination without reloading the entire page, enhancing user experience and reducing load times.
+    - **Functionality:**
+        - Users can submit comments on the blog post, enabling them to contribute to the conversation and share their perspectives.
+        - Comments are stored in the comment model within the database, ensuring data integrity and accessibility for future reference.
+        - Commenters have the ability to edit or delete their own comments, empowering them with control over their contributions to the discussion.
+    - **Engagement:**
+        - The comment section serves as a valuable tool for user engagement, allowing readers to interact with the blog post content and with each other, fostering a sense of community and connection.
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/comments.png?raw=true" alt="comments">
+</div>
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/comments-mobile.png?raw=true" alt="comments-mobile">
+</div>

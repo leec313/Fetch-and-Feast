@@ -17,7 +17,7 @@ from django.http import (
 )
 from django.utils.text import slugify
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from profiles.models import UserProfile
 from .models import Post, Comment

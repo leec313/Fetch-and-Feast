@@ -278,6 +278,10 @@ a.category-badge>span.badge:hover {
     border: 1px solid #000;
 }
 
+.text-info {
+    color: #009970 !important;
+}
+
 /* Allauth form formatting */
 
 .allauth-form-inner-content p {

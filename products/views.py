@@ -161,8 +161,19 @@ def product_detail(request, product_id):
 def manage_products(request):
     """ Product management page where the admin can
     add, edit or delete products """
+
+    query = request.GET.get('q')
+
+    if query:
+        products = Product.objects.filter(
+            Q(name__icontains=query) |  # Search product name
+            Q(sku__icontains=query) |   # Search SKU
+            Q(category__name__icontains=query)  # Search category name
+        ).distinct()  # Ensure distinct results
+    else:
+        products = Product.objects.all()
     category_form = CategoryForm()  # Instantiate an empty CategoryForm
-    products = Product.objects.all()
+
     return render(
         request, 'products/manage_products.html', {
             'products': products, 'category_form': category_form})

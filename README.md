@@ -372,9 +372,31 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
 
 - **Ratings (on Product Detail page)**
 
+    - The `product_detail` view renders the ratings.
+    - Ratings for the product are retrieved from the database and paginated for easy navigation.
+    - Users can rate the product using a form, with validation to ensure proper input.
+    - A check is performed to determine if the current user has previously purchased the product, allowing only verified purchasers to submit ratings.
+    - Profile images of users who submitted ratings are displayed alongside their usernames, enhancing the credibility of the ratings.
+    - Superusers have the ability to edit or delete individual ratings through dedicated update and delete views.
+    - Pagination is implemented to manage large product lists, ensuring optimal performance and user experience.
+
+    - **Forms and Views for Rating Manipulation:**
+    
+        - The `RatingUpdateView` and `RatingDeleteView` classes allow users to update or delete individual ratings.
+        - Users can modify the title, body, or score of their existing ratings through the update view.
+        - Upon successful update or deletion, users receive confirmation messages and are redirected to the corresponding product detail page.
+        - Views are protected with authentication and authorization checks to ensure that only logged-in users with appropriate permissions can access rating manipulation functionalities.
+
 <div align="center">
- <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/ratings.png?raw=true" alt="products">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/ratings.png?raw=true" alt="ratings">
 </div>
 <div align="center">
- <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/ratings-mobile.png?raw=true" alt="products-mobile">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/ratings-mobile.png?raw=true" alt="ratings-mobile">
 </div>
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/edit-rating.png?raw=true" alt="rating-edit">
+</div>
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/delete-rating.png?raw=true" alt="ratings-delete">
+</div>
+

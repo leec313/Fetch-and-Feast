@@ -24,6 +24,7 @@ def all_products(request):
     categories = None
     sort = None
     direction = None
+    sortkey = None
 
     if request.GET:
         if 'sort' in request.GET:
@@ -65,6 +66,14 @@ def all_products(request):
     # Calculate average rating for each product
     for product in products:
         product.average_rating = product.average_rating()
+
+    # Ordering products to prevent UnorderedObjectListWarning:
+    # Pagination may yield inconsistent results with an unordered
+    # object_list: <class 'products.models.Product'> QuerySet.
+    if not sortkey:
+        # Default sorting if no sorting parameter is provided
+        sortkey = 'name'
+        products = products.order_by(sortkey)
 
     # Pagination
     paginator = Paginator(products, 8)  # Show 8 products per page

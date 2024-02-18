@@ -307,7 +307,13 @@ def manage_blogs(request):
     if not request.user.is_superuser:
         return HttpResponseNotFound(render(request, 'errors/403.html'))
 
-    blogs = Post.objects.all()
+    query = request.GET.get('q')
+
+    if query:
+        blogs = Post.objects.filter(Q(title__icontains=query)).distinct()
+    else:
+        blogs = Post.objects.all()
+
     return render(request, 'blog/manage_blogs.html', {'blogs': blogs})
 
 

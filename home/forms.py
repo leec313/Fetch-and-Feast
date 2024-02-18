@@ -17,5 +17,9 @@ class NewsletterSubscriptionForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['email'].widget.attrs.update(
-            {'class': 'form-control', 'placeholder': 'Enter your email', 'autocomplete': 'email'})
+            {
+                'class': 'form-control',
+                'placeholder': 'Enter your email',
+                'autocomplete': 'email'
+            })
         self.fields['email'].label = ''  # Set the label to an empty string

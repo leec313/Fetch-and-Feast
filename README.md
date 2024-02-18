@@ -1,110 +1,325 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# [FETCH & FEAST](https://fetch-and-feast-4ceb13480b0c.herokuapp.com/)
+<div align="center">
+ <img src="/workspace/Fetch-and-Feast/readme-images/amiresponsive.png" alt="Fetch & Feast AmIResonsive Image">
+</div>
 
-Welcome Lee Curtis,
+[Fetch & Feast](https://fetch-and-feast-4ceb13480b0c.herokuapp.com/) is an ecommerce platform tailored for dog treats, food, and toys, developed on Django. It encompasses user registration, profile management, newsletter subscriptions, and product purchases facilitated by Stripe. Additionally, it hosts blogs with commenting and liking capabilities. Users can rate products post-purchase. Frontend admin controls empower easy management of products and blogs.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+## Table of Contents
+1. <details open>
+    <summary><a href="#ux">UX</a></summary>
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+    <ul>
+    <li><details>
+    <summary><a href="#goals">Goals</a></summary>
 
-## Gitpod Reminders
+    - [Visitor Goals](#visitor-goals)
+    - [Business Goals](#business-goals)
+    - [User Stories](#user-stories)
+    </details></li>
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+    <li><details>
+    <summary><a href="#visual-design">Visual Design</a></summary>
 
-`python3 -m http.server`
+    - [Wireframes](#wireframes)
+    - [Fonts](#fonts)
+    - [Colors](#colors)
+    </details></li>
 
-A blue button should appear to click: _Make Public_,
+    <li>
+    <a href="#agile-development">Agile Development</a>
+    </li>
 
-Another blue button should appear to click: _Open Browser_.
+    </ul>
+</details>
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+2. <details open>
+    <summary><a href="#features">Features</a></summary>
 
-A blue button should appear to click: _Make Public_,
+    <ul>
+    <li><details>
+    <summary><a href="#page-elements">Page Elements</a></summary>
 
-Another blue button should appear to click: _Open Browser_.
+    - [All Pages](#all-pages)
+    - [Homepage](#homepage)
+    - [Create Post Page](#create-post-page)
+    - [Post Detail Page](#post-detail-page)
+    - [Profile Page](#profile-page)
+    - [About Page](#about-page)
+    - [Login/Register Pages](#login-and-register-pages)
+    - [Confirm Delete Pages](#confirm-delete-pages)
+    - [Contact Page](#contact-page)
+    </details></li>
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+    <li>
+    <a href="#features-not-yet-implemented">Features Not Yet Implemented</a>
+    </li>
+    </ul>
+</details>
 
-To log into the Heroku toolbelt CLI:
+3. 
+    <summary><a href="#technologies-used">Technologies Used</a></summary>
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+4. <details open>
+    <summary><a href="#testing">Testing</a></summary>
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+    <ul>
+    <li><details>
+    <summary><a href="#automated-testing">Automated Testing</a></summary>
 
-------
+    - [Validation](#validation)
+    - [Python Testing](#python-testing)
 
-## Release History
+    </details></li>
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+    <li><details>
+    <summary><a href="#manual-testing">Manual Testing</a></summary>
 
-**September 20 2023:** Update Python version to 3.9.17.
+    - [General Testing](#general-testing)
+    - [Mobile Testing](#mobile-testing)
+    - [Desktop Testing](#desktop-testing)
+    </details></li>
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+    <li><details>
+    <summary><a href="#bugs">Bugs</a></summary>
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+    - [Known Bugs](#known-bugs)
+    - [Fixed Bugs](#fixed-bugs)
+    </details></li>
+    </ul>
+</details>
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+5. <a href="#deployment">Deployment</a>
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+6. <a href="#credits-and-acknowledgements">Credits and Acknowledgements</a>
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+----
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+# UX
+## Goals
+### Visitor Goals
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+Target Audience for Fetch & Feast:
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+- Dog owners and enthusiasts seeking high-quality treats, food, and toys for their pets.
+- Individuals looking for a convenient and reliable platform to purchase pet supplies.
+- Those interested in staying updated on the latest trends and news in the pet industry.
+- Pet owners seeking a community to share experiences and recommendations.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+User Goals:
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+- Find and purchase top-quality dog treats, food, toys, and accessories.
+- Connect with fellow pet owners and build a virtual pet-loving community.
+- Stay informed about the latest trends, tips, and news in the pet industry.
+- Easily navigate the website to discover relevant products and content.
+- Customize their profiles and engage with the community through reviews, comments, and likes.
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+How Fetch & Feast Fulfills These Needs:
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+- The ecommerce platform offers a wide range of products, providing convenience and reliability for pet owners to find and purchase the best supplies for their furry companions.
+- Interactive features such as blog commenting and liking foster a sense of community among pet owners, allowing them to share experiences and recommendations.
+- User-friendly account management features enable customization of profiles and easy engagement with the community.
+- Newsletter subscriptions keep users informed about the latest products, promotions, and trends in the pet industry.
+- The platform follows standard web design conventions for easy navigation while incorporating pet-themed elements to create an engaging and user-friendly experience.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+ChatGPT
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+### Business Goals
 
-------
+- Develop a dynamic and interactive ecommerce platform that offers a seamless shopping experience for pet owners, emphasizing convenience and quality.
+- Drive consistent traffic by providing engaging features beyond product listings, such as interactive forums or pet care resources, fostering a thriving online community.
+- Maintain a regular cadence of product updates and promotions to keep users engaged and coming back for new offerings.
+- Establish Fetch & Feast as a trusted authority in the pet industry by curating and showcasing only high-quality products from reputable brands, ensuring customer satisfaction and loyalty.
+- Implement strategies to highlight top-selling products, user favorites, and exclusive deals, driving sales and potentially attracting partnerships with leading pet suppliers or brands.
 
-## FAQ about the uptime script
+### User Stories
 
-**Why have you added this script?**
+All user stories can be found in the linked GitHub project [here](https://github.com/users/leec313/projects/3)
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+## Visual Design
+### Wireframes
 
-**How will this affect me?**
+WIREFRAMES LINK HERE
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+### Fonts
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+- **Logo:** 
+**[Protest Strike Font](https://fonts.google.com/specimen/Protest+Strike):** Protest Strike is a bold and impactful display font that adds a rebellious and edgy vibe to your project. With its strong, stencil-like appearance, Protest Strike commands attention and makes a statement, perfect for conveying a sense of activism or boldness in your design. Its distinct letterforms and unique style give your project a standout aesthetic, while still maintaining legibility for titles and headings.
+**[Dancing Script Font](https://fonts.google.com/specimen/Dancing+Script):** Dancing Script is a playful and elegant script font that brings a touch of whimsy and sophistication to your project. With its flowing, cursive letterforms and graceful strokes, Dancing Script adds a sense of charm and personality to your design, making it ideal for conveying a sense of warmth and friendliness.
+Both Protest Strike and Dancing Script were used for my logo - they excellently contrast each other. 
+- **Clean Aesthetic: [Lato](https://fonts.google.com/specimen/Lato)** (used for the rest of my site) is a sans-serif font with a clean and modern aesthetic, making it suitable for a wide range of design applications. Its simplicity and readability contribute to a professional and polished look for the project.
+- **Universal Legibility:** Choosing sans-serif as the backup ensures universal legibility, especially on screens and digital platforms. Sans-serif fonts are known for their clarity and readability, making them a reliable fallback option in case any issues arise with the primary or secondary font choices. I also used cursive as the backup font for Dancing Script in the logo. 
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
 
-**So….?**
+### Colors
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+<div align="center">
+ <img src="/workspace/Fetch-and-Feast/readme-images/pallette.png" alt="colors">
+</div>
 
-**Can I opt out?**
+In crafting the color palette for this project, I aimed to strike a perfect balance between vibrancy, clarity, and visual appeal. Let's delve into why each color was carefully chosen:
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+- **Black (#000000) for the Logo**: Black, being classic and versatile, provides a strong foundation for our logo. Its timeless appeal ensures that our brand identity stands out boldly against lighter backgrounds, guaranteeing excellent readability and visibility. Plus, black exudes professionalism and sophistication, aligning perfectly with our brand's ethos.
+    
+- **White (#FFFFFF) for the Background**: White serves as the canvas upon which all other colors and content come to life. Its clean and neutral nature creates a sense of spaciousness and cleanliness, enhancing readability and user experience. A white background exudes simplicity and elegance, perfectly complementing various design styles.
+    
+- **Teal/Green (#009970) for Buttons, Links, Headers, and Icons**: Teal or green tones, such as #009970, inject vibrancy and energy into our project. This color choice for buttons, links, and headers adds visual interest and directs users' attention to key elements. Moreover, it's associated with growth, harmony, and freshness, resonating positively with our audience and conveying a welcoming vibe.
+    
+- **Red (#DC3545) for Errors and Delete Buttons**: Red, particularly #DC3545, serves as a signal for alerts, warnings, or errors. Its darker hue maintains visibility while conveying a sense of urgency or caution. By using this color for error messages and delete buttons, we ensure that users take notice and proceed with care when necessary.
+    
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+In essence, our color palette embodies simplicity and vibrancy, creating a visually appealing and user-friendly experience. The combination of classic black, pristine white, lively teal/green, and alerting red forms a cohesive design that effectively communicates our brand's message. This palette also allows our vibrant product and blog imagery to shine, creating a dynamic and engaging platform for our audience.
 
-**Anything more?**
+ChatGPT
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+## Agile Development
 
----
+The journey of Fetch & Feast began with the establishment of a GitHub Projects Page, serving as the central hub for project management. This platform played a pivotal role in organizing tasks systematically, creating user stories, and breaking them down into actionable steps. The overarching goal was to create a structured roadmap that would guide the project towards successful completion within the designated timeframe. Utilizing the GitHub Projects Page enabled the tracking of the project's evolution, assignment of tasks, and achievement of milestones, ensuring a smooth and organized development process.
 
-Happy coding!
+To view the:
+
+* project Kanban board, [please follow this link.](https://github.com/users/leec313/projects/3)
+* milestones, [please follow this link.](https://github.com/leec313/Fetch-and-Feast/milestones)
+* issues, [please follow this link.](https://github.com/leec313/Fetch-and-Feast/issues?q=is%3Aissue)
+
+### Project Milestones
+
+The project was divided into several key milestones, each representing a significant phase in the development process. Within each milestone, epics were identified, representing broader themes or features to be implemented. These epics were further broken down into user stories, representing specific functionalities or requirements from the user's perspective. Finally, tasks were defined within each user story, representing the individual steps needed to fulfill the user story's objectives.
+
+### Example Milestones, Epics, User Stories, and Tasks (not representative of the actual project):
+
+1. **Milestone 1: Project Setup**
+    
+    - Epic 1: Repository Setup
+        - User Story 1: Initialize Git repository
+            - Task 1: Create repository on GitHub
+            - Task 2: Clone repository locally
+        - User Story 2: Setup Development Environment
+            - Task 1: Install necessary dependencies
+            - Task 2: Configure project settings
+2. **Milestone 2: User Authentication**
+    
+    - Epic 2: User Registration
+        - User Story 3: Allow users to register for an account
+            - Task 1: Create user registration form
+            - Task 2: Implement backend logic for user registration
+        - User Story 4: Enable email verification for new accounts
+            - Task 1: Generate verification email upon registration
+            - Task 2: Implement email verification process
+3. **Milestone 3: Product Management**
+    
+    - Epic 3: Product Listing
+        - User Story 5: Display list of available products
+            - Task 1: Design product listing page UI
+            - Task 2: Fetch and display products from database
+        - User Story 6: Implement product search functionality
+            - Task 1: Create search bar component
+            - Task 2: Implement search logic
+
+### Project Progression
+
+The project evolved iteratively, with each milestone representing a significant step forward in the development process. Tasks within each milestone were completed incrementally, with regular reviews and adjustments made to ensure alignment with project goals and user requirements. As tasks were completed, they were moved across the Kanban board, providing a clear visual representation of progress and remaining work.
+
+In summary, the use of project milestones, epics, user stories, and tasks, coupled with effective project management tools like GitHub Projects and Kanban boards, facilitated a structured and organized approach to building Fetch & Feast.
+
+
+## Features
+
+### Existing Features
+
+### Site Pages
+
+- **Homepage**
+
+- **Navigation Bar:**
+    - The navigation bar serves as a central hub for accessing key features and navigating the site.
+    - **Logo:**
+        - Positioned prominently on the left side of the navigation bar, the logo serves as a visual anchor, reinforcing brand identity.
+    - **Search Bar:**
+        - Located prominently within the navigation bar, the search bar allows users to quickly find specific products or content.
+    - **Account Dropdown:**
+        - For logged-out users, the account dropdown provides options to log in or sign up for an account.
+        - Logged-in users have access to their profile, enabling them to manage their account settings, view orders, and access additional features.
+        - Superusers have additional options for product and blog management, allowing them to oversee content creation and updates.
+    - **Main Navigation:**
+        - Positioned below the account dropdown, the main navigation menu offers dropdown options for each page category, including Products, Blogs, Help, and More.
+        - Each dropdown menu provides access to specific sections or pages related to the respective category, enhancing navigation efficiency for users.
+
+- **Hero Image:**
+
+    -  The main homepage features a large and visually striking hero image that immediately captures the user's attention.
+    - A prominent call-to-action button invites users to enter and explore the site's products.
+
+<div align="center">
+ <img src="/workspace/Fetch-and-Feast/readme-images/hero-nav.png" alt="hero-image-and-nav">
+</div>
+<div align="center">
+ <img src="/workspace/Fetch-and-Feast/readme-images/hero-nav-mobile.png" alt="hero-image-and-nav-mobile">
+</div>
+
+- **Featured Products:**
+    
+    - Below the hero image, four featured products are showcased.
+    - These products are selected based on the highest average ratings, ensuring that users see the most popular items first.
+    - A "View All" button allows users to easily access the full range of products available on the site.
+
+<div align="center">
+ <img src="/workspace/Fetch-and-Feast/readme-images/featured-products.png" alt="featured-products">
+</div>
+<div align="center">
+ <img src="/workspace/Fetch-and-Feast/readme-images/featured-products-mobile.png" alt="featured-products-mobile">
+</div>
+
+- **Newsletter Sign-up Form:**
+    
+    - **For Logged-In Users:**
+        - The newsletter sign-up process is seamlessly integrated with the user profile model.
+        - Logged-in users are alerted if they attempt to sign up for the newsletter while already subscribed.
+    - **For Anonymous Users:**
+        - Anonymous users can also sign up for the newsletter by providing their email address.
+        - Upon sign-up, a dummy user profile is created for them with only the email field added.
+        - This is necessary to ensure proper linking between the newsletter model and user profile model.
+        - If an anonymous user enters an email that is already subscribed, they are alerted via a toast alert.
+
+- **Confirmation Process:**
+    
+    - Upon successful sign-up via the newsletter form, both the user and the site administrator receive email confirmations.
+    - This confirmation email serves to confirm the subscription for the user and alert the admin about the new subscription.
+
+- **Code Location:**
+    
+    - The implementation details for managing the newsletter sign-up process can be found in the `subscribe_newsletter` view within the `home` app.
+
+<div align="center">
+ <img src="/workspace/Fetch-and-Feast/readme-images/newsletter.png" alt="newsletter-signup">
+</div>
+
+- **Featured Blogs:**
+    
+    - In addition to featured products, the homepage also highlights four curated blogs.
+    - These blogs are selected based on their relevance and popularity, providing users with valuable insights and information.
+    - A "View All" button allows users to explore the complete collection of blogs available on the site, encouraging further engagement with the content.
+
+<div align="center">
+ <img src="/workspace/Fetch-and-Feast/readme-images/featured-blogs.png" alt="featured-blogs">
+</div>
+<div align="center">
+ <img src="/workspace/Fetch-and-Feast/readme-images/featured-blogs-mobile.png" alt="featured-blogs-mobile">
+</div>
+
+- **Footer:**
+    
+    - The footer section of the website offers convenient navigation and essential information for users.
+    - **Help Column:**
+        - Includes links to the contact page and FAQ section, providing users with quick access to assistance and support.
+    - **My Account Column:**
+        - For logged-out users, this column features options to log in or sign up for an account.
+        - Logged-in users have access to their profile, allowing them to manage their account settings, and sign out if needed.
+        - Superusers have additional options for product and blog management, enabling them to oversee content creation and updates.
+    - **Pages Column:**
+        - Provides easy access to product pages and blog sections, enhancing navigation efficiency for users.
+    - **General Information:**
+        - Includes essential contact details such as phone number, email address, and location, ensuring users can reach out for assistance or inquiries.
+    - **Social Media and Legal Links:**
+        - Features a link to the site's Facebook page, facilitating social media engagement and community interaction.
+        - Includes copyright information and a link to the privacy policy, ensuring compliance with legal requirements and providing transparency to users regarding data usage and privacy practices.

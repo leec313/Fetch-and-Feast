@@ -461,3 +461,23 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
 <div align="center">
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/comments-mobile.png?raw=true" alt="comments-mobile">
 </div>
+
+- **Post Update:**
+    - The post update functionality enables users to modify existing blog posts, providing flexibility and control over content management.
+    - **Implementation:**
+        - Post updates are facilitated through a dedicated form, `PostForm`, defined within the blogs app's `forms.py`.
+        - To enhance user experience and streamline content creation, the rich text editor TinyMCE is integrated into the form for formatting the content. This implementation allows users to apply various text formatting options, insert multimedia elements, and customize the appearance of their blog post content effortlessly.
+        - The integration of TinyMCE is achieved by including the necessary JavaScript and configuration settings within the HTML templates where the `PostForm` is rendered. This enables the rich text editor to be seamlessly embedded into the form, providing a familiar and intuitive editing experience for users.
+    - **Editable Fields:**
+        - Users have the ability to edit multiple fields within the blog post, including the title, content, excerpt, and image.
+        - The `PostForm` dynamically populates the form fields with the existing data from the corresponding fields in the `Post` model, allowing users to make precise modifications to their blog posts.
+    - **User Interface:**
+        - The post update interface presents users with a structured form layout, clearly indicating the fields available for editing and providing descriptive labels and input fields for ease of use.
+        - Upon submission of the updated post, the form validates the user input to ensure data integrity and consistency, providing feedback on any errors or invalid entries encountered during the editing process.
+
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/post-update.png?raw=true" alt="post-update">
+</div>
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/post-update-mobile.png?raw=true" alt="post-update-mobile">
+</div>

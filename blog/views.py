@@ -314,7 +314,20 @@ def manage_blogs(request):
     else:
         blogs = Post.objects.all()
 
-    return render(request, 'blog/manage_blogs.html', {'blogs': blogs})
+    # Pagination
+    paginator = Paginator(blogs, 8)  # Show 8 products per page
+    page_number = request.GET.get('page')
+    try:
+        blogs = paginator.page(page_number)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        blogs = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        blogs = paginator.page(paginator.num_pages)
+
+    return render(
+        request, 'blog/manage_blogs.html', {'blogs': blogs, 'page_obj': blogs})
 
 
 @login_required

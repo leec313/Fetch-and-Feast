@@ -190,9 +190,24 @@ def manage_products(request):
         products = Product.objects.all()
     category_form = CategoryForm()  # Instantiate an empty CategoryForm
 
-    return render(
-        request, 'products/manage_products.html', {
-            'products': products, 'category_form': category_form})
+    # Pagination
+    paginator = Paginator(products, 8)  # Show 8 products per page
+    page_number = request.GET.get('page')
+    try:
+        products = paginator.page(page_number)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        products = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        products = paginator.page(paginator.num_pages)
+
+    context = {
+        'products': products,
+        'category_form': category_form,
+        'page_obj': products,
+    }
+    return render(request, 'products/manage_products.html', context)
 
 
 @login_required

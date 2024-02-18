@@ -32,8 +32,8 @@
                 </div>
                 <div class="col-9">
                     <p class="my-0"><strong>{{ item.product.name }}</strong></p>
-                    <p class="my-0 small">Size:
-                        {% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
+                    <p class="my-0 small">
+                        {% if item.product.has_sizes %}Size: {{ item.size|upper }}{% endif %}</p>
                     <span class="d-flex justify-content-between">
                         <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
                         <p class="my-0 small text-muted float-right">€{{ item.product.price }}</p>

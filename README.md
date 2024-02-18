@@ -516,3 +516,46 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
 <div align="center">
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/faqs.png?raw=true" alt="faqs">
 </div>
+
+- **Profile Page:**
+    - The profile page serves as a personalized dashboard for registered users, providing access to essential account management functionalities and order history details.
+    - **Page Structure:**
+        - The profile page is structured to display user-specific information, including personal details, order history, and options for profile customization.
+        - Components such as user profile forms, password change forms, and newsletter subscription settings are integrated seamlessly within the page layout to facilitate user interaction and account management.
+    - **User Profile Section:**
+        - User profile information, including username, email, first name, and last name, is presented within dedicated form fields, allowing users to update their personal details conveniently.
+        - Profile updates are processed asynchronously, enabling users to modify their information without interrupting their browsing experience.
+    - **Password Change Functionality:**
+        - Users can initiate password changes directly from the profile page by accessing the password change form.
+        - The password change process is handled securely, with validation checks to ensure the accuracy and integrity of the updated password.
+    - **Order History Display:**
+        - The profile page includes a dedicated section for displaying order history details, providing users with comprehensive insights into their past purchases and transaction history.
+        - Each order entry is presented in a clear and organized manner, showcasing essential order information such as order number, date, and item details.
+    - **User Interaction and Feedback:**
+        - Feedback messages are incorporated throughout the profile page to notify users of successful profile updates, password changes, or any encountered errors during the process.
+        - User-friendly messaging enhances the overall user experience and fosters a sense of confidence and satisfaction in utilizing the platform's account management features.
+
+- **Newsletter Subscription Management on the Profile Page:**
+    - Newsletter subscription management is a key feature integrated into user profiles, allowing users to opt in or out of receiving periodic newsletters and updates from the platform.
+    - **User Profile Integration:**
+        - The newsletter subscription functionality is seamlessly integrated with the user profile model (`UserProfile`), enhancing the platform's account management capabilities.
+        - Within the `UserProfile` model, a boolean field named `subscribe_newsletter` is provided to track the user's newsletter subscription status.
+        - When a user subscribes to the newsletter, the `subscribe_newsletter` field is set to `True`, indicating their preference to receive newsletters.
+    - **Newsletter Subscription Model:**
+        - The `NewsletterSubscription` model defines the structure for storing newsletter subscription details, including the associated user profile, email address, and creation timestamp.
+        - Each newsletter subscription entry is linked to a specific user profile, establishing a direct relationship between user accounts and subscription preferences.
+        - An `unsubscribe_token` field is included to generate a unique identifier for managing unsubscribe requests securely and for dealing with anonymous users without a profile/account.
+    - **Newsletter Unsubscribe Functionality:**
+        - To ensure consistency and data integrity, a signal (`pre_delete`) is implemented to update the user profile's `subscribe_newsletter` field when a newsletter subscription is deleted.
+        - The signal handler (`update_user_profile_on_newsletter_delete`) automatically sets the `subscribe_newsletter` field to `False` when a subscription is removed, reflecting the user's updated preferences accurately.
+    - **Opt-in/Opt-out Mechanism:**
+        - Users can modify their newsletter subscription preferences directly from their profile page, toggling the subscription checkbox to subscribe or unsubscribe as desired.
+        - When a user subscribes to the newsletter, a new `NewsletterSubscription` entry is created, associating the subscription with the user's profile and email address.
+        - Conversely, if a user chooses to unsubscribe, the corresponding `NewsletterSubscription` entry is deleted, and the `subscribe_newsletter` field in the user profile is updated accordingly, ensuring synchronization between user preferences and subscription status.
+
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/profile.png?raw=true" alt="profile">
+</div>
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/profile-mobile.png?raw=true" alt="profile-mobile">
+</div>

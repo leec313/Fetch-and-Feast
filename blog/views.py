@@ -303,7 +303,7 @@ class PostLike(LoginRequiredMixin, UserPassesTestMixin, View):
 @login_required
 def manage_blogs(request):
     """ Blog management page where the admin can
-    add, edit, or delete blogs. Only accessible to superusers. """
+    add, edit, search or delete blogs. Only accessible to superusers. """
     if not request.user.is_superuser:
         return HttpResponseNotFound(render(request, 'errors/403.html'))
 

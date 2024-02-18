@@ -8,6 +8,7 @@ from django.db.models.functions import Lower
 from django.views.generic import DeleteView, UpdateView
 from django.urls import reverse_lazy
 from django.utils.safestring import mark_safe
+from django.http import HttpResponseNotFound
 
 from .models import Product, Category, Rating
 from checkout.models import Order
@@ -160,7 +161,9 @@ def product_detail(request, product_id):
 @login_required
 def manage_products(request):
     """ Product management page where the admin can
-    add, edit or delete products """
+    add, edit, search or delete products. Only superusers"""
+    if not request.user.is_superuser:
+        return HttpResponseNotFound(render(request, 'errors/403.html'))
 
     query = request.GET.get('q')
 
@@ -188,6 +191,9 @@ def add_category(request):
     The category name is manipulated from the friendly name
     and saved in lowercase with underscores instead of spaces.
     """
+    if not request.user.is_superuser:
+        return HttpResponseNotFound(render(request, 'errors/403.html'))
+
     if request.method == 'POST':
         category_form = CategoryForm(request.POST)
         if category_form.is_valid():
@@ -232,6 +238,9 @@ def bulk_delete_products(request):
     """
     Allows bulk/single deletion of products
     """
+    if not request.user.is_superuser:
+        return HttpResponseNotFound(render(request, 'errors/403.html'))
+
     if request.method == 'POST':
         selected_product_ids = request.POST.getlist('selected_products')
         Product.objects.filter(id__in=selected_product_ids).delete()
@@ -243,8 +252,7 @@ def bulk_delete_products(request):
 def add_product(request):
     """ Add a product to the store """
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
+        return HttpResponseNotFound(render(request, 'errors/403.html'))
 
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
@@ -274,8 +282,7 @@ def add_product(request):
 def edit_product(request, product_id):
     """ Edit a product in the store """
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
+        return HttpResponseNotFound(render(request, 'errors/403.html'))
 
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
@@ -304,8 +311,7 @@ def edit_product(request, product_id):
 def delete_product(request, product_id):
     """ Delete a product from the store with confirmation """
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
+        return HttpResponseNotFound(render(request, 'errors/403.html'))
 
     product = get_object_or_404(Product, pk=product_id)
 

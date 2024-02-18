@@ -201,7 +201,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return reverse('post_detail', kwargs={'slug': self.object.slug})
 
 
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class PostUpdateView(LoginRequiredMixin, UpdateView):
     """
     View for creating a post and assigning a slug to the new post
     Removed LoginRequiredMixin, UserPassesTestMixin as I want any user
@@ -232,7 +232,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return reverse('post_detail', kwargs={'slug': self.object.slug})
 
 
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     """
     View for deleting a single post
     Removed LoginRequiredMixin, UserPassesTestMixin as I want any user
@@ -255,7 +255,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return super().delete(request, *args, **kwargs)
 
 
-class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class CommentUpdateView(LoginRequiredMixin, UpdateView):
     """
     View for updating a single comment
     """
@@ -269,7 +269,7 @@ class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             'slug': self.object.post.slug})
 
 
-class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class CommentDeleteView(LoginRequiredMixin, DeleteView):
     """
     View for deleting a single comment
     """
@@ -282,7 +282,7 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             'slug': self.object.post.slug})
 
 
-class PostLike(LoginRequiredMixin, UserPassesTestMixin, View):
+class PostLike(LoginRequiredMixin, View):
     """
     View for liking a post. If liked, the view passes the information
     to the template to show the updated icon for confirmation of like

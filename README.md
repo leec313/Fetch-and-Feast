@@ -400,3 +400,22 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/delete-rating.png?raw=true" alt="ratings-delete">
 </div>
 
+- **Blog List:**
+    - The blog list feature offers users an organized view of available blogs, facilitating easy exploration of content.
+    - **Display Format:**
+        - Blogs are presented in individual cards, each comprising essential details such as the blog image, title, excerpt, creation date, number of likes, and comments.
+        - For superusers, additional options to edit and delete blogs are embedded within the blog cards, providing efficient content management capabilities.
+    - **Search Functionality:**
+        - A search bar is integrated into the blog list, allowing users to perform keyword searches to find specific blogs of interest.
+        - Users can enter search queries to filter blogs based on titles, content, or any relevant keywords, enhancing discoverability and accessibility of content.
+    - **Pagination:**
+        - To optimize user experience and navigation, the blog list is paginated to display a maximum of 6 blogs per page.
+        - If the total number of blogs exceeds the limit, a "Next" button is provided at the bottom of the page, enabling users to seamlessly navigate to subsequent pages of blog entries.
+
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/blogs.png?raw=true" alt="blogs">
+</div>
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/blogs-mobile.png?raw=true" alt="blogs-mobile">
+</div>
+

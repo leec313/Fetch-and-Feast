@@ -1,6 +1,6 @@
 # [FETCH & FEAST](https://fetch-and-feast-4ceb13480b0c.herokuapp.com/)
 <div align="center">
- <img src="/workspace/Fetch-and-Feast/readme-images/amiresponsive.png" alt="Fetch & Feast AmIResonsive Image">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/amiresponsive.png?raw=true" alt="Fetch & Feast AmIResonsive Image">
 </div>
 
 [Fetch & Feast](https://fetch-and-feast-4ceb13480b0c.herokuapp.com/) is an ecommerce platform tailored for dog treats, food, and toys, developed on Django. It encompasses user registration, profile management, newsletter subscriptions, and product purchases facilitated by Stripe. Additionally, it hosts blogs with commenting and liking capabilities. Users can rate products post-purchase. Frontend admin controls empower easy management of products and blogs.
@@ -154,7 +154,7 @@ Both Protest Strike and Dancing Script were used for my logo - they excellently 
 ### Colors
 
 <div align="center">
- <img src="/workspace/Fetch-and-Feast/readme-images/pallette.png" alt="colors">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/pallette.png?raw=true" alt="colors">
 </div>
 
 In crafting the color palette for this project, I aimed to strike a perfect balance between vibrancy, clarity, and visual appeal. Let's delve into why each color was carefully chosen:
@@ -251,10 +251,10 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
     - A prominent call-to-action button invites users to enter and explore the site's products.
 
 <div align="center">
- <img src="/workspace/Fetch-and-Feast/readme-images/hero-nav.png" alt="hero-image-and-nav">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/hero-nav.png?raw=true" alt="hero-image-and-nav">
 </div>
 <div align="center">
- <img src="/workspace/Fetch-and-Feast/readme-images/hero-nav-mobile.png" alt="hero-image-and-nav-mobile">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/hero-nav-mobile.png?raw=true" alt="hero-image-and-nav-mobile">
 </div>
 
 - **Featured Products:**
@@ -264,10 +264,10 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
     - A "View All" button allows users to easily access the full range of products available on the site.
 
 <div align="center">
- <img src="/workspace/Fetch-and-Feast/readme-images/featured-products.png" alt="featured-products">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/featured-products.png?raw=true" alt="featured-products">
 </div>
 <div align="center">
- <img src="/workspace/Fetch-and-Feast/readme-images/featured-products-mobile.png" alt="featured-products-mobile">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/featured-products-mobile.png?raw=true" alt="featured-products-mobile">
 </div>
 
 - **Newsletter Sign-up Form:**
@@ -291,7 +291,7 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
     - The implementation details for managing the newsletter sign-up process can be found in the `subscribe_newsletter` view within the `home` app.
 
 <div align="center">
- <img src="/workspace/Fetch-and-Feast/readme-images/newsletter.png" alt="newsletter-signup">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/newsletter.png?raw=true" alt="newsletter-signup">
 </div>
 
 - **Featured Blogs:**
@@ -301,10 +301,10 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
     - A "View All" button allows users to explore the complete collection of blogs available on the site, encouraging further engagement with the content.
 
 <div align="center">
- <img src="/workspace/Fetch-and-Feast/readme-images/featured-blogs.png" alt="featured-blogs">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/featured-blogs.png?raw=true" alt="featured-blogs">
 </div>
 <div align="center">
- <img src="/workspace/Fetch-and-Feast/readme-images/featured-blogs-mobile.png" alt="featured-blogs-mobile">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/featured-blogs-mobile.png?raw=true" alt="featured-blogs-mobile">
 </div>
 
 - **Footer:**
@@ -323,3 +323,10 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
     - **Social Media and Legal Links:**
         - Features a link to the site's Facebook page, facilitating social media engagement and community interaction.
         - Includes copyright information and a link to the privacy policy, ensuring compliance with legal requirements and providing transparency to users regarding data usage and privacy practices.
+
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/footer.png?raw=true" alt="footer">
+</div>
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/footer-mobile.png?raw=true" alt="footer-mobile">
+</div>

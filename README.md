@@ -559,3 +559,194 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
 <div align="center">
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/profile-mobile.png?raw=true" alt="profile-mobile">
 </div>
+
+
+- **Bag Page:**
+    - Overall, the bag page serves as a pivotal stage in the user's journey through the e-commerce platform, offering transparency, control, and convenience in managing their selected items before finalizing their purchase.
+    - **Add to Bag Function:**
+        - The `add_to_bag` function enables users to add a specified quantity of a product to their shopping bag.
+        - Upon receiving a POST request, the function retrieves the product details, including its size if applicable, and updates the bag session accordingly.
+        - Messages are displayed to inform the user about the action taken, such as adding a new item or updating the quantity of an existing item.
+    - **Adjust Bag Function:**
+        - The `adjust_bag` function allows users to adjust the quantity of a product already present in their bag.
+        - Users can modify the quantity of the product and update the bag session accordingly, with appropriate messages displayed to confirm the action.
+        - Additionally, users can adjust the quantity of products based on their size if applicable.
+    - **Remove from Bag Function:**
+        - Users have the option to remove items from their shopping bag using the `remove_from_bag` function.
+        - Upon receiving a POST request, the function removes the specified item from the bag session, considering the item's size if provided, and updates the bag accordingly.
+        - Success messages are displayed to notify users about the successful removal of items from their bag.
+    - **Empty Bag Function:**
+        - The `empty_bag` function allows users to clear all items from their shopping bag in a single action.
+        - Upon invocation, the function clears the bag session entirely, ensuring that no items remain in the user's bag.
+        - Users receive a success message confirming that their bag has been emptied, providing a seamless shopping experience.
+
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/bag.png?raw=true" alt="bag">
+</div>
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/bag-mobile.png?raw=true" alt="bag-mobile">
+</div>
+
+- **Toasts - Including Bag Preview:**
+
+Toast Messages play a crucial role in providing real-time feedback to users regarding the outcome of their actions on the e-commerce platform. Here's an overview of the Toast Messages implementation:
+
+- **Purpose:**
+    
+    - Toast Messages are utilized to inform users about the completion of various actions, such as successful login, product deletion, and other important events.
+    - They serve as non-intrusive notifications that appear briefly on the screen, ensuring users are promptly informed without interrupting their browsing experience.
+- **Implementation:**
+    
+    - The platform employs a standardized toast template, ensuring consistency in appearance and functionality across different scenarios.
+    - Specifically, the toast success template is utilized for the bag preview popup, maintaining visual coherence and reinforcing positive feedback for successful bag updates.
+    - JavaScript is integrated to control the behavior of toast messages. By default, all toast messages automatically disappear after three seconds, enhancing user experience by minimizing clutter.
+    - However, toast messages associated with the class bag-notification-wrapper remain persistent until the user takes action, such as clicking the close button. This approach enables users to review bag-related notifications at their own pace without fear of them disappearing prematurely.
+- **User Interaction:**
+    
+    - Upon receiving a toast message, users can take appropriate actions based on the context provided.
+    - For example, if a toast message indicates successful addition or removal of items from the bag, users may choose to continue shopping, proceed to the bag page, or directly navigate to the checkout process.
+    - The inclusion of action buttons or links within toast messages enhances user control and facilitates seamless navigation through the platform.
+
+Overall, Toast Messages serve as an integral component of the platform's user interface, enhancing user satisfaction and facilitating smooth interactions by providing timely feedback on important actions and events.
+
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/toast.png?raw=true" alt="toast">
+</div>
+
+- **Product Management:**
+    - **Purpose:**
+        
+        - The Product Management Page is designed exclusively for superusers to oversee and manage products within the e-commerce platform.
+        - It serves as a centralized hub for performing various product-related tasks, including deletion, addition, editing, and category management.
+        - The page offers enhanced functionality such as bulk-delete options, search capabilities, and pagination to streamline product management processes.
+    - **Features:**
+        
+        - **Bulk Delete:** Superusers have the ability to select multiple products for deletion simultaneously, streamlining the process of removing outdated or unnecessary items from the inventory.
+        - **Add Products:** Superusers can easily add new products to the platform, providing essential details such as SKU, name, price, image, and category to enrich the product catalog.
+        - **Edit Products:** Existing product information can be modified and updated as needed, empowering administrators to keep product details accurate and up to date.
+        - **Add Product Categories:** Superusers have the flexibility to create and assign new categories to products, facilitating organization and navigation within the product catalog.
+        - **Search Functionality:** A search bar is available to facilitate quick and efficient retrieval of specific products based on user-defined criteria, enhancing usability and productivity.
+        - **Table Format:** Product information is presented in a structured table format, ensuring clarity and ease of navigation. Each row includes essential details such as database ID, product image, SKU, name, availability of sizes, price, and average rating.
+        On Mobile, some columns have been removed to prevent horizontal scrolling.
+        - **Select All Checkbox:** Superusers can conveniently select all products displayed on the page using a single checkbox, enhancing efficiency when performing bulk actions. This functionality is implemented using JavaScript for seamless user interaction.
+        - **Pagination:** To manage large datasets effectively, pagination is implemented with a maximum of 8 products per page. This ensures optimal performance and navigational convenience for administrators.
+    - **User Interaction:**
+        
+        - Superusers can navigate through the product list, search for specific products, and perform various actions such as editing, deleting, or adding products with ease.
+        - The select all checkbox simplifies the process of selecting multiple products for bulk actions, enhancing productivity and efficiency.
+        - Interactive elements such as dropdown menus, input fields, and buttons provide intuitive controls for managing products and categories seamlessly.
+        - Pagination controls allow superusers to navigate through multiple pages of product listings effortlessly, ensuring a smooth user experience even with a large number of products.
+
+    Overall, the Product Management Page empowers superusers with comprehensive tools and features to effectively manage and maintain the product inventory, contributing to the overall success and efficiency of the e-commerce platform.
+
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/product-manage.png?raw=true" alt="product-manage">
+</div>
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/product-manage-mobile.png?raw=true" alt="product-manage-mobile">
+</div>
+
+- **Blog Management:**
+
+    - **Purpose:**
+        
+        - Similar to the Product Management Page, the Blog Management Page, exclusively accessible to superusers, serves as the central hub for overseeing and managing blog content within the platform.
+        - It offers essential functionality for editing, deleting, and reviewing detailed information about each blog post, ensuring the platform's blog remains dynamic and relevant.
+    - **Features:**
+        
+        - **Edit and Delete:** Superusers can effortlessly modify existing blog posts or remove outdated content, maintaining the blog's freshness and relevance.
+        - **Blog Information:** Each post is presented in a structured table format, displaying key details such as database ID, blog image, title, author, creation date, comments count, and likes count.
+        - **Select Box:** Interactive select boxes enable superusers to perform actions like editing or deleting specific blog posts, providing intuitive controls for efficient management.
+        - **Blog Image:** Visual representations aid in quickly identifying and managing posts based on their associated images.
+        - **Author and Date:** Detailed information about each post, including the author's name and creation date, facilitates oversight and management.
+        - **Comments and Likes:** Insights into engagement levels, including total comments and likes received, help gauge the popularity and impact of individual posts.
+        - **Search Functionality:** A search bar allows for quick retrieval of specific posts based on user-defined criteria, enhancing usability and productivity.
+        - **Pagination:** Pagination is implemented for effective management of large datasets, ensuring optimal performance and navigational convenience.
+    - **User Interaction:**
+        
+        - Superusers can interact with blog posts directly from the management page, with options to edit, delete, or view detailed information.
+        - The structured table format presents content clearly, enabling quick assessment and management based on specific attributes.
+        - Interactive select boxes and search functionality enhance user experience, providing intuitive controls for navigation and management.
+        - Insights into comments and likes assist superusers in understanding audience response, informing future content strategies.
+
+    Overall, the Blog Management Page equips superusers with essential tools to oversee and maintain blog content effectively, ensuring the platform remains engaging and relevant for users.
+
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/blog-manage.png?raw=true" alt="blog-manage">
+</div>
+
+- **Checkout:**
+
+    - **Purpose:**
+        
+        - The Checkout Page serves as the final step in the online purchasing process, where customers review their order details, provide shipping and payment information, and complete their transactions.
+    - **Features:**
+        
+        - **Order Summary:** Displays a summary of the items in the customer's shopping bag, including product names, quantities, prices, and total cost.
+        - **Checkout Form:** Allows customers to enter shipping details such as full name, email, phone number, shipping address, and payment information through a user-friendly form.
+        - **Payment Processing:** Utilizes the Stripe API for secure payment processing, ensuring that customer transactions are handled securely and efficiently.
+        - **Order Creation:** Upon successful completion of the checkout process, creates an order with relevant details, including product information, payment ID, and customer information.
+        - **Checkout Success Handling:** Handles successful order processing, displaying confirmation messages to customers and providing order details for reference.
+        - **Save Information Option:** Provides customers with the option to save their shipping information for future purchases, enhancing convenience and streamlining the checkout process for returning customers.
+    - **User Interaction:**
+        
+        - Customers interact with the Checkout Page to review and confirm their order details, enter shipping information, and complete their purchases securely.
+        - Seamless navigation and intuitive form design contribute to a positive user experience, ensuring customers can complete transactions efficiently.
+        - Upon successful checkout, customers receive confirmation messages indicating successful order processing and providing order numbers for reference.
+
+    The Checkout Page plays a crucial role in facilitating smooth and secure transactions, providing customers with a convenient and reliable platform for completing their online purchases.
+
+- **Checkout Success Page:**
+
+    - **Purpose:**
+        
+        - The Checkout Success Page confirms successful order processing to customers, providing essential order details and serving as a receipt for completed transactions.
+    - **Features:**
+        
+        - **Order Confirmation:** Displays a confirmation message to customers, indicating that their order has been successfully processed.
+        - **Order Details:** Provides customers with comprehensive order details, including order number, itemized list of purchased products, total cost, and shipping information.
+        - **Cookie Implementation:** Utilizes a custom cookie, specific to each user, to ensure secure access to the Checkout Success Page. This cookie prevents unauthorized access and ensures that only the customer who completed the transaction can view the success page.
+        - **Order Completion:** Marks the successful completion of the checkout process, allowing customers to proceed with confidence knowing that their order has been successfully placed.
+    - **User Interaction:**
+        
+        - Upon successful order completion, customers are directed to the Checkout Success Page, where they receive confirmation messages and detailed order information.
+        - The custom cookie implemented on the success page ensures secure access, restricting page access to the specific user who completed the transaction.
+        - Customers can review their order details, verify the accuracy of their purchases, and refer to the order number for future inquiries or tracking purposes.
+
+    The Checkout Success Page provides customers with reassurance and confidence that their orders have been successfully processed, while the implementation of a custom cookie ensures the security and privacy of their transaction information.
+
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/checkout.png?raw=true" alt="checkout">
+</div>
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/success.png?raw=true" alt="success">
+</div>
+
+- **Authentication Pages (Signup, Login, Password Management):**
+
+    - **Purpose:**
+        
+        - The authentication pages serve as entry points for users to create accounts, log in, and manage their passwords securely.
+    - **Features:**
+        
+        - **Signup Page:**
+            - Allows new users to create accounts by providing necessary information such as username, email, and password.
+            - Utilizes Django Allauth for streamlined signup process, offering features like email verification and social media authentication options.
+            - Validates user input to ensure data accuracy and compliance with security standards.
+        - **Login Page:**
+            - Provides existing users with a secure gateway to access their accounts by entering their credentials.
+            - Supports username/email and password authentication, offering a smooth login experience.
+            - Utilizes Django Allauth for enhanced login functionalities, including remember me option and password reset.
+        - **Password Management:**
+            - Includes password reset and change functionalities to enable users to manage their account security effectively.
+            - Offers password reset via email, allowing users to regain access to their accounts in case of forgotten passwords.
+            - Implements secure password change mechanisms to ensure user account integrity and prevent unauthorized access.
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/signup.png?raw=true" alt="signup">
+</div>
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/login.png?raw=true" alt="login">
+</div>
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/password.png?raw=true" alt="password">
+</div>

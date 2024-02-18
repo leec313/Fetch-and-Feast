@@ -188,7 +188,8 @@ def add_category(request):
             if Category.objects.filter(name=manipulated_name).exists():
                 # Display an error message if the category already exists
                 messages.error(
-                    request, 'A category with this name already exists.')
+                    request, f'A category with the name\
+                        "{friendly_name}" already exists.')
             else:
                 # Save the form but commit=False to get the instance
                 category = category_form.save(commit=False)
@@ -197,7 +198,8 @@ def add_category(request):
                 # Save the manipulated instance to the database
                 category.save()
                 # Display a success message
-                messages.success(request, 'Category added successfully.')
+                messages.success(request, f'Category\
+                    "{friendly_name}" added successfully.')
                 # Redirect to the manage products page
                 return redirect('manage_products')
     else:

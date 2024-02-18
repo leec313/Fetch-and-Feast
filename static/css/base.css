@@ -273,6 +273,11 @@ a.category-badge>span.badge:hover {
     width: 100%;
 }
 
+.form-control {
+    border-radius: 0;
+    border: 1px solid #000;
+}
+
 /* Allauth form formatting */
 
 .allauth-form-inner-content p {

@@ -25,8 +25,15 @@
             <input type="email" class="form-control" id="email" name="email" required>
         </div>
         <div class="mb-3">
-            <label for="subject" class="form-label">Subject:</label>
-            <input type="text" class="form-control" id="subject" name="subject" required>
+            <label for="subject" class="form-label w-100">Subject:</label>
+            <select class="form-select w-100 py-2" id="subject" name="subject" required>
+                <option value="">Select a subject</option>
+                <option value="Complaint">Complaint</option>
+                <option value="Feedback">Feedback</option>
+                <option value="Return">Return</option>
+                <option value="Shipping">Shipping</option>
+                <option value="Other">Other</option>
+            </select>
         </div>
         <div class="mb-3">
             <label for="message" class="form-label">Message:</label>

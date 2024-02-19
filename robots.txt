@@ -1,3 +1,4 @@
 # robots.txt
 User-agent: *
 Disallow: /admin/
+Sitemap: https://fetch-and-feast-4ceb13480b0c.herokuapp.com/sitemap.xml

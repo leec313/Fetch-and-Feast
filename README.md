@@ -44,6 +44,7 @@
     <summary><a href="#site-pages">Site Pages</a></summary>
 
     - [Homepage](#homepage)
+    - [Newsletter Subscription Popup](#newsletter-subscription-popup)
     - [Footer](#footer)
     - [Product List](#product-list)
     - [Product Detail](#product-detail)
@@ -79,7 +80,10 @@
 
 6. <summary><a href="#ecommerce-business-model">Ecommerce Business Model</a></summary>
 
-7. <details open>
+7. <summary><a href="#search-engine-optimization-and-social-media-marketing">Search Engine Optimization And Social Media Marketing
+</a></summary>
+
+8. <details open>
     <summary><a href="#testing">Testing</a></summary>
 
     <ul>
@@ -108,9 +112,9 @@
     </ul>
 </details>
 
-8. <a href="#deployment">Deployment</a>
+9. <a href="#deployment">Deployment</a>
 
-9. <a href="#credits-and-acknowledgements">Credits and Acknowledgements</a>
+10. <a href="#credits-and-acknowledgements">Credits and Acknowledgements</a>
 
 ----
 
@@ -321,6 +325,21 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
 <div align="center">
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/featured-blogs-mobile.png?raw=true" alt="featured-blogs-mobile">
 </div>
+
+- ### Newsletter Subscription Popup
+
+    This feature enhances user engagement by displaying a newsletter subscription popup five seconds after the page loads. Here's how it works:
+
+    - **Modal Display:** The popup modal is triggered to appear after a brief delay, providing users with an opportunity to subscribe to the newsletter.
+    - **Cookie Management:** Once the modal is shown to the user, a cookie is set to prevent the popup from appearing again during subsequent visits or page refreshes.
+    - **User Interaction:** Users can choose to close the modal by clicking outside of it or submitting their email address. Upon submission, the modal is closed, ensuring a seamless user experience.
+    - **Backend Integration:** The logic for managing the newsletter subscription popup is implemented in the `newsletter_subscribe` view within the `home` app, facilitating smooth integration with the application's backend functionality.
+
+    This approach optimizes user interaction while respecting user preferences and privacy by controlling the frequency of the newsletter subscription popup display.
+
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/newsletter-popup.png?raw=true" alt="newsletter-popup">
+</div> 
 
 - ### Footer
     
@@ -961,6 +980,14 @@ Overall, Toast Messages serve as an integral component of the platform's user in
 
 - Used for the creaton of the business page
 
+### Wordtracker.com
+
+- Used to conduct keyword research for SEO
+
+### XML-Sitemaps
+
+- Used to generate the sitemap
+
 # Webhooks
     
 - The site uses a secure and robust webhook system to ensure that the payment process cannot be interrupted and corrupted, either through user error or malicious intent. Webhooks are incorporated via the Stripe payment system and are handled on the Stripe website, by way of the python code in `checkout > webhook_handler.py` and `checkout > webhooks.py`
@@ -1030,3 +1057,63 @@ Overall, Toast Messages serve as an integral component of the platform's user in
     - Expansion of Product Range: Continuously adding new and innovative products to cater to evolving customer preferences and trends.
     - Geographic Expansion: Scaling operations to reach new geographic markets and expand the customer base.
     - Customer Loyalty Programs: Implementing loyalty programs, discounts, and rewards to incentivize repeat purchases and foster customer loyalty.
+
+
+# Search Engine Optimization And Social Media Marketing
+
+### Keyword Strategy for Enhanced Online Visibility
+
+In order to optimize the discoverability of my website through search engines, I've developed a comprehensive keyword strategy. This strategy encompasses two main types of keywords:
+
+**Short-Tail (Head Terms) Keywords**: These are concise and broad keywords that capture the essence of my website's offerings in a general sense.
+
+**Long-Tail Keywords**: Long-tail keywords are more specific and detailed phrases that align closely with the products and services offered on my website.
+
+By strategically incorporating both short-tail and long-tail keywords throughout my website's content, I aim to improve its search engine rankings and make it more accessible to users searching for relevant information or products online. This keyword strategy is crucial for enhancing online visibility and attracting targeted traffic to my website.
+
+In my project, I utilized Wordtracker.com to conduct keyword research and identify relevant terms and phrases that align with the content and purpose of my website. By analyzing search trends and user behavior data, I aimed to incorporate these keywords into my titles, descriptions, and content to improve search engine visibility and attract organic traffic. This strategic approach helped me optimize my website's metadata, ensuring that it resonates effectively with search engine algorithms and enhances the discoverability of my content online.
+
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/wordtracker.png?raw=true" alt="wordtracker">
+</div>
+
+### Sitemap Generation with XML-Sitemaps
+
+To streamline the process of creating a sitemap.xml file for my website, I utilized [XML-Sitemaps.](https://www.xml-sitemaps.com/)
+
+By submitting the deployed site URL ([https://fetch-and-feast-4ceb13480b0c.herokuapp.com/](https://fetch-and-feast-4ceb13480b0c.herokuapp.com/)), the tool meticulously crawled through the entire site. Following the completion of this process, it automatically generated a detailed sitemap.xml document. I subsequently downloaded this file and added it into the repository.
+
+### Robots
+
+I've configured the robots.txt file located at the root level of the project. It specifies the default settings, intentionally disallowing access to the admin section, as follows:
+
+```
+User-agent: *
+Disallow: /admin/
+Sitemap: https://fetch-and-feast-4ceb13480b0c.herokuapp.com/sitemap.xml
+```
+
+Further links for future implementation:
+
+- [Google search console](https://search.google.com/search-console)
+- [Creating and submitting a sitemap](https://developers.google.com/search/docs/advanced/sitemaps/build-sitemap)
+- [Managing your sitemaps and using sitemaps reports](https://support.google.com/webmasters/answer/7451001)
+- [Testing the robots.txt file](https://support.google.com/webmasters/answer/6062598)
+
+### Social Media Marketing
+
+Creating a vibrant social media presence, marked by consistent engagement, can significantly boost sales performance. Leveraging popular platforms like Facebook, known for their extensive user bases, is particularly effective in driving website traffic and expanding brand visibility. Active participation and strategic linking of social media channels to the business site amplify opportunities for sales growth. Moreover, establishing a dedicated Facebook business page further enhances brand credibility and facilitates direct interaction with potential customers.
+
+[Link to Fetch & Feast Facebook Business Page](https://www.facebook.com/profile.php?viewas=100000686899395&id=61556243653249)
+
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/facebook.png?raw=true" alt="facebook">
+</div>
+
+### Newsletter Marketing
+
+Within my application, I've seamlessly integrated a newsletter sign-up form, providing users with the opportunity to subscribe by submitting their email addresses. This feature aims to cater to users interested in receiving regular updates and promotions.
+
+Furthermore, I've implemented a streamlined unsubscribe process, allowing users to opt-out of the newsletter subscription easily. Upon subscription confirmation, users receive a confirmation email containing a link for unsubscribing, ensuring compliance with email marketing regulations and respecting user preferences.
+
+Looking ahead, I aim to enhance the newsletter marketing strategy by integrating an intuitive frontend management system. This system will facilitate the seamless creation and distribution of newsletters to customers, ensuring an efficient and user-friendly experience for both administrators and subscribers.

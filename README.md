@@ -26,9 +26,12 @@
     - [Colors](#colors)
     </details></li>
 
-    <li>
-    <a href="#agile-development">Agile Development</a>
-    </li>
+     <li><details>
+    <summary><a href="#agile-development">Agile Development</a></summary>
+
+    - [Milestones](#project-milestones)
+    - [Progression](#project-progression)
+    </details></li>
 
     </ul>
 </details>
@@ -38,17 +41,28 @@
 
     <ul>
     <li><details>
-    <summary><a href="#page-elements">Page Elements</a></summary>
+    <summary><a href="#site-pages">Site Pages</a></summary>
 
-    - [All Pages](#all-pages)
     - [Homepage](#homepage)
-    - [Create Post Page](#create-post-page)
-    - [Post Detail Page](#post-detail-page)
-    - [Profile Page](#profile-page)
-    - [About Page](#about-page)
-    - [Login/Register Pages](#login-and-register-pages)
-    - [Confirm Delete Pages](#confirm-delete-pages)
+    - [Footer](#footer)
+    - [Product List](#product-list)
+    - [Product Detail](#product-detail)
+    - [Ratings](#ratings)
+    - [Blog List](#blog-list)
+    - [Blog Detail](#blog-detail)
+    - [Comment Section](#comment-section)
+    - [Post Update](#post-update)
     - [Contact Page](#contact-page)
+    - [FAQ Page](#faq-page)
+    - [Profile Page](#profile-page)
+    - [Newsletter Subscription Management](#newsletter-subscription-management)
+    - [Bag Page](#bag-page)
+    - [Toasts Including Bag Preview](#toasts-including-bag-preview)
+    - [Product Management](#product-management)
+    - [Blog Management](#blog-management)
+    - [Checkout](#checkout)
+    - [Checkout Success](#checkout-success)
+    - [Authentication Pages](#authentication-pages)    
     </details></li>
 
     <li>
@@ -57,10 +71,15 @@
     </ul>
 </details>
 
-3. 
-    <summary><a href="#technologies-used">Technologies Used</a></summary>
+3. <summary><a href="#technologies-used">Technologies Used</a></summary>
 
-4. <details open>
+4. <summary><a href="#webhooks">Webhooks</a></summary>
+
+5. <summary><a href="#database-design">Database Design</a></summary>
+
+6. <summary><a href="#ecommerce-business-model">Ecommerce Business Model</a></summary>
+
+7. <details open>
     <summary><a href="#testing">Testing</a></summary>
 
     <ul>
@@ -89,9 +108,9 @@
     </ul>
 </details>
 
-5. <a href="#deployment">Deployment</a>
+8. <a href="#deployment">Deployment</a>
 
-6. <a href="#credits-and-acknowledgements">Credits and Acknowledgements</a>
+9. <a href="#credits-and-acknowledgements">Credits and Acknowledgements</a>
 
 ----
 
@@ -121,8 +140,6 @@ How Fetch & Feast Fulfills These Needs:
 - User-friendly account management features enable customization of profiles and easy engagement with the community.
 - Newsletter subscriptions keep users informed about the latest products, promotions, and trends in the pet industry.
 - The platform follows standard web design conventions for easy navigation while incorporating pet-themed elements to create an engaging and user-friendly experience.
-
-ChatGPT
 
 ### Business Goals
 
@@ -170,11 +187,9 @@ In crafting the color palette for this project, I aimed to strike a perfect bala
 
 In essence, our color palette embodies simplicity and vibrancy, creating a visually appealing and user-friendly experience. The combination of classic black, pristine white, lively teal/green, and alerting red forms a cohesive design that effectively communicates our brand's message. This palette also allows our vibrant product and blog imagery to shine, creating a dynamic and engaging platform for our audience.
 
-ChatGPT
-
 ## Agile Development
 
-The journey of Fetch & Feast began with the establishment of a GitHub Projects Page, serving as the central hub for project management. This platform played a pivotal role in organizing tasks systematically, creating user stories, and breaking them down into actionable steps. The overarching goal was to create a structured roadmap that would guide the project towards successful completion within the designated timeframe. Utilizing the GitHub Projects Page enabled the tracking of the project's evolution, assignment of tasks, and achievement of milestones, ensuring a smooth and organized development process.
+The journey of Fetch & Feast began with the establishment of a GitHub Projects Page, serving as the central hub for project management. This platform played a pivotal role in organizing tasks systematically, creating user stories, and breaking them down into actionable steps. The overarching goal was to create a structured roadmap that would guide the project towards successful completion within the designated timeframe. Utilizing the GitHub Projects Page enabled the tracking of the project's evolution, assignment of tasks, and achievement of milestones, ensuring a smooth and organized development process. The MoSCoW method, alongside customized GitHub project labels, was instrumental in assisting me in prioritizing essential tasks within the constraints of my available time.
 
 To view the:
 
@@ -229,7 +244,7 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
 
 ### Site Pages
 
-- **Homepage**
+- ### Homepage
 
 - **Navigation Bar:**
     - The navigation bar serves as a central hub for accessing key features and navigating the site.
@@ -307,7 +322,7 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/featured-blogs-mobile.png?raw=true" alt="featured-blogs-mobile">
 </div>
 
-- **Footer:**
+- ### Footer
     
     - The footer section of the website offers convenient navigation and essential information for users.
     - **Help Column:**
@@ -331,7 +346,7 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/footer-mobile.png?raw=true" alt="footer-mobile">
 </div>
 
-- **Product List**
+- ### Product List
     - The product list feature provides users with a straightforward and intuitive way to browse through available products.
     - **Display Format:**
         - Products are presented in individual cards, each containing essential information such as the product image, name, rating, price, and category.
@@ -347,7 +362,7 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/products-mobile.png?raw=true" alt="products-mobile">
 </div>
 
-- **Product Detail**
+- ### Product Detail
     - The product detail section on the product page provides users with comprehensive information about the selected product.
     - **Content Displayed:**
         - Product Name: Clearly identifies the product for users.
@@ -370,7 +385,7 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/product-detail-mobile.png?raw=true" alt="products-mobile">
 </div>
 
-- **Ratings (on Product Detail page)**
+- ### Ratings
 
     - The `product_detail` view renders the ratings.
     - Ratings for the product are retrieved from the database and paginated for easy navigation.
@@ -400,7 +415,7 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/delete-rating.png?raw=true" alt="ratings-delete">
 </div>
 
-- **Blog List:**
+- ### Blog List
     - The blog list feature offers users an organized view of available blogs, facilitating easy exploration of content.
     - **Display Format:**
         - Blogs are presented in individual cards, each comprising essential details such as the blog image, title, excerpt, creation date, number of likes, and comments.
@@ -413,13 +428,13 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
         - If the total number of blogs exceeds the limit, a "Next" button is provided at the bottom of the page, enabling users to seamlessly navigate to subsequent pages of blog entries.
 
 <div align="center">
- <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/blog-detail.png?raw=true" alt="blogs">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/blogs.png?raw=true" alt="blogs">
 </div>
 <div align="center">
- <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/blog-detail-1.png?raw=true" alt="blogs-mobile">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/blog-mobile.png?raw=true" alt="blog-mobile">
 </div>
 
-- **Blog Detail:**
+- ### Blog Detail
     - The blog detail view offers users a comprehensive presentation of an individual blog post, providing detailed insights into its content and context.
     - **Display Format:**
         - The blog title is prominently featured at the beginning of the page, ensuring clear identification and navigation for users.
@@ -443,7 +458,7 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/blog-detail-mobile-1.png?raw=true" alt="blog-detail-mobile-1">
 </div>
 
-- **Comment Section:**
+- ### Comment Section
     - The comment section provides users with a platform to engage in conversations and share their thoughts on the blog post, fostering communication and connection within the community.
     - **Display Format:**
         - Comments are presented in a Facebook Messenger-style display, offering a familiar and intuitive interface for users to interact with.
@@ -462,7 +477,7 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/comments-mobile.png?raw=true" alt="comments-mobile">
 </div>
 
-- **Post Update:**
+- ### Post Update
     - The post update functionality enables users to modify existing blog posts, providing flexibility and control over content management.
     - **Implementation:**
         - Post updates are facilitated through a dedicated form, `PostForm`, defined within the blogs app's `forms.py`.
@@ -483,7 +498,7 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/post-update-mobile.png?raw=true" alt="post-update-mobile">
 </div>
 
-- **Contact Page:**
+- ### Contact Page
     - The contact page serves as a communication gateway for users to connect with the platform administrators, facilitating inquiries, feedback, and support requests.
     - **Contact Form:**
         - The central feature of the contact page is a user-friendly contact form, designed to capture essential information from users and streamline the communication process.
@@ -505,7 +520,7 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/contact.png?raw=true" alt="contact">
 </div>
 
-- **FAQ Page:**
+- ### FAQ Page
     - The FAQ (Frequently Asked Questions) page serves as a comprehensive resource for addressing common inquiries and concerns users may have regarding various aspects of the platform's services and policies.
     - **Page Structure:**
         - The FAQ page adopts a structured format, presenting a series of questions and corresponding answers in an accordion-style layout. This format allows users to easily navigate through the FAQ sections and access relevant information efficiently.
@@ -517,7 +532,7 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/faqs.png?raw=true" alt="faqs">
 </div>
 
-- **Profile Page:**
+- ### Profile Page
     - The profile page serves as a personalized dashboard for registered users, providing access to essential account management functionalities and order history details.
     - **Page Structure:**
         - The profile page is structured to display user-specific information, including personal details, order history, and options for profile customization.
@@ -535,7 +550,7 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
         - Feedback messages are incorporated throughout the profile page to notify users of successful profile updates, password changes, or any encountered errors during the process.
         - User-friendly messaging enhances the overall user experience and fosters a sense of confidence and satisfaction in utilizing the platform's account management features.
 
-- **Newsletter Subscription Management on the Profile Page:**
+- ### Newsletter Subscription Management
     - Newsletter subscription management is a key feature integrated into user profiles, allowing users to opt in or out of receiving periodic newsletters and updates from the platform.
     - **User Profile Integration:**
         - The newsletter subscription functionality is seamlessly integrated with the user profile model (`UserProfile`), enhancing the platform's account management capabilities.
@@ -561,7 +576,7 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
 </div>
 
 
-- **Bag Page:**
+- ### Bag Page
     - Overall, the bag page serves as a pivotal stage in the user's journey through the e-commerce platform, offering transparency, control, and convenience in managing their selected items before finalizing their purchase.
     - **Add to Bag Function:**
         - The `add_to_bag` function enables users to add a specified quantity of a product to their shopping bag.
@@ -587,7 +602,7 @@ In summary, the use of project milestones, epics, user stories, and tasks, coupl
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/bag-mobile.png?raw=true" alt="bag-mobile">
 </div>
 
-- **Toasts - Including Bag Preview:**
+- ### Toasts Including Bag Preview
 
 Toast Messages play a crucial role in providing real-time feedback to users regarding the outcome of their actions on the e-commerce platform. Here's an overview of the Toast Messages implementation:
 
@@ -613,7 +628,7 @@ Overall, Toast Messages serve as an integral component of the platform's user in
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/toast.png?raw=true" alt="toast">
 </div>
 
-- **Product Management:**
+- ### Product Management
     - **Purpose:**
         
         - The Product Management Page is designed exclusively for superusers to oversee and manage products within the e-commerce platform.
@@ -646,7 +661,7 @@ Overall, Toast Messages serve as an integral component of the platform's user in
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/product-manage-mobile.png?raw=true" alt="product-manage-mobile">
 </div>
 
-- **Blog Management:**
+- ### Blog Management
 
     - **Purpose:**
         
@@ -675,7 +690,7 @@ Overall, Toast Messages serve as an integral component of the platform's user in
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/blog-manage.png?raw=true" alt="blog-manage">
 </div>
 
-- **Checkout:**
+- ### Checkout
 
     - **Purpose:**
         
@@ -696,7 +711,7 @@ Overall, Toast Messages serve as an integral component of the platform's user in
 
     The Checkout Page plays a crucial role in facilitating smooth and secure transactions, providing customers with a convenient and reliable platform for completing their online purchases.
 
-- **Checkout Success Page:**
+- ### Checkout Success Page
 
     - **Purpose:**
         
@@ -722,7 +737,7 @@ Overall, Toast Messages serve as an integral component of the platform's user in
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/success.png?raw=true" alt="success">
 </div>
 
-- **Authentication Pages (Signup, Login, Password Management):**
+- ### Authentication Pages
 
     - **Purpose:**
         
@@ -750,3 +765,268 @@ Overall, Toast Messages serve as an integral component of the platform's user in
 <div align="center">
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/password.png?raw=true" alt="password">
 </div>
+
+# Features Not Yet Implemented
+
+1. **Social Media Integration:**
+    
+    - **Purpose:**
+        - Increase brand visibility and user engagement by allowing customers to share their experiences and product reviews on social media.
+    - **Features:**
+        - **Share Buttons:** Incorporate social media share buttons on product pages, order confirmation pages, and customer reviews, allowing users to share their experiences with Fetch & Feast products.
+        - **User-Generated Content:** Encourage users to share photos of their dogs enjoying Fetch & Feast products, creating a community-driven approach to marketing.
+        - **Integration with Social Platforms:** Seamlessly integrate sharing functionalities with popular social media platforms such as Facebook, Instagram, and Twitter to maximize reach and engagement.
+
+2. **Subscription Box Service:**
+    
+    - **Purpose:**
+        - Provide customers with a convenient and exciting way to receive a curated selection of dog treats, food, toys, and accessories on a recurring basis.
+    - **Features:**
+        - **Monthly Subscription Options:** Offer monthly subscription plans with customizable preferences based on the customer's dog size, dietary restrictions, and toy preferences.
+        - **Curated Selection:** Curate each subscription box with a variety of high-quality products tailored to the customer's preferences, ensuring a delightful unboxing experience.
+        - **Automated Billing and Shipping:** Automate billing and shipping processes for subscription boxes, providing hassle-free delivery to customers' doorsteps each month.
+
+3. **Local Dog Park Finder:**
+    
+    - **Purpose:**
+        - Enhance the platform's utility by helping users find nearby dog parks, grooming services, and pet-friendly establishments.
+    - **Features:**
+        - **Location-Based Search:** Implement a location-based search feature that allows users to find nearby dog parks and pet-friendly places based on their current location or specified area.
+        - **Map Integration:** Integrate maps and navigation functionalities to provide users with directions to their selected dog parks or pet-friendly locations.
+        - **Reviews and Ratings:** Enable users to leave reviews and ratings for dog parks and pet-friendly establishments, helping other users make informed decisions.
+
+4. **Tailored Recommendations:**
+    
+    - **Purpose:**
+        - Enhance the user experience by providing personalized product recommendations based on individual preferences and browsing history.
+    - **Features:**
+        - **Machine Learning Algorithms:** Utilize machine learning algorithms to analyze user behavior, purchase history, and preferences, then generate personalized product recommendations.
+        - **Recommendation Engine:** Implement a recommendation engine that suggests relevant products to users based on their past interactions with the platform and similar users' preferences.
+        - **Dynamic Recommendations:** Continuously update and refine product recommendations based on user feedback and evolving preferences.
+
+5. **Wishlist Functionality:**
+    
+    - **Purpose:**
+        - Allow users to create and manage wishlists of products they're interested in purchasing in the future, increasing user engagement and providing valuable insights into popular products.
+    - **Features:**
+        - **User-Specific Wishlists:** Enable users to create multiple wishlists and organize them according to their preferences, such as treats, toys, or grooming products.
+        - **Save for Later:** Provide users with the option to move products from their shopping bag to their wishlist for future consideration, simplifying the purchase decision process.
+        - **Share Wishlists:** Allow users to share their wishlists with friends and family, facilitating gift-giving and promoting user engagement.
+
+6. **Contact Us Model with Admin Panel:**
+    
+    - **Purpose:**
+        - Enhance user engagement and support by implementing a contact us model that stores user inquiries in a database.
+    - **Features:**
+        - **Database Integration:** Store user contact information, inquiries, and messages in a structured database, allowing for easy access and management.
+        - **Admin Panel:** Provide administrators with a frontend contact management page where they can view, respond to, and manage user messages.
+        - **Message Status:** Similar to Zendesk, allow admins to mark messages as solved or unresolved, helping track the status of user inquiries and ensuring timely responses.
+
+7. **FAQ Model with Admin Panel:**
+    
+    - **Purpose:**
+        - Improve user experience and provide a centralized platform for managing frequently asked questions.
+    - **Features:**
+        - **Database-Driven FAQ:** Implement a database-driven FAQ model that allows admins to add, archive, publish, and update FAQs directly from a frontend management page.
+        - **Category Organization:** Enable admins to categorize FAQs for easier navigation and user access.
+        - **Search Functionality:** Incorporate a search feature that allows users to quickly find relevant FAQs based on keywords or topics of interest.
+        - **Version Control:** Maintain version control for FAQs, allowing admins to track changes and revert to previous versions if needed.
+
+8. **Auto-Refill Subscriptions:**
+    
+    - **Purpose:**
+        - Offer convenience and encourage customer loyalty by allowing users to set up automatic refills for their favorite dog treats or food at specified intervals.
+    - **Features:**
+        - **Recurring Purchase Options:** Enable users to subscribe to auto-refill options for specific products, selecting the frequency of delivery (e.g., weekly, monthly).
+        - **Customizable Preferences:** Allow users to customize their auto-refill subscriptions based on their dog's dietary needs, portion sizes, and delivery preferences.
+        - **Flexible Management:** Provide users with the flexibility to modify, pause, or cancel their auto-refill subscriptions at any time through their account dashboard.
+
+9. **Pet Profile Management:**
+    
+    - **Purpose:**
+        - Enhance personalization and recommendation accuracy by allowing users to create profiles for their pets, including details such as breed, age, and dietary preferences.
+    - **Features:**
+        - **Pet Profiles:** Enable users to create and manage profiles for each of their pets, providing information such as name, breed, age, weight, and any dietary restrictions.
+        - **Personalized Recommendations:** Utilize pet profile data to tailor product recommendations based on each pet's specific needs, preferences, and health requirements.
+        - **Health Tracking:** Offer features for users to track their pet's health and wellness metrics, such as activity levels, weight management, and vaccination schedules.
+
+10. **Live Chat Support:**
+    - **Purpose:**
+        - Offer real-time assistance to users navigating the platform, answering queries, resolving issues, and providing personalized recommendations.
+    - **Features:**
+        - **Live Chat Widget:** Implement a chat widget that allows users to initiate conversations with customer support representatives while browsing the website.
+        - **Multi-agent Support:** Enable multiple customer support agents to handle concurrent chat sessions, ensuring prompt responses during peak hours.
+        - **Chatbot Integration:** Integrate a chatbot to handle frequently asked questions and basic inquiries, freeing up human agents to focus on more complex issues.
+        - **Transcripts and History:** Provide users with access to chat transcripts and history for reference, enhancing the continuity of support interactions.
+    - **Benefits:**
+        - Enhances customer satisfaction by offering immediate assistance and personalized support.
+        - Reduces cart abandonment rates by addressing user concerns and uncertainties in real-time.
+        - Improves overall user experience by providing a seamless channel for communication and problem resolution.
+
+# Technologies Used
+
+### Html
+
+ - Used to structure my webpages and the base templating language
+
+### CSS
+
+ - Custom CSS was written on large chunks of this site to make it as close to the wireframes as I felt it needed to be
+
+### JavaScript
+
+ -  Used to add timeout function for messages as well as to enable the menu on index.html
+
+### Python
+
+ -  Used for the logic in this project
+
+### Django
+
+ -  Framework used to build this project. Provides a ready installed admin panel and includes many helper template tags that make writing code quick and efficient
+
+### Font Awesome
+
+ -  Used for some icons throughout the project
+
+### Bootstrap
+
+ - Used as the base front end framework to work alongside Django. Also used Bootstrap icons in certain areas
+
+### Jinja Templating with Django
+
+ - Used to render logic within html documents and make the website more dynamic
+
+### GitHub
+
+ - Used to store the code for this project & for the projects Kanban board used to complete it
+
+### Heroku
+
+- Used to host and deploy this project
+
+### ElephantSQL
+
+- Used as the Postgres database during development
+
+### Gunicorn
+
+- Used for WSGI server
+
+### Crispy Forms
+
+- Used for auto-formatting of front-end forms
+
+### TinyMCE
+
+- Used for blog content formatting
+
+### Allauth
+
+- Used as the user authentication system
+
+### AWS
+
+- Used for hosting database, static files and media files
+
+### Git
+
+- Used for version control throughout the project and to ensure a good clean record of work done was maintained
+
+### Gitpod
+
+- Used as IDE to develop the project
+
+### Stripe
+
+- Used for payment processing including webhooks
+
+### ChatGPT 
+
+- Assisted in formatting certain sections of this README and helped with certain Flake8 warnings throughout the project
+
+### Leonardo.ai
+
+- Used for various images throughout the site such as hero image, product images and most blog images. For some blog images, I used images taken by myself or friends. 
+
+### Balsamiq Wireframe Program
+
+- Used for the creation of wireframes
+
+### xconvert.com
+
+- Used for converting and condensing images to webp format
+
+### Facebook
+
+- Used for the creaton of the business page
+
+# Webhooks
+    
+- The site uses a secure and robust webhook system to ensure that the payment process cannot be interrupted and corrupted, either through user error or malicious intent. Webhooks are incorporated via the Stripe payment system and are handled on the Stripe website, by way of the python code in `checkout > webhook_handler.py` and `checkout > webhooks.py`
+
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/stripe.png?raw=true" alt="stripe-webhooks">
+</div>
+
+
+# Database Design
+
+<div align="center">
+ <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/database.png?raw=true" alt="database">
+</div>
+
+# Ecommerce Business Model
+
+1. **Business Type**: Business to Customer (B2C)
+    
+2. **Nature of Business**: Fetch & Feast operates as an e-commerce platform specializing in the sale of dog treats, food, and toys to individual customers.
+    
+3. **Revenue Streams**:
+    
+    - Sales Revenue: Generated through the direct sale of dog treats, food, and toys to customers.
+    - Advertising Revenue: Potential income from sponsored content or advertisements displayed on the website.
+    - Partnership Revenue: Collaborations with pet-related brands or organizations for promotional activities.
+4. **Customer Segments**:
+    
+    - Dog Owners: Individuals who own dogs and are interested in purchasing high-quality treats, food, and toys for their pets.
+    - Pet Enthusiasts: Individuals passionate about pets who may purchase items for their own pets or as gifts for others.
+5. **Value Proposition**:
+    
+    - Quality Products: Offering a wide range of high-quality dog treats, food, and toys sourced from reputable suppliers.
+    - Convenience: Providing a convenient online platform for customers to browse, purchase, and receive products without leaving their homes.
+    - Community Engagement: Building a community of dog lovers through social media engagement, fostering a sense of belonging and loyalty.
+6. **Channels**:
+    
+    - E-commerce Website: The primary platform for showcasing products, processing orders, and facilitating transactions.
+    - Social Media: Utilizing platforms such as Facebook, Instagram, and Twitter for marketing, customer engagement, and community building.
+    - Newsletter: Sending regular updates, promotions, and announcements to subscribers via email.
+7. **Customer Relationships**:
+    
+    - Personalized Support: Offering responsive customer support to address inquiries, provide assistance, and resolve issues promptly.
+    - Engagement: Actively engaging with customers through social media interactions, responding to comments, and sharing user-generated content.
+8. **Key Activities**:
+    
+    - Product Sourcing: Identifying and sourcing high-quality dog treats, food, and toys from trusted suppliers and manufacturers.
+    - Website Management: Maintaining and updating the e-commerce platform to ensure a seamless shopping experience for customers.
+    - Marketing and Promotion: Implementing marketing strategies to attract new customers, retain existing ones, and promote brand awareness.
+9. **Key Resources**:
+    
+    - Product Inventory: Stocking a diverse range of dog treats, food, and toys to meet customer demand.
+    - E-commerce Platform: Investing in a robust and user-friendly website for online sales and transactions.
+    - Social Media Presence: Building and maintaining an active presence on social media platforms to engage with customers and drive traffic to the website.
+10. **Cost Structure**:
+    
+    - Product Costs: Expenses related to sourcing, purchasing, and stocking inventory.
+    - Website Maintenance: Costs associated with hosting, domain registration, website development, and maintenance.
+    - Marketing Expenses: Budget allocated for advertising, promotions, and social media marketing campaigns.
+11. **Key Partnerships**:
+    
+    - Suppliers: Establishing partnerships with reliable suppliers and manufacturers to ensure a consistent supply of quality products.
+    - Delivery Services: Collaborating with shipping and delivery services to fulfill customer orders efficiently and reliably.
+    - Influencers and Affiliates: Partnering with pet influencers or affiliates to promote products and reach a wider audience.
+12. **Growth Strategies**:
+    
+    - Expansion of Product Range: Continuously adding new and innovative products to cater to evolving customer preferences and trends.
+    - Geographic Expansion: Scaling operations to reach new geographic markets and expand the customer base.
+    - Customer Loyalty Programs: Implementing loyalty programs, discounts, and rewards to incentivize repeat purchases and foster customer loyalty.

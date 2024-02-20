@@ -282,6 +282,11 @@ a.category-badge>span.badge:hover {
     color: #009970 !important;
 }
 
+.small a,
+small {
+    color: #009970 !important;
+}
+
 /* Allauth form formatting */
 
 .allauth-form-inner-content p {

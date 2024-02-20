@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 from products.models import Product
 from blog.models import Post
 from profiles.models import UserProfile, NewsletterSubscription
-from .forms import NewsletterSubscriptionForm
+from .forms import NewsletterSubscriptionForm, NewsletterSubscriptionModalForm
 
 
 def index(request):
@@ -23,13 +23,17 @@ def index(request):
     top_liked_posts = Post.objects.filter(created_on__gte=last_month).annotate(
         num_likes=Count('likes')).order_by('-num_likes')[:4]
 
-    # Initialize the NewsletterSubscriptionForm
-    form = NewsletterSubscriptionForm()
+    # Initialize the NewsletterSubscriptionForm for the index view
+    index_form = NewsletterSubscriptionForm()
+
+    # Initialize the NewsletterSubscriptionModalForm for the modal
+    modal_form = NewsletterSubscriptionModalForm()
 
     context = {
         'featured_products': featured_products,
         'top_liked_posts': top_liked_posts,
-        'form': form
+        'index_form': index_form,
+        'modal_form': modal_form
     }
 
     return render(

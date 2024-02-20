@@ -1003,6 +1003,51 @@ Overall, Toast Messages serve as an integral component of the platform's user in
  <img src="https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/database.png?raw=true" alt="database">
 </div>
 
+1. **User (allauth)**:
+    
+    - This model represents a user account and is likely provided by Django's authentication system (allauth).
+    - It serves as a base user model and is referenced by other models through foreign keys (FK), such as UserProfile, NewsletterSubscription, Order, Rating, and Comment.
+2. **UserProfile**:
+    
+    - This model stores additional information about each user.
+    - It has a one-to-one relationship with the User model, meaning each UserProfile instance is associated with exactly one User instance.
+    - It contains fields like default\_email, default\_phone\_number, default\_street\_address1, etc., to store user-specific information.
+3. **Product**:
+    
+    - This model represents a product available on the platform.
+    - It has a foreign key (FK) relationship with the Category model, indicating that each product belongs to a specific category.
+    - It's referenced by the OrderLineItem model through a foreign key, indicating that each order line item is associated with a specific product.
+4. **NewsletterSubscription**:
+    
+    - This model represents a user's subscription to the newsletter.
+    - It has a foreign key (FK) relationship with the UserProfile model, indicating that each subscription is associated with a specific user's profile.
+5. **Order**:
+    
+    - This model represents an order placed by a user.
+    - It has a foreign key (FK) relationship with the UserProfile model, indicating that each order is associated with a specific user's profile.
+    - It's referenced by the OrderLineItem model through a foreign key, indicating that each order line item is associated with a specific order.
+6. **Post**:
+    
+    - This model represents a post on the platform.
+    - It has a foreign key (FK) relationship with the User model, indicating the author of the post.
+    - It's referenced by the Comment model through a foreign key, indicating that each comment is associated with a specific post.
+7. **Rating**:
+    
+    - This model represents a rating given by a user to a product.
+    - It has foreign key (FK) relationships with both the Product and User models, indicating the product being rated and the user who gave the rating.
+8. **OrderLineItem**:
+    
+    - This model represents a line item within an order.
+    - It has foreign key (FK) relationships with both the Order and Product models, indicating the order the line item belongs to and the product being ordered.
+9. **Category**:
+    
+    - This model represents a category for products.
+    - It's referenced by the Product model through a foreign key, indicating that each product belongs to a specific category.
+10. **Comment**:
+    
+    - This model represents a comment on a post.
+    - It has foreign key (FK) relationships with both the Post and User models, indicating the post being commented on and the user who made the comment.
+
 # Ecommerce Business Model
 
 1. **Business Type**: Business to Customer (B2C)

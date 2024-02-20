@@ -58,7 +58,6 @@
                     <button class="btn btn-black rounded-0 mb-3 text-uppercase ml-3" type="submit">Add</button>
                 </form>
             </div>
-
             <form method="post" action="{% url 'bulk_delete_products' %}" id="deleteForm">
                 {% csrf_token %}
                 <input type="hidden" name="selected_products" id="selectedProductsInput" value="">
@@ -80,6 +79,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <strong>Total Products: {{ total_products_count }}</strong>
                             <!--Loop through published products-->
                             {% for product in products %}
                             <tr>

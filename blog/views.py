@@ -314,6 +314,9 @@ def manage_blogs(request):
     else:
         blogs = Post.objects.all()
 
+    # Total count of blogs
+    total_blogs_count = blogs.count()
+
     # Pagination
     paginator = Paginator(blogs, 8)  # Show 8 products per page
     page_number = request.GET.get('page')
@@ -326,8 +329,13 @@ def manage_blogs(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         blogs = paginator.page(paginator.num_pages)
 
-    return render(
-        request, 'blog/manage_blogs.html', {'blogs': blogs, 'page_obj': blogs})
+    context = {
+        'blogs': blogs,
+        'page_obj': blogs,
+        'total_blogs_count': total_blogs_count,
+    }
+
+    return render(request, 'blog/manage_blogs.html', context)
 
 
 @login_required

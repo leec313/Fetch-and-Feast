@@ -199,6 +199,9 @@ def manage_products(request):
         products = Product.objects.all()
     category_form = CategoryForm()  # Instantiate an empty CategoryForm
 
+    # Total count of products
+    total_products_count = products.count()
+
     # Pagination
     paginator = Paginator(products, 8)  # Show 8 products per page
     page_number = request.GET.get('page')
@@ -215,6 +218,7 @@ def manage_products(request):
         'products': products,
         'category_form': category_form,
         'page_obj': products,
+        'total_products_count': total_products_count,
     }
     return render(request, 'products/manage_products.html', context)
 

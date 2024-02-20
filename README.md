@@ -133,7 +133,7 @@ All user stories can be found in the linked GitHub project [here](https://github
 ## Visual Design
 ### Wireframes
 
-WIREFRAMES LINK HERE
+All wireframes can be found via this link to the GitHub folder [here](https://github.com/leec313/Fetch-and-Feast/blob/main/readme-images/wireframes)
 
 ### Fonts
 
@@ -941,7 +941,7 @@ Overall, Toast Messages serve as an integral component of the platform's user in
 
 - Used for various images throughout the site such as hero image, product images and most blog images. For some blog images, I used images taken by myself or friends. 
 
-### Balsamiq Wireframe Program
+### Adobe Photoshop
 
 - Used for the creation of wireframes
 

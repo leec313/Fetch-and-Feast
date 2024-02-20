@@ -83,8 +83,8 @@
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                 <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                     <li class="list-inline-item dropdown">
-                        <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <a class="text-black nav-link" href="#" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
                             <div class="text-center">
                                 <!--If profile image exists, display it-->
                                 {% if profile_image %}
@@ -98,7 +98,7 @@
                             </div>
                         </a>
                         <!--Dropdown menu for my account-->
-                        <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                        <div class="dropdown-menu border-0">
                             <!--If user is logged in show My profile and Logout-->
                             {% if request.user.is_authenticated %}
                             <!--If superuser logged in, show Product & Blog Management along with My profile and logout-->
@@ -152,8 +152,8 @@
             </div>
         </div>
         <!--Mobile Nav - Icon only shown on small/med screens - custom css in base.css-->
-        <div class="row bg-white">
-            <nav class="navbar navbar-expand-lg navbar-light w-100">
+        <nav class="row bg-white">
+            <div class="navbar navbar-expand-lg navbar-light w-100">
                 <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#main-nav"
                     aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -166,8 +166,8 @@
                 {% include 'includes/mobile-top-header.html' %}
                 <!--Show main nav for both mobile and desktop-->
                 {% include 'includes/main-nav.html' %}
-            </nav>
-        </div>
+            </div>
+        </nav>
     </header>
     <!--If any messages, they will display in this container-->
     {% if messages %}
@@ -214,129 +214,132 @@
 
     <!--JS to call toasts-->
     {% block postloadjs %}
-    <script type="text/javascript">
+    <script>
         $('.toast').toast('show');
     </script>
     {% endblock %}
 
+    <!--Footer beginning-->
+    <footer class="col-10 mt-5 bg-white text-dark offset-1">
+        <div class="row">
+            <!--Help Column-->
+            <div class="col-md-2">
+                <h5 class="font-weight-bold">Help</h5>
+                <hr>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'contact' %}" aria-label="Contact Us"
+                            class="text-decoration-none footer-contact">Contact
+                            Us</a></li>
+                    <li><a href="{% url 'faq' %}" aria-label="FAQ" class="text-decoration-none footer-contact">FAQ</a>
+                    </li>
+                </ul>
+            </div>
+            <!--Account Column-->
+            <div class="col-md-2">
+                <h5 class="font-weight-bold">My Account</h5>
+                <hr>
+                <!--If logged in, show appropriate links, else show login/register-->
+                {% if request.user.is_authenticated %}
+                <!--Show management access for superusers-->
+                {% if request.user.is_superuser %}
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'manage_products' %}" aria-label="Product Management"
+                            class="text-decoration-none footer-contact">Product Management</a></li>
+                    <li><a href="{% url 'manage_blogs' %}" aria-label="Blog Management"
+                            class="text-decoration-none footer-contact">Blog Management</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'profile' %}" aria-label="Profile"
+                            class="text-decoration-none footer-contact">Profile</a></li>
+                    <li><a href="{% url 'account_logout' %}" aria-label="Logout"
+                            class="text-decoration-none footer-contact">Logout</a></li>
+                </ul>
+                {% else %}
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'account_login' %}" aria-label="Login"
+                            class="text-decoration-none footer-contact">Login</a></li>
+                    <li><a href="{% url 'account_signup' %}" aria-label="Register"
+                            class="text-decoration-none footer-contact">Register</a></li>
+                </ul>
+                {% endif %}
+
+            </div>
+            <!--Pages column-->
+            <div class="col-md-2">
+                <h5 class="font-weight-bold">Pages</h5>
+                <hr>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'home' %}" aria-label="Home"
+                            class="text-decoration-none footer-contact">Home</a>
+                    </li>
+                    <li><a href="{% url 'products' %}" aria-label="All Products"
+                            class="text-decoration-none footer-contact">All
+                            Products</a></li>
+                    <li><a href="{% url 'products' %}?category=chew-toys,balls,fetch-toys" aria-label="Toys"
+                            class="text-decoration-none footer-contact">Toys</a></li>
+                    <li><a href="{% url 'products' %}?category=dry-food,wet-food,treats" aria-label="Food"
+                            class="text-decoration-none footer-contact">Food</a></li>
+                    <li><a href="{% url 'products' %}?category=deals,clearance" aria-label="Special Offers"
+                            class="text-decoration-none footer-contact">Special Offers</a></li>
+                    <li><a href="{% url 'blogs' %}" aria-label="Blog"
+                            class="text-decoration-none footer-contact">Blog</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-2"></div>
+            <!--Info Column-->
+            <div class="col-md-4 mt-2 footer-contact">
+                <span class="d-flex my-2">
+                    <a href="tel:1-800-DOG-DOG" class="text-decoration-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            class="bi bi-telephone-fill mx-2" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
+                        </svg>
+                        1-800-DOG-DOG</a>
+                </span>
+                <span class="d-flex my-2">
+                    <a class="text-decoration-none" href=mailto:“support@fetchandfeast.com”>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            class="bi bi-envelope-fill mx-2" viewBox="0 0 16 16">
+                            <path
+                                d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
+                        </svg>
+                        Email us here!
+                    </a>
+                </span>
+                <span class="d-flex my-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                    </svg>
+                    <a href="https://www.google.com/maps/place/North+St,+Hansfield+Or+Phibblestown,+Dublin/data=!4m2!3m1!1s0x48676d7b99ff3461:0xcbf5a14c8119baf?sa=X&ved=2ahUKEwi3gO6s4bqEAxWHWUEAHdAXAiMQ8gF6BAgbEAA"
+                        class="mx-2 text-muted">6196 North St, Dublin, Ireland</a>
+                </span>
+            </div>
+        </div>
+        <!--Copyright/Social/Privacy Policy-->
+        <div class="row mt-3">
+            <div class="col text-center">
+                <a href="https://www.facebook.com/people/Fetch-Feast/61556243653249/" target="_blank"
+                    class="footer-contact text-decoration-none"><i class="fab fa-facebook-square"></i> Follow us on
+                    Facebook!</a>
+                <p class="text-muted mb-0">&copy; 2024 | Fetch & Feast | All Rights Reserved. | Lee Curtis</p>
+                <a href="https://www.termsfeed.com/live/1c564c3b-962e-4260-b7c3-7e8aa16a2349" target="_blank"
+                    class="footer-contact text-decoration-none">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        $(document).ready(function () {
+            // Hide all toasts after 3 seconds except those with the class 'bag-notification-wrapper'
+            // This is so the success message with the bag, stays open for the user
+            // Every other toast should disappear after 3 seconds
+            $('.toast').not(function () {
+                return $(this).find('.bag-notification-wrapper').length > 0;
+            }).delay(3000).fadeOut('slow');
+        });
+    </script>
 
 </body>
-
-<!--Footer-->
-<footer class="col-10 mt-5 bg-white text-dark offset-1">
-    <div class="row">
-        <!--Help Column-->
-        <div class="col-md-2">
-            <h5 class="font-weight-bold">Help</h5>
-            <hr>
-            <ul class="list-unstyled">
-                <li><a href="{% url 'contact' %}" aria-label="Contact Us"
-                        class="text-decoration-none footer-contact">Contact
-                        Us</a></li>
-                <li><a href="{% url 'faq' %}" aria-label="FAQ" class="text-decoration-none footer-contact">FAQ</a></li>
-            </ul>
-        </div>
-        <!--Account Column-->
-        <div class="col-md-2">
-            <h5 class="font-weight-bold">My Account</h5>
-            <hr>
-            <!--If logged in, show appropriate links, else show login/register-->
-            {% if request.user.is_authenticated %}
-            <!--Show management access for superusers-->
-            {% if request.user.is_superuser %}
-            <ul class="list-unstyled">
-                <li><a href="{% url 'manage_products' %}" aria-label="Product Management"
-                        class="text-decoration-none footer-contact">Product Management</a></li>
-                <li><a href="{% url 'manage_blogs' %}" aria-label="Blog Management"
-                        class="text-decoration-none footer-contact">Blog Management</a></li>
-                {% endif %}
-                <li><a href="{% url 'profile' %}" aria-label="Profile"
-                        class="text-decoration-none footer-contact">Profile</a></li>
-                <li><a href="{% url 'account_logout' %}" aria-label="Logout"
-                        class="text-decoration-none footer-contact">Logout</a></li>
-            </ul>
-            {% else %}
-            <ul class="list-unstyled">
-                <li><a href="{% url 'account_login' %}" aria-label="Login"
-                        class="text-decoration-none footer-contact">Login</a></li>
-                <li><a href="{% url 'account_signup' %}" aria-label="Register"
-                        class="text-decoration-none footer-contact">Register</a></li>
-            </ul>
-            {% endif %}
-
-        </div>
-        <!--Pages column-->
-        <div class="col-md-2">
-            <h5 class="font-weight-bold">Pages</h5>
-            <hr>
-            <ul class="list-unstyled">
-                <li><a href="{% url 'home' %}" aria-label="Home" class="text-decoration-none footer-contact">Home</a>
-                </li>
-                <li><a href="{% url 'products' %}" aria-label="All Products"
-                        class="text-decoration-none footer-contact">All
-                        Products</a></li>
-                <li><a href="{% url 'products' %}?category=chew-toys,balls,fetch-toys" aria-label="Toys"
-                        class="text-decoration-none footer-contact">Toys</a></li>
-                <li><a href="{% url 'products' %}?category=dry-food,wet-food,treats" aria-label="Food"
-                        class="text-decoration-none footer-contact">Food</a></li>
-                <li><a href="{% url 'products' %}?category=deals,clearance" aria-label="Special Offers"
-                        class="text-decoration-none footer-contact">Special Offers</a></li>
-                <li><a href="{% url 'blogs' %}" aria-label="Blog" class="text-decoration-none footer-contact">Blog</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-2"></div>
-        <!--Info Column-->
-        <div class="col-md-4 mt-2 footer-contact">
-            <span class="d-flex my-2">
-                <a href="tel: 1-800-DOG-DOG" class="text-decoration-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                        class="bi bi-telephone-fill mx-2" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
-                    </svg>
-                    1-800-DOG-DOG</a>
-            </span>
-            <span class="d-flex my-2">
-                <a class="text-decoration-none" href=mailto:“support@fetchandfeast.com”>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                        class="bi bi-envelope-fill mx-2" viewBox="0 0 16 16">
-                        <path
-                            d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
-                    </svg>
-                    Email us here!
-                </a>
-            </span>
-            <span class="d-flex my-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                    class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-                </svg>
-                <p class="mx-2 text-muted">6196 North St, Dublin, Ireland</p>
-            </span>
-        </div>
-    </div>
-    <!--Copyright/Social/Privacy Policy-->
-    <div class="row mt-3">
-        <div class="col text-center">
-            <a href="https://www.facebook.com/people/Fetch-Feast/61556243653249/" target="_blank"
-                class="footer-contact text-decoration-none"><i class="fab fa-facebook-square"></i> Follow us on
-                Facebook!</a>
-            <p class="text-muted mb-0">&copy; 2024 | Fetch & Feast | All Rights Reserved. | Lee Curtis</p>
-            <a href="https://www.termsfeed.com/live/1c564c3b-962e-4260-b7c3-7e8aa16a2349" target="_blank"
-                class="footer-contact text-decoration-none">Privacy Policy</a>
-        </div>
-    </div>
-</footer>
-<script>
-    $(document).ready(function () {
-        // Hide all toasts after 3 seconds except those with the class 'bag-notification-wrapper'
-        // This is so the success message with the bag, stays open for the user
-        // Every other toast should disappear after 3 seconds
-        $('.toast').not(function () {
-            return $(this).find('.bag-notification-wrapper').length > 0;
-        }).delay(3000).fadeOut('slow');
-    });
-</script>
 
 </html>

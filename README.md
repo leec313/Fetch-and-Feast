@@ -83,34 +83,7 @@
 7. <summary><a href="#search-engine-optimization-and-social-media-marketing">Search Engine Optimization And Social Media Marketing
 </a></summary>
 
-8. <details open>
-    <summary><a href="#testing">Testing</a></summary>
-
-    <ul>
-    <li><details>
-    <summary><a href="#automated-testing">Automated Testing</a></summary>
-
-    - [Validation](#validation)
-    - [Python Testing](#python-testing)
-
-    </details></li>
-
-    <li><details>
-    <summary><a href="#manual-testing">Manual Testing</a></summary>
-
-    - [General Testing](#general-testing)
-    - [Mobile Testing](#mobile-testing)
-    - [Desktop Testing](#desktop-testing)
-    </details></li>
-
-    <li><details>
-    <summary><a href="#bugs">Bugs</a></summary>
-
-    - [Known Bugs](#known-bugs)
-    - [Fixed Bugs](#fixed-bugs)
-    </details></li>
-    </ul>
-</details>
+8. <summary><a href="#testing">Testing</a></summary>
 
 9. <a href="#deployment">Deployment</a>
 
@@ -1162,6 +1135,10 @@ Within my application, I've seamlessly integrated a newsletter sign-up form, pro
 Furthermore, I've implemented a streamlined unsubscribe process, allowing users to opt-out of the newsletter subscription easily. Upon subscription confirmation, users receive a confirmation email containing a link for unsubscribing, ensuring compliance with email marketing regulations and respecting user preferences.
 
 Looking ahead, I aim to enhance the newsletter marketing strategy by integrating an intuitive frontend management system. This system will facilitate the seamless creation and distribution of newsletters to customers, ensuring an efficient and user-friendly experience for both administrators and subscribers.
+
+# Testing
+
+For all testing, please refer to the [TESTING.md](https://github.com/leec313/Fetch-and-Feast/blob/main/TESTING.md) file.
 
 # Deployment
 

@@ -1,82 +1,84 @@
 {% load static %}
-
-<li class="list-inline-item">
-    <a class="text-black nav-link d-block d-lg-none" href="#" id="mobile-search" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        <div class="text-center">
-            <div><i class="fas fa-search fa-lg"></i></div>
-            <p class="my-0">Search</p>
-        </div>
-    </a>
-    <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0" aria-labelledby="mobile-search">
-        <form class="form" method="GET" action="{% url 'products' %}">
-            <div class="input-group w-100">
-                <input class="form-control border border-black rounded-0" type="text" name="q"
-                    placeholder="Search our products">
-                <div class="input-group-append">
-                    <button class="form-control form-control btn btn-black border border-black rounded-0" type="submit">
-                        <span class="icon">
-                            <i class="fas fa-search"></i>
-                        </span>
-                    </button>
+<ul class="p-0">
+    <li class="list-inline-item">
+        <a class="text-black nav-link d-block d-lg-none" href="#" id="mobile-search" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <div class="text-center">
+                <div><i class="fas fa-search fa-lg"></i></div>
+                <p class="my-0">Search</p>
+            </div>
+        </a>
+        <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0">
+            <form class="form" method="GET" action="{% url 'products' %}">
+                <div class="input-group w-100">
+                    <input class="form-control border border-black rounded-0" type="text" name="q"
+                        placeholder="Search our products">
+                    <div class="input-group-append">
+                        <button class="form-control form-control btn btn-black border border-black rounded-0"
+                            type="submit">
+                            <span class="icon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </button>
+                    </div>
                 </div>
+            </form>
+        </div>
+    </li>
+    <li class="list-inline-item dropdown">
+        <a class="text-black nav-link d-block d-lg-none" href="#" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <div class="text-center">
+                {% if profile_image %}
+                <img src="{{ profile_image }}" alt="My Account" class="rounded-circle profile_img_base">
+                {% else %}
+                <img src="{% get_media_prefix %}default-images/default_profile.webp" alt="My Account"
+                    class="rounded-circle profile_img_base">
+                {% endif %}
+                <p class="my-0">My Account</p>
             </div>
-        </form>
-    </div>
-</li>
-<li class="list-inline-item dropdown">
-    <a class="text-black nav-link d-block d-lg-none" href="#" id="user-options" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        <div class="text-center">
-            {% if profile_image %}
-            <img src="{{ profile_image }}" alt="My Account" class="rounded-circle profile_img_base">
-            {% else %}
-            <img src="{% get_media_prefix %}default-images/default_profile.webp" alt="My Account"
-                class="rounded-circle profile_img_base">
+        </a>
+        <div class="dropdown-menu border-0">
+            {% if request.user.is_authenticated %}
+            {% if request.user.is_superuser %}
+            <a href="{% url 'manage_products' %}" class="dropdown-item">Product Management</a>
+            <a href="{% url 'manage_blogs' %}" class="dropdown-item">Blog Management</a>
             {% endif %}
-            <p class="my-0">My Account</p>
+            <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
+            <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+            {% else %}
+            <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+            <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+            {% endif %}
         </div>
-    </a>
-    <div class="dropdown-menu border-0" aria-labelledby="user-options">
-        {% if request.user.is_authenticated %}
-        {% if request.user.is_superuser %}
-        <a href="{% url 'manage_products' %}" class="dropdown-item">Product Management</a>
-        <a href="{% url 'manage_blogs' %}" class="dropdown-item">Blog Management</a>
-        {% endif %}
-        <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
-        <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-        {% else %}
-        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-        {% endif %}
-    </div>
-</li>
-<li class="list-inline-item">
-    <a class="{% if grand_total %}bag-color font-weight-bold{% else %}text-black{% endif %} bag-nav d-block d-lg-none"
-        href="{% url 'view_bag' %}">
-        <div class="text-center">
-            <div>
-                {% if grand_total %}
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                    class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
-                </svg>
-                {% else %}
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                    class="bi bi-bag-heart" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                        d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0M14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1M8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
-                </svg>
-                {% endif %}
+    </li>
+    <li class="list-inline-item">
+        <a class="{% if grand_total %}bag-color font-weight-bold{% else %}text-black{% endif %} bag-nav d-block d-lg-none"
+            href="{% url 'view_bag' %}">
+            <div class="text-center">
+                <div>
+                    {% if grand_total %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
+                    </svg>
+                    {% else %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        class="bi bi-bag-heart" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0M14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1M8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
+                    </svg>
+                    {% endif %}
+                </div>
+                <p class="my-0">
+                    {% if grand_total %}
+                    €{{ grand_total|floatformat:2 }}
+                    {% else %}
+                    €0.00
+                    {% endif %}
+                </p>
             </div>
-            <p class="my-0">
-                {% if grand_total %}
-                €{{ grand_total|floatformat:2 }}
-                {% else %}
-                €0.00
-                {% endif %}
-            </p>
-        </div>
-    </a>
-</li>
+        </a>
+    </li>
+</ul>

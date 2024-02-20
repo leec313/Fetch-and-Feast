@@ -222,7 +222,7 @@
                         <div class="card-body ratings-individual mr-3 shadow">
                             <span class="d-flex">
                                 <!--Displays the user's profile image, username and the creation date-->
-                                {% if rating.user.profile_image %}
+                                {% if rating.user.userprofile.profile_image %}
                                 <img class="rounded-circle profile_img_base"
                                     src="{{ rating.user.id|get_profile_image_url:rating_profiles }}"
                                     alt="{{ rating.user.username }}">

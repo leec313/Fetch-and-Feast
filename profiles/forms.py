@@ -109,6 +109,14 @@ class ChangePasswordForm(PasswordChangeForm):
                     'class'] = 'border-black rounded-0 profile-form-input'
                 self.fields[field].label = False
 
+        # Customize rendering of help text for new_password1 field
+        self.fields['new_password1'].help_text = (
+            "Your password must contain at least 8 characters"
+            "You password cannot be entirely numeric."
+            "Your password can't be similar to your personal information."
+            "Your password can't be a commonly used password."
+        )
+
 
 class ProfileNewsletterUpdate(forms.ModelForm):
     """

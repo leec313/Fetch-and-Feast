@@ -194,13 +194,13 @@
 {% block postloadjs %}
 {{ block.super }}
 <!-- Defines a script to scroll to the top when back-to-top link is clicked -->
-<script type="text/javascript">
+<script>
     $('.btt-link').click(function (e) {
         window.scrollTo(0, 0)
     })
 </script>
 <!-- Defines script to handle sorting selection -->
-<script type="text/javascript">
+<script>
     $('#sort-selector').change(function () {
         var selector = $(this);
         var currentUrl = new URL(window.location);

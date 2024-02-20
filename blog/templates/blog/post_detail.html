@@ -47,7 +47,7 @@
                     <!-- Post content goes within the card-body -->
                     <!-- Use the | safe filter inside the template tags: the safe filter is used to mark a string as safe for HTML output -->
                     <!-- Linebreaks: used to display text with line breaks in HTML, preserving the formatting from the original text that the user enters when creating a post. -->
-                    {{ post.content | safe | linebreaks }}
+                    {{ post.content | safe }}
                     <div class="row">
                         <div class="col d-flex align-items-center">
                             <strong>

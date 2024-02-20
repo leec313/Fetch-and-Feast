@@ -62,6 +62,7 @@
                 {% csrf_token %}
                 <input type="hidden" name="selected_products" id="selectedProductsInput" value="">
                 <div class="table-responsive">
+                    <strong>Total Products: {{ total_products_count }}</strong>
                     <table class="table">
                         <thead>
                             <tr>
@@ -79,7 +80,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <strong>Total Products: {{ total_products_count }}</strong>
                             <!--Loop through published products-->
                             {% for product in products %}
                             <tr>

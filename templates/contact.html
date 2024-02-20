@@ -14,7 +14,7 @@
 {% block faq %}
 <div class="container-fluid col-lg-4 col-8">
     <h1 class="mt-5 mb-4">Contact Us</h1>
-    <form action="" method="post">
+    <form action="{% url 'contact' %}" method="post">
         {% csrf_token %}
         <div class="mb-3">
             <label for="name" class="form-label">Name:</label>

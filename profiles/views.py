@@ -1,5 +1,6 @@
 from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.http import HttpResponseForbidden
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile, NewsletterSubscription
@@ -117,8 +118,14 @@ def change_password(request):
     return redirect(reverse('profile'))
 
 
+@login_required
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
+
+    # Check if the current user is the owner of the order
+    if order.user_profile.user != request.user:
+        # If not, return a 403 Forbidden response
+        return HttpResponseForbidden(render(request, 'errors/403.html'))
 
     template = 'profiles/order_detail.html'
     context = {

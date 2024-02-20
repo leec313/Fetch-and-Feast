@@ -56,6 +56,7 @@
                 {% csrf_token %}
                 <input type="hidden" name="selected_blogs" id="selectedBlogsInput" value="">
                 <div class="table-responsive">
+                    <strong>Blogs: {{ total_blogs_count }}</strong>
                     <table class="table">
                         <thead>
                             <tr>
@@ -72,7 +73,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <strong>Total Blogs: {{ total_blogs_count }}</strong>
                             <!--Looping through each blog post-->
                             {% for blog in blogs %}
                             <tr>

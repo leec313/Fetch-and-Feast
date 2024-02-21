@@ -33,7 +33,10 @@ def contact_view(request):
         # Send email to user
         send_mail(
             subject='Fetch & Feast: Message Received',
-            message='Thank you for contacting us! We have received your message and will get back to you soon.', # noqa
+            message=(
+                'Thank you for contacting us! We have received your message\
+                    and will get back to you soon.'
+            ),
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[email],
         )

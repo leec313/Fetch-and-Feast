@@ -70,6 +70,85 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 | Sign Up | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/lighthouse-images/lh-signup.png) | Some Minor Warnings |
 
 
+## Python
+
+I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com/) to validate all of my Python files. Along the way I have made sure my code was clean by using the Pep8 and Flake8 addons within GitPod.
+
+### Bag
+| File | Screenshot | Notes |
+| --- | --- | --- |
+| contexts.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/bag-contexts.png) | Pass: No Errors |
+| urls.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/bag-urls.png) | Pass: No Errors |
+| views.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/bag-views.png) | Pass: No Errors |
+
+### Blogs
+| File | Screenshot | Notes |
+| --- | --- | --- |
+| admin.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/blog-admin.png) | Pass: No Errors |
+| forms.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/blog-forms.png) | Pass: No Errors |
+| models.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/blog-models.png) | Pass: No Errors |
+| urls.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/blog-urls.png) | Pass: No Errors |
+| views.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/blog-views.png) | Pass: No Errors |
+| widgets.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/blog-widgets.png) | Pass: No Errors |
+
+### Checkout
+| File | Screenshot | Notes |
+| --- | --- | --- |
+| admin.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/checkout-admin.png) | Pass: No Errors |
+| forms.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/checkout-forms.png) | Pass: No Errors |
+| models.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/checkout-models.png) | Pass: No Errors |
+| signals.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/checkout-signals.png) | Pass: No Errors |
+| urls.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/checkout-urls.png) | Pass: No Errors |
+| views.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/checkout-views.png) | Pass: No Errors |
+| webhook-handler.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/checkout-webhook-handler.png) | Pass: No Errors |
+| webhooks.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/checkout-webhook.png) | Pass: No Errors |
+
+### Home
+| File | Screenshot | Notes |
+| --- | --- | --- |
+| forms.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/home-forms.png) | Pass: No Errors |
+| urls.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/home-urls.png) | Pass: No Errors |
+| views.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/home-views.png) | Pass: No Errors |
+
+### Products
+| File | Screenshot | Notes |
+| --- | --- | --- |
+| admin.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/products-admin.png) | Pass: No Errors |
+| contexts.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/products-contexts.png) | Pass: No Errors |
+| forms.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/products-forms.png) | Pass: No Errors |
+| models.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/products-models.png) | Pass: No Errors |
+| urls.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/checkout-urls.png) | Pass: No Errors |
+| views.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/products-views.png) | Pass: No Errors |
+
+### Profile
+| File | Screenshot | Notes |
+| --- | --- | --- |
+| admin.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/profiles-admin.png) | Pass: No Errors |
+| contexts.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/profiles-contexts.png) | Pass: No Errors |
+| forms.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/profiles-forms.png) | Pass: No Errors |
+| models.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/profiles-models.png) | Pass: No Errors |
+| urls.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/profiles-urls.png) | Pass: No Errors |
+| views.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/profiles-views.png) | Pass: No Errors |
+
+### Fetch & Feast
+| File | Screenshot | Notes |
+| --- | --- | --- |
+| settings.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/project-settings.png) | Pass: No Errors |
+| urls.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/project-urls.png) | Pass: No Errors |
+| views.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/project-views.png) | Pass: No Errors |
+
+## JavaScript
+
+I have used the recommended [JShint Validator](https://jshint.com/) to validate all of my JS files.
+
+| File | Screenshot | Notes |
+| --- | --- | --- |
+| blog app > comment_section.js | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/js-images/comment-section.png) | Pass: No Errors |
+| profiles app > countryfield.js | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/js-images/countryfield.png) | Two unused variables (zoomIn & zoomOut) - they are being used by the profile image |
+| checkout app > stripe_elements.js | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/js-images/stripe-elements.png) | Undefined Stripe variable |
+| home app > subscribe_modal.js | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/js-images/subscribe-modal.png) | Undefined bootstrap variable |
+
+
 ## Defensive Programming
 
 Defensive programming was manually tested with the below user acceptance testing:

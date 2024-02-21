@@ -118,7 +118,7 @@ class PostDetailView(DetailView):
         for comment in comments:
             user_id = comment.user.id
             user_profile = UserProfile.objects.filter(user_id=user_id).first()
-            profile_image_url = user_profile.profile_image.url if user_profile and user_profile.profile_image else None # noqa
+            profile_image_url = user_profile.profile_image.url if user_profile and user_profile.profile_image else None  # noqa
             commenter_profile_images[user_id] = profile_image_url
 
         return context

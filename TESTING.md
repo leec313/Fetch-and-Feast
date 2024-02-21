@@ -68,3 +68,155 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 | Profile | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/lighthouse-images/lh-profile.png) | [See this bug](https://github.com/users/leec313/projects/3/views/1?pane=issue&itemId=54045121) |
 | Sign In | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/lighthouse-images/lh-signin.png) | Some Minor Warnings |
 | Sign Up | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/lighthouse-images/lh-signup.png) | Some Minor Warnings |
+
+
+## Defensive Programming
+
+Defensive programming was manually tested with the below user acceptance testing:
+
+| Page | User Action | Expected Result | Pass/Fail | Comments |
+| --- | --- | --- | --- | --- |
+| Nav links |  |  |  |  |
+|  | Click on Logo | Redirection to Home page | Pass |  |
+|  | Click on Products - All Products link in navbar | Redirection to Products page | Pass |  |
+|  | Click on Products - Sort by links (price, rating, category) in navbar | Redirection to Products page - Display only 'sorted' Products | Pass |  |
+|  | Click on Products - Chew Toys, Balls, Fetch Toys, All Toys links in navbar | Redirection to Products page - Display only 'Chew Toys, Balls, Fetch Toys, All Toys' category Products | Pass |  |
+|  | Click on Products - Dry Food, Wet Food, Treats, All Food links in navbar | Redirection to Products page - Display only 'Dry Food, Wet Food, Treats, All Food' category Products | Pass |  |
+|  | Click on Products - Deals, Clearance, All Specials links in navbar | Redirection to Products page - Display only 'Deals, Clearance, All Specials' category Products | Pass |  |
+|  | Click on Faq link in navbar | Redirection to Faq page | Pass |  |
+|  | Click on Contact link in navbar | Redirection to Contact page | Pass |  |
+|  | Click on Search in navbar | Search box input to search on Products page | Pass |  |
+|  | Click on Register link in navbar | Redirection to Register page | Pass |  |
+|  | Click on Login link in navbar | Redirection to Login page | Pass |  |
+|  | Click on Bag link in navbar | Redirection to Bag page | Pass |  |
+|  | Click on My Account - My Profile link in navbar | Redirection to User Profile page | Pass |  |
+|  | Click on My Account - Logout link in navbar | Redirection to Logout page | Pass |  |
+|  | Click on Product Management link in navbar | Redirection to Product Management page | Pass |  |
+|  | Click on Blog Management link in navbar | Redirection to Blog Management page | Pass |  |
+| Footer |  |  |  |  |
+|  | Click on Home link | Redirection to Home page | Pass |  |
+|  | Click on Page | Redirection to that page | Pass |  |
+|  | Click on Faqs link in footer | Redirection to Faq page | Pass |  |
+|  | Click on Contact link in footer | Redirection to Contact page | Pass |  |
+|  | Click on Register link in footer | Redirection to Register page | Pass |  |
+|  | Click on Login link in footer | Redirection to Login page | Pass |  |
+|  | Click on My Profile link in footer | Redirection to User Profile page | Pass |  |
+|  | Click on Logout link in footer | Redirection to Logout page | Pass |  |
+| Register |  |  |  |  |
+|  | Enter valid email address (twice) | Field will only accept email address format | Pass |  |
+|  | Enter valid password (twice) | Field will only accept password format | Pass |  |
+|  | Click on Sign Up button | Redirects user to blank Login page | Pass |  |
+|  | Click on Back To Login button | Redirects user to Login page | Pass |  |
+| Log In |  |  |  |  |
+|  | Enter valid username/email | Field will accept username or email format | Pass |  |
+|  | Enter valid password | Field will only accept password format | Pass |  |
+|  | Click Login button | Log user in, Redirects to home page | Pass |  |
+| Log Out |  |  |  |  |
+|  | Click Logout button | Logs out user, Redirects user to home page | Pass |  |
+| Profile |  |  |  |  |
+|  | Click on the Update Information button | Inputted information is saved | Pass |  |
+|  | Click on Order History links | Redirects to user order history | Pass |  |
+| Site Navigations - Logged Out User |  |  |  |  |
+|  | Navigate to any login required URL | Redirect to login page, redirect back after login | Pass |  |
+| Products |  |  |  |  |
+|  | Click on product image | Redirect to clicked product details page | Pass |  |
+|  | Click on product title | Redirect to clicked product details page | Pass |  |
+|  | Click on sorting dropdown options | Sort Products by selected criteria | Pass |  |
+| Products - Admin Only |  |  |  |  |
+|  | Click on an edit button | Redirect to edit product page for that product | Pass |  |
+|  | Click on a delete button | Redirect to delete confirmation page for that product | Pass |  |
+|  | Delete confirmation page - Delete button | Delete the product | Pass |  |
+|  | Delete confirmation page - Cancel button | Redirect to product page | Pass |  |
+| Product Details |  |  |  |  |
+|  | Click on product image | Load full image | Pass |  |
+|  | Click on 'Add To Bag' button | Adds product to bag, bag message displayed | Pass |  |
+| Product Details - Admin Only |  |  |  |  |
+|  | Click on Edit button | Redirect to edit product page for that product | Pass |  |
+|  | Click on Delete button | Redirect to delete confirmation page for that product | Pass |  |
+|  | Delete confirmation modal - Delete button | Delete the product | Pass |  |
+|  | Delete confirmation modal - Cancel button | Redirect to product page | Pass |  |
+| FAQ |  |  |  |  |
+|  | Click on question | Dropdown with answer appears | Pass |  |
+|  | Click on open question | Dropdown with answer disappears | Pass |  |
+| Contact |  |  |  |  |
+|  | Email input | Auto-fills if user is logged in | Pass |  |
+|  | Email input | Required, accepts only email format | Pass |  |
+|  | Name input | Required | Pass |  |
+|  | Subject input | Required, user given a list of options | Pass |  |
+|  | Message input | Required | Pass |  |
+|  | Click on 'Send' button | Posts form if valid, adds success message toast | Pass |  |
+| Add New Product - Admin Only |  |  |  |  |
+|  | Category Input | required select from options | Pass |  |
+|  | Name | Required | Pass |  |
+|  | Description Input | Required | Pass |  |
+|  | Price Input | Required, Numbers only | Pass |  |
+|  | has sizes | True/Falserequired | Pass |  |
+|  | Image | Not required, uses default if none uploaded | Pass |  |
+| Edit Product - Admin Only |  |  |  |  |
+|  | Click on 'Cancel' button | Redirect to Products page | Pass |  |
+|  | Click on 'Update Product' button | Save changes, redirect to product details page | Pass |  |
+| Delete Product - Admin Only |  |  |  |  |
+|  | Click on Delete button | Redirect to delete confirmation page for that product | Pass |  |
+|  | Delete confirmation modal - Delete button | Delete the product | Pass |  |
+|  | Delete confirmation modal - Delete button | Close the modal | Pass |  |
+| Bag |  |  |  |  |
+|  | Click on 'Remove' link | Remove item from bag | Pass |  |
+|  | Click on 'Back To Products' button | Redirect to Products page | Pass |  |
+|  | Click on 'Secure Checkout' button | Redirect to Checkout page | Pass |  |
+|  | Click on 'Empty Bag' button | Empties the bag of all contents | Pass |  |
+| Checkout |  |  |  |  |
+|  | Full Name Input | Required | Pass |  |
+|  | Email Input | Required, autofill if saved | Pass |  |
+|  | Phone Number Input | Required, autofill if saved | Pass |  |
+|  | Street Address 1 Input | Required, autofill if saved | Pass |  |
+|  | Street Address 2 Input | Not required, autofill if saved | Pass |  |
+|  | Town Or City Input | Required, autofill if saved | Pass |  |
+|  | County Input | Not required, autofill if saved | Pass |  |
+|  | Postal Code Input | Not required, autofill if saved | Pass |  |
+|  | Country Input | Required, autofill if saved, select from options | Pass |  |
+|  | Stripe Card Details | Required, validates on input | Pass |  |
+|  | Check 'save delivery info.' box | Saves information to user profile | Pass |  |
+|  | Click product image in order summary | Redirect to the product details page | Pass |  |
+|  | Click on 'Adjust Basket' button | Redirect to Basket page | Pass |  |
+|  | Click on 'Complete Order' button | Complete Checkout with given information, redirect to order confirmation page if valid | Pass |  |
+| Newsletter - Subscribe |  |  |  |  |
+|  | Email Input | Required, autofills if user is logged in, accepts only email format | Pass |  |
+|  | Click on 'Subscribe' button | Subscribes user, redirects to homepage, displays success message | Pass |  |
+| Newsletter - Unsubscribe from email |  |  |  |  |
+|  | Click on 'Unsubscribe' link | Unsubscribes user, redirects to homepage, displays success message | Pass |  |
+
+
+### General Testing
+
+- Each time a feature was added, all the functions were tested to see if there was an impact.
+- The views have been thoroughly manually tested and refined over time, utilising python features to update the database in a useful, flexible structure.
+- The site was sent to friends for feedback and testing.
+- All forms have validation and will not submit without the proper information.
+
+### Mobile Testing
+
+- I tested the site personally on my Android device, going through the entire process, checking buttons, CRUD functionality etc.
+- The site was sent to friends and relatives for them to follow the same process. They have tested on their devices, including iOS.
+- Chrome was utilised to inspect the site in mobile format, going through the pages, functions and responsiveness.
+
+### Desktop & Browser Testing
+
+- The site was developed on a Dell G3 Laptop and the majority of testing occurred on Chrome.
+- The site was tested by friends and relatives on numerous desktop devices.
+- The site was marginally tested on other browsers, such as Firefox and Edge.
+- Internet Explorer was not tested and the site was not developed with it in mind as support for the browser is gradually being dropped.
+
+
+### GitHub **Issues**
+
+**Fixed Bugs**
+
+All previously closed/fixed bugs can be tracked [here](https://github.com/leec313/Fetch-and-Feast/issues?q=is%3Aissue+label%3Abug+label%3Afixed).
+
+**Open Issues**
+
+Any remaining open issues can be tracked [here](https://github.com/leec313/Fetch-and-Feast/issues). (None open)
+
+## Unfixed Bugs
+
+[One unfixed bug in relation to Lighthouse report - mentioned above too](https://github.com/users/leec313/projects/3/views/1?pane=issue&itemId=54045121)

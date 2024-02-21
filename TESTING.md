@@ -32,7 +32,7 @@ I have used the recommended [HTML W3C Validator](https://validator.w3.org/) to v
 | Products | [W3C - Validated By URI](https://validator.w3.org/#validate_by_uri) | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/testing-images/val-products.png) | Pass: No Errors |
 | Profile | [W3C - Validated By Direct Input](https://validator.w3.org/#validate_by_input) | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/testing-images/val-profile.png) | Pass: No Errors |
 | Rating Delete | [W3C - Validated By Direct Input](https://validator.w3.org/#validate_by_input) | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/testing-images/val-rating-delete.png) | Pass: No Errors |
-| Rating Edit | [W3C - Validated By Direct Input](https://validator.w3.org/#validate_by_input) | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/testing-images/val-rating-edit.png) | Pass: No Errors |
+| Rating Edit | [W3C - Validated By Direct Input](https://validator.w3.org/#validate_by_input) | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/testing-images/val-rating-edit.png) | Pass: No Errors |
 | Sign In | [W3C - Validated By URI](https://validator.w3.org/#validate_by_uri) | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/testing-images/val-signin.png) | Pass: No Errors |
 | Sign Out | [W3C - Validated By URI](https://validator.w3.org/#validate_by_uri) | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/testing-images/val-signout.png) | Pass: No Errors |
 | Signup | [W3C - Validated By URI](https://validator.w3.org/#validate_by_uri) | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/testing-images/val-signup.png) | Pass: No Errors |
@@ -100,7 +100,7 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 | signals.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/checkout-signals.png) | Pass: No Errors |
 | urls.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/checkout-urls.png) | Pass: No Errors |
 | views.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/checkout-views.png) | Pass: No Errors |
-| webhook-handler.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/checkout-webhook-handler.png) | Pass: No Errors |
+| webhook-handler.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/checkout-webhook-hand.png) | Pass: No Errors |
 | webhooks.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/checkout-webhook.png) | Pass: No Errors |
 
 ### Home
@@ -125,7 +125,7 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 | --- | --- | --- |
 | admin.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/profiles-admin.png) | Pass: No Errors |
 | contexts.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/profiles-contexts.png) | Pass: No Errors |
-| forms.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/profiles-forms.png) | Pass: No Errors |
+| forms.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/profile-forms.png) | Pass: No Errors |
 | models.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/profiles-models.png) | Pass: No Errors |
 | urls.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/profiles-urls.png) | Pass: No Errors |
 | views.py | ![screenshot](https://raw.githubusercontent.com/leec313/Fetch-and-Feast/main/readme-images/python-images/profiles-views.png) | Pass: No Errors |
@@ -267,45 +267,45 @@ Defensive programming was manually tested with the below user acceptance testing
 # User Story Testing
 
 ### Must Have
-"As a user, I can view and manage order numbers to track my purchases more efficiently."
-"As a user, I can make payments seamlessly during checkout to complete my purchase."
-"As a user, I can access accurate product pricing information to make informed purchasing decisions."
-"As a user, I can perform various actions related to the checkout process as part of the Checkout epic."
-"As a user, I can remove products from my shopping bag to adjust my purchase before checkout."
-"As a user, I can add products to my shopping bag to prepare for checkout."
-"As a user, I can search, filter, and sort products to find what I need more efficiently."
-"As a user, I can interact with a comprehensive product database to explore available items."
-"As a user, I can easily view product details and images to assess their suitability."
-"As a user, I can navigate the website using a convenient navigation bar for seamless browsing."
-"As a user, I can manage my profile and account settings for a personalized experience."
-"As a user, I can conveniently log in and out of my account to access my information securely."
-"As a user, I can recover my password in case I forget it, ensuring continued access to my account."
-"As a user, I can sign up and register for an account to access the full features of the platform."
+- "As a user, I can view and manage order numbers to track my purchases more efficiently."
+- "As a user, I can make payments seamlessly during checkout to complete my purchase."
+- "As a user, I can access accurate product pricing information to make informed purchasing decisions."
+- "As a user, I can perform various actions related to the checkout process as part of the Checkout epic."
+- "As a user, I can remove products from my shopping bag to adjust my purchase before checkout."
+- "As a user, I can add products to my shopping bag to prepare for checkout."
+- "As a user, I can search, filter, and sort products to find what I need more efficiently."
+- "As a user, I can interact with a comprehensive product database to explore available items."
+- "As a user, I can easily view product details and images to assess their suitability."
+- "As a user, I can navigate the website using a convenient navigation bar for seamless browsing."
+- "As a user, I can manage my profile and account settings for a personalized experience."
+- "As a user, I can conveniently log in and out of my account to access my information securely."
+- "As a user, I can recover my password in case I forget it, ensuring continued access to my account."
+- "As a user, I can sign up and register for an account to access the full features of the platform."
 
 ### Should Have
-"As a user, I can access and manage my profile model to customize my account settings and preferences."
-"As a user, I can view and interact with my profile page to update my personal information and settings."
-"As a user, I expect my profile to be automatically created to streamline the registration process."
-"As a user, I can expect comprehensive functionality and features within the User Profiles epic."
-"As a user, I receive confirmation emails after making purchases to ensure successful transactions."
-"As a user, I expect secure payment processes with webhooks for added protection during checkout."
-"As a user, I can view the running total of items in my shopping bag to keep track of my expenses."
-"As a user, I can perform full CRUD (Create, Read, Update, Delete) operations on products within the front-end."
-"As a user, I can experience a dynamic navigation bar that adjusts based on my login status for improved usability."
-"As a user, I receive emails for verification and validation purposes to ensure the security of my account."
+- "As a user, I can access and manage my profile model to customize my account settings and preferences."
+- "As a user, I can view and interact with my profile page to update my personal information and settings."
+- "As a user, I expect my profile to be automatically created to streamline the registration process."
+- "As a user, I can expect comprehensive functionality and features within the User Profiles epic."
+- "As a user, I receive confirmation emails after making purchases to ensure successful transactions."
+- "As a user, I expect secure payment processes with webhooks for added protection during checkout."
+- "As a user, I can view the running total of items in my shopping bag to keep track of my expenses."
+- "As a user, I can perform full CRUD (Create, Read, Update, Delete) operations on products within the front-end."
+- "As a user, I can experience a dynamic navigation bar that adjusts based on my login status for improved usability."
+- "As a user, I receive emails for verification and validation purposes to ensure the security of my account."
 
 ### Could Have
-"As a user, I can view average ratings for products site-wide to make informed purchasing decisions."
-"As a user, I can perform full CRUD (Create, Read, Update, Delete) operations on ratings to contribute feedback."
-"As a user, I can interact with the ratings model, views, and templates to provide and view product feedback."
-"As a user, I can access the front-end of the blog to read and engage with blog content."
-"As a user, I can interact with the blog database and perform CRUD operations to manage blog content."
-"As a user, I expect comprehensive features and functionality within the Blog epic to enhance my experience."
-"As a user, I can access and interact with the newsletter database to subscribe and receive updates."
-"As a user, I can easily sign up for the newsletter to stay informed about news and updates."
-"As a user, I expect a seamless newsletter experience with features and functionality provided within the Newsletter epic."
-"As a user, I can view custom error pages such as 404 pages for a better browsing experience."
-"As a user, I can access additional navigation buttons for enhanced website usability and functionality."
+- "As a user, I can view average ratings for products site-wide to make informed purchasing decisions."
+- "As a user, I can perform full CRUD (Create, Read, Update, Delete) operations on ratings to contribute feedback."
+- "As a user, I can interact with the ratings model, views, and templates to provide and view product feedback."
+- "As a user, I can access the front-end of the blog to read and engage with blog content."
+- "As a user, I can interact with the blog database and perform CRUD operations to manage blog content."
+- "As a user, I expect comprehensive features and functionality within the Blog epic to enhance my experience."
+- "As a user, I can access and interact with the newsletter database to subscribe and receive updates."
+- "As a user, I can easily sign up for the newsletter to stay informed about news and updates."
+- "As a user, I expect a seamless newsletter experience with features and functionality provided within the Newsletter epic."
+- "As a user, I can view custom error pages such as 404 pages for a better browsing experience."
+- "As a user, I can access additional navigation buttons for enhanced website usability and functionality."
 
 
 # General Testing

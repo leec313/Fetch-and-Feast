@@ -1,0 +1,26 @@
+<script>
+    // Increment quantity
+    $('.increment-qty_mob').click(function (e) {
+        e.preventDefault();
+        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+        var currentValue = parseInt($(closestInput).val());
+        if (currentValue < 99) {
+            $(closestInput).val(currentValue + 1);
+            var itemId = $(this).data('item_id');
+
+        }
+    });
+
+    // Decrement quantity
+    $('.decrement-qty_mob').click(function (e) {
+        e.preventDefault();
+        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+        var currentValue = parseInt($(closestInput).val());
+        if (currentValue > 1) {
+            // Only decrement if the value is greater than 1
+            $(closestInput).val(currentValue - 1);
+            var itemId = $(this).data('item_id');
+
+        }
+    });
+</script>

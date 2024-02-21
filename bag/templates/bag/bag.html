@@ -106,7 +106,7 @@
                         </td>
                         <td class="py-3 w-25">
                             <!--Display quantity selector form-->
-                            {% include "bag/quantity-form.html" %}
+                            {% include "bag/quantity-form-mobile.html" %}
                         </td>
                         <td class="py-3">
                             <!--Display individual price and subtotal-->
@@ -144,45 +144,13 @@
 
 {% block postloadjs %}
 {{ block.super }}
-<script type="text/javascript">
+<script>
     $('.btt-link').click(function (e) {
         window.scrollTo(0, 0)
     })
 </script>
 {% include 'products/includes/quantity_input_script.html' %}
-
-<script type="text/javascript">
-    // Update quantity on click
-    $('.update-link').click(function (e) {
-        // Find the form associated with the clicked update link
-        var form = $(this).prev('.update-form');
-        // Submit the form
-        form.submit();
-    })
-
-    // Remove item and reload on click
-    $('.remove-item').click(function (e) {
-        // Retrieve the CSRF token from the server-side template
-        var csrfToken = "{{ csrf_token }}";
-        // Extract the item ID from the clicked element's ID attribute
-        var itemId = $(this).attr('id').split('remove_')[1];
-        // Retrieve the product size associated with the item
-        var size = $(this).data('product_size');
-        // Construct the URL for removing the item
-        var url = `/bag/remove/${itemId}/`;
-        // Prepare data to send in the POST request
-        var data = {
-            'csrfmiddlewaretoken': csrfToken,
-            'product_size': size
-        };
-
-        // Make a POST request to remove the item
-        $.post(url, data)
-            .done(function () {
-                // Reload the page after successful removal
-                location.reload();
-            });
-    })
-</script>
+{% include 'products/includes/quantity_input_script_mob.html' %}
+{% include 'products/includes/remove_update_quantity_script.html' %}
 
 {% endblock %}

@@ -15,7 +15,7 @@ class PostForm(forms.ModelForm):
         'cols': 80, 'rows': 30, 'class': 'tinymce'}))
     # Use CustomClearableFileInput for the image field
     image = forms.ImageField(
-        label='Image', required=False, widget=CustomClearableFileInput)
+        label=False, required=False, widget=CustomClearableFileInput)
 
     class Meta:
         model = Post

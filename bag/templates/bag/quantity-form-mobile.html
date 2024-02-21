@@ -4,18 +4,18 @@
     <div class="form-group">
         <div class="input-group">
             <div class="input-group-prepend">
-                <button class="decrement-qty btn btn-sm btn-black rounded-0" data-item_id="{{ item.item_id }}_mob"
-                    id="decrement-qty_mob{{ item.item_id }}">
+                <button aria-label="Decrease Quantity" class="decrement-qty btn btn-sm btn-black rounded-0"
+                    data-item_id="{{ item.item_id }}_mob" id="decrement-qty_mob{{ item.item_id }}">
                     <span>
                         <i class="fas fa-minus fa-sm"></i>
                     </span>
                 </button>
             </div>
             <input class="form-control form-control-sm qty_input" type="number" name="quantity"
-                value="{{ item.quantity }}" min="1" max="99">
+                value="{{ item.quantity }}" min="1" max="99" id="q-amount-mob">
             <div class="input-group-append">
-                <button class="increment-qty btn btn-sm btn-black rounded-0" data-item_id="{{ item.item_id }}_mob"
-                    id="increment-qty_mob{{ item.item_id }}">
+                <button aria-label="Increase Quantity" class="increment-qty btn btn-sm btn-black rounded-0"
+                    data-item_id="{{ item.item_id }}_mob" id="increment-qty_mob{{ item.item_id }}">
                     <span>
                         <i class="fas fa-plus fa-sm"></i>
                     </span>

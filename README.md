@@ -1106,8 +1106,13 @@ By submitting the deployed site URL ([https://fetch-and-feast-4ceb13480b0c.herok
 I've configured the robots.txt file located at the root level of the project. It specifies the default settings, intentionally disallowing access to the admin section, as follows:
 
 ```
+# robots.txt
 User-agent: *
 Disallow: /admin/
+Disallow: /manage-blogs/
+Disallow: /manage-products/
+Disallow: /profile/
+Disallow: /checkout/
 Sitemap: https://fetch-and-feast-4ceb13480b0c.herokuapp.com/sitemap.xml
 ```
 

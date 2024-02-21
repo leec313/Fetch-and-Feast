@@ -1,4 +1,8 @@
 # robots.txt
 User-agent: *
 Disallow: /admin/
+Disallow: /manage-blogs/
+Disallow: /manage-products/
+Disallow: /profile/
+Disallow: /checkout/
 Sitemap: https://fetch-and-feast-4ceb13480b0c.herokuapp.com/sitemap.xml

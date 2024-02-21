@@ -88,7 +88,7 @@ body {
 
 .btn-black,
 .primaryAction {
-    background: #009970;
+    background: #0a8362;
     color: white;
 }
 
@@ -184,7 +184,7 @@ a.category-badge>span.badge:hover {
 }
 
 .message-container .del-bg {
-    background-color: #009970;
+    background-color: #0a8362;
     color: #fff;
 }
 
@@ -194,7 +194,7 @@ a.category-badge>span.badge:hover {
 
 .toast-capper {
     height: 2px;
-    background-color: #009970;
+    background-color: #0a8362;
 }
 
 /* from CSS-tricks.com: https://css-tricks.com/snippets/css/css-triangle/ */
@@ -219,7 +219,7 @@ a.category-badge>span.badge:hover {
 }
 
 .arrow-success {
-    border-bottom-color: #009970 !important;
+    border-bottom-color: #0a8362 !important;
 }
 
 .arrow-danger {
@@ -231,7 +231,7 @@ a.category-badge>span.badge:hover {
 }
 
 .arrow-info {
-    border-bottom-color: #009970 !important;
+    border-bottom-color: #0a8362 !important;
 }
 
 .arrow-light {
@@ -260,7 +260,7 @@ a.category-badge>span.badge:hover {
 }
 
 .bag-color {
-    color: #009970;
+    color: #0a8362;
 }
 
 .product-img {
@@ -280,12 +280,7 @@ a.category-badge>span.badge:hover {
 }
 
 .text-info {
-    color: #009970 !important;
-}
-
-.small a,
-small {
-    color: #009970 !important;
+    color: #0a8362 !important;
 }
 
 /* Allauth form formatting */
@@ -331,7 +326,7 @@ small {
 }
 
 .allauth-form-inner-content a {
-    color: #009970;
+    color: #0a8362;
     /* text-info */
 }
 
@@ -444,17 +439,17 @@ small {
 }
 
 .card-header .btn-link:hover {
-    color: #009970;
+    color: #0a8362;
     text-decoration: none;
 }
 
 .accordion .card-body {
-    background-color: #009970;
+    background-color: #0a8362;
     color: #fff;
 }
 
 footer h5 {
-    color: #009970;
+    color: #0a8362;
 }
 
 .footer-contact {
@@ -465,11 +460,11 @@ footer h5 {
 }
 
 .footer-contact:hover {
-    color: #009970;
+    color: #0a8362;
 }
 
 .footer-contact svg {
-    color: #009970;
+    color: #0a8362;
 }
 
 .footer-contact a {
@@ -477,7 +472,7 @@ footer h5 {
 }
 
 .footer-contact a:hover {
-    color: #009970;
+    color: #0a8362;
 }
 
 /* -------------------------------- Media Queries */
@@ -511,7 +506,7 @@ footer h5 {
         transform: translateX(-50%);
         width: 0;
         height: 2px;
-        background-color: #009970;
+        background-color: #0a8362;
         visibility: hidden;
         transition: 0.3s ease-in-out;
     }
@@ -556,7 +551,7 @@ footer h5 {
     }
 
     svg.bi.bi-list:hover {
-        color: #009970;
+        color: #0a8362;
     }
 
     #delivery-banner h4 {

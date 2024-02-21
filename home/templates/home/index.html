@@ -19,10 +19,11 @@
                 Discover Tail-Wagging Treasures!
             </h1>
             <div class="my-5">
-                <h4>
-                    <a href="{% url 'products' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Shop
+                <h2>
+                    <a href="{% url 'products' %}"
+                        class="shop-now-button btn h4 btn-lg rounded-0 text-uppercase py-3">Shop
                         Now</a>
-                </h4>
+                </h2>
             </div>
         </div>
     </div>
@@ -30,7 +31,7 @@
 {% endblock %}
 {% block featured_products %}
 <div class="container-fluid mt-5 text-dark px-5">
-    <h2 class="font-weight-bold text-center">Featured Products</h2>
+    <h3 class="font-weight-bold h2 text-center">Featured Products</h3>
     <hr>
     <div class="row">
         {% for product in featured_products %}
@@ -102,7 +103,7 @@
 
 {% block newsletter %}
 <div class="col-8 container-fluid d-flex flex-column align-items-center mt-5 pt-5 shadow">
-    <h2 class="font-weight-bold text-center">Stay in the loop with all things doggie-delightful!</h2>
+    <h3 class="font-weight-bold h2 text-center">Stay in the loop with all things doggie-delightful!</h3>
     <hr>
     <p class="text-center mx-4">Sign up for our newsletter today and unleash a world of tail-wagging fun and
         tasty treats for your furry friend.</p>
@@ -116,7 +117,7 @@
 
 {% block blogs %}
 <div class="container-fluid mt-5 text-dark px-5">
-    <h2 class="font-weight-bold text-center">Featured Blogs</h2>
+    <h3 class="font-weight-bold h2 text-center">Featured Blogs</h3>
     <hr>
     <div class="row">
         {% for post in top_liked_posts %}

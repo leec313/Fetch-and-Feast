@@ -157,7 +157,7 @@ In crafting the color palette for this project, I aimed to strike a perfect bala
     
 - **White (#FFFFFF) for the Background**: White serves as the canvas upon which all other colors and content come to life. Its clean and neutral nature creates a sense of spaciousness and cleanliness, enhancing readability and user experience. A white background exudes simplicity and elegance, perfectly complementing various design styles.
     
-- **Teal/Green (#009970) for Buttons, Links, Headers, and Icons**: Teal or green tones, such as #009970, inject vibrancy and energy into our project. This color choice for buttons, links, and headers adds visual interest and directs users' attention to key elements. Moreover, it's associated with growth, harmony, and freshness, resonating positively with our audience and conveying a welcoming vibe.
+- **Dark Green (#0a8362) for Buttons, Links, Headers, and Icons**: #0a8362 is a darker shade of teal-green. It carries a rich and deep tone that exudes sophistication and depth. This color combines the vibrancy of green with the calming qualities of teal, resulting in a hue that is both bold and grounded.
     
 - **Red (#DC3545) for Errors and Delete Buttons**: Red, particularly #DC3545, serves as a signal for alerts, warnings, or errors. Its darker hue maintains visibility while conveying a sense of urgency or caution. By using this color for error messages and delete buttons, we ensure that users take notice and proceed with care when necessary.
     

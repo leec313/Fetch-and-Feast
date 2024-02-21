@@ -14,6 +14,10 @@ body {
     font-family: 'Lato';
 }
 
+a {
+    color: #0a8362;
+}
+
 .row {
     margin-left: 0;
     margin-right: 0;

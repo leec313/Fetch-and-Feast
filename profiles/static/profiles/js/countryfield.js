@@ -17,8 +17,8 @@ $('#hint_id_new_password1').hide();
 
 
 //JS for dealing with custom input field for profile image
-$('#new-image').change(function () {
-    var file = $('#new-image')[0].files[0];
+$('#id_profile_image').change(function () {
+    var file = $('#id_profile_image')[0].files[0];
     $('#filename').text(`Image will be set to: ${file.name}`);
 });
 

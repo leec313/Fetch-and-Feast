@@ -10,16 +10,9 @@ $('#id_default_country').change(function () {
         $(this).css('color', '#000');
     }
 });
-// Add text to the labels before hiding them
-$('label[for="id_default_country"]').text('Choose default country:');
-$('label[for="id_profile_image"]').text('Choose profile image:');
-$('#hint_id_new_password1').text('Enter your new password:');
-
-// Hide the labels for cleaner look
-$('label[for="id_default_country"]').addClass('d-none');
-$('label[for="id_profile_image"]').addClass('d-none');
-$('#hint_id_new_password1').addClass('d-none');
-
+// Add text to the labels
+$('label[for="id_default_country"]').text('Country:');
+$('#hint_id_new_password1').text('');
 
 //JS for dealing with custom input field for profile image
 $('#id_profile_image').change(function () {

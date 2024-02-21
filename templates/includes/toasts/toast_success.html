@@ -34,10 +34,10 @@
                     <p class="my-0"><strong>{{ item.product.name }}</strong></p>
                     <p class="my-0 small">
                         {% if item.product.has_sizes %}Size: {{ item.size|upper }}{% endif %}</p>
-                    <span class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between">
                         <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
                         <p class="my-0 small text-muted float-right">€{{ item.product.price }}</p>
-                    </span>
+                    </div>
                 </div>
             </div>
             {% endfor %}
@@ -49,12 +49,12 @@
                         Empty Bag
                     </a>
                 </div>
-                <strong>
-                    <p class="mt-1 mb-1 text-black">
+                <div>
+                    <p class="mt-1 mb-1 text-black strong">
                         Total{% if free_delivery_delta > 0 %} (Exc. delivery){% endif %}:
                         <span class="float-right">€{{ total|floatformat:2 }}</span>
                     </p>
-                </strong>
+                </div>
                 <a href="{% url 'view_bag' %}" class="btn btn-outline-black btn-block rounded-0 mt-2">
                     <span class="text-uppercase">View Bag</span>
                     <span class="icon">

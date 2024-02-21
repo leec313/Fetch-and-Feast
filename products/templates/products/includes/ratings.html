@@ -14,13 +14,13 @@
     });
 
     document.addEventListener('DOMContentLoaded', function () {
-        const starLabels = document.querySelectorAll('.star-rating-form label');
+        const starLabels = document.querySelectorAll('.star-rating-form span');
 
         // Function to get the index of the checked radio button
         function getCheckedIndex() {
             let checkedIndex = 0;
-            starLabels.forEach(function (label, index) {
-                const radio = label.querySelector('input[type="radio"]');
+            starLabels.forEach(function (span, index) {
+                const radio = span.querySelector('input[type="radio"]');
                 if (radio && radio.checked) {
                     checkedIndex = index;
                 }
@@ -37,10 +37,10 @@
             });
         }
         // Update stars when a radio button is clicked
-        starLabels.forEach(function (label, index) {
-            label.addEventListener('click', function () {
+        starLabels.forEach(function (span, index) {
+            span.addEventListener('click', function () {
                 const
-                    radio = label.querySelector('input[type="radio" ]');
+                    radio = span.querySelector('input[type="radio" ]');
                 if (radio && radio.checked !== undefined) {
                     radio.checked = true;
                     highlightStars();

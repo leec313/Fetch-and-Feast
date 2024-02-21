@@ -182,10 +182,10 @@
                             {% for radio in form.score %}
                             <!-- If the value of the radio choice is less than the initial score of the form-->
                             <!--add the "checked" class to the label, indicating a filled star; otherwise, leave it empty.-->
-                            <label
+                            <span
                                 class="far fa-star {% if radio.choice_value|add:'0' < form.initial.score %}checked{% endif %}">
                                 {{ radio }}
-                            </label>
+                            </span>
                             {% endfor %}
                         </div>
                         <div class="text-center mt-5">
@@ -220,7 +220,7 @@
                 <div class="col-12 col-lg-6 mt-2 mb-3">
                     <div class="card border-0">
                         <div class="card-body ratings-individual mr-3 shadow">
-                            <span class="d-flex">
+                            <div class="d-flex">
                                 <!--Displays the user's profile image, username and the creation date-->
                                 {% if rating.user.userprofile.profile_image %}
                                 <img class="rounded-circle profile_img_base"
@@ -231,7 +231,7 @@
                                     alt="{{ rating.user.username }}" class="rounded-circle profile_img_base">
                                 {% endif %}
                                 <p class="text-muted mt-2">{{ rating.user.username }}</p>
-                            </span>
+                            </div>
                             <p class="card-text float-right">{{ rating.created_on|date:"H:i d/m/Y" }}</p>
                             <div class="star-rating">
                                 <!--Displays the rating given by the user shown in star icon form-->

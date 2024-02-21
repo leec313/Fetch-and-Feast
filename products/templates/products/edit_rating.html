@@ -29,10 +29,10 @@
                     <div class="star-rating-form">
                         {{ form.score.label_tag }}
                         {% for radio in form.score %}
-                        <label
+                        <span
                             class="far fa-star {% if radio.choice_value|add:'0' < form.initial.score %}checked{% endif %}">
                             {{ radio }}
-                        </label>
+                        </span>
                         {% endfor %}
                     </div>
                 </fieldset>
